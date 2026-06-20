@@ -8,7 +8,7 @@
 Sarza AI is an AI integration and automation consultancy focused exclusively on small
 businesses. The team handles the technical setup end to end, integrates with the tools a
 business already uses, and trains the team — no coding required on the client's side.
-Contact: hello@sarzaai.com (replies within 24 hours).
+Contact: hello@sarza.ai (replies within 24 hours).
 
 Reported outcomes for clients after 30–90 days: ~40% average cost reduction, up to 3×
 productivity increase, ~60% less time spent on customer support, ~8 hours/week saved on
@@ -41,5 +41,5 @@ admin, and 2× faster lead response. Typical time to first results is about 30 d
   The highest-ROI starting points — customer questions, follow-ups, scheduling, data entry, and content.
 
 ## How to engage
-Book a free 30-minute discovery call via https://sarza.ai/contact or email hello@sarzaai.com.
+Book a free 30-minute discovery call via https://sarza.ai/contact or email hello@sarza.ai.
 There are no fixed packages — pricing is scoped to each business after the discovery call.

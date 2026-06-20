@@ -26,7 +26,7 @@ Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/service
 ## What to finish (manual steps)
 
 1. **Contact form → real leads.** Out of the box the form opens a pre-filled email to
-   `hello@sarzaai.com`. To capture submissions automatically, create a free endpoint at
+   `hello@sarza.ai`. To capture submissions automatically, create a free endpoint at
    [Formspree](https://formspree.io) and add it to the `<form>` in `contact.html`:
    `data-endpoint="https://formspree.io/f/yourid"`.
 2. **Real testimonials.** A commented-out testimonials block is in `index.html`. Replace the
@@ -40,8 +40,6 @@ Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/service
 5. **(Optional) Self-host images & add analytics.** Images currently load from Unsplash's CDN.
    For full control, download and serve them from the repo. Add privacy-friendly analytics
    (e.g. Plausible, Fathom) if you want traffic data.
-6. **Email consistency.** The site uses `hello@sarzaai.com` while the domain is `sarza.ai`.
-   Confirm that's intentional, or align them.
 
 ## Adding a new blog post
 

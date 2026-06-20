@@ -32,7 +32,7 @@
 })();
 
 // ── Contact form ──
-// Works with zero setup: opens a pre-filled email to hello@sarzaai.com.
+// Works with zero setup: opens a pre-filled email to hello@sarza.ai.
 // To capture leads automatically instead, create a free form endpoint at
 // https://formspree.io and set data-endpoint on the <form> to that URL.
 (function () {
@@ -83,7 +83,7 @@
         })
         .catch(function () {
           if (errorBox) {
-            errorBox.innerHTML = 'Something went wrong. Please email us directly at <a href="mailto:hello@sarzaai.com">hello@sarzaai.com</a>.';
+            errorBox.innerHTML = 'Something went wrong. Please email us directly at <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>.';
             errorBox.style.display = 'block';
           }
         });
@@ -99,7 +99,7 @@
       'Biggest challenge: ' + challenge + '\n\n' +
       (message ? message + '\n' : '');
     window.location.href =
-      'mailto:hello@sarzaai.com?subject=' + encodeURIComponent(subject) +
+      'mailto:hello@sarza.ai?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(body);
     showSuccess();
   });
