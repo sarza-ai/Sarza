@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Futuristic desert landscape with a retro sun and tech grid">
+<defs>
+  <linearGradient id="sky-a" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#160d06"/>
+    <stop offset="0.55" stop-color="#2a1a0b"/>
+    <stop offset="0.78" stop-color="#3a2410"/>
+    <stop offset="1" stop-color="#1A1008"/>
+  </linearGradient>
+  <linearGradient id="sun-a" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFE3A6"/>
+    <stop offset="0.5" stop-color="#E8A85A"/>
+    <stop offset="1" stop-color="#C1440E"/>
+  </linearGradient>
+  <radialGradient id="glow-a" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#C1440E" stop-opacity="0.55"/>
+    <stop offset="0.45" stop-color="#C1440E" stop-opacity="0.20"/>
+    <stop offset="1" stop-color="#C1440E" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vig-a" cx="50%" cy="46%" r="75%">
+    <stop offset="0.55" stop-color="#1A1008" stop-opacity="0"/>
+    <stop offset="1" stop-color="#1A1008" stop-opacity="0.7"/>
+  </radialGradient>
+  <linearGradient id="floorfade-a" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1A1008" stop-opacity="0"/>
+    <stop offset="1" stop-color="#1A1008" stop-opacity="0.85"/>
+  </linearGradient>
+  <filter id="blur-a" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="9"/>
+  </filter>
+  <mask id="sunmask-a">
+    <circle cx="800" cy="520" r="178" fill="#fff"/>
+    <rect x="612" y="560" width="376" height="6" fill="#000"/><rect x="612" y="580" width="376" height="7" fill="#000"/><rect x="612" y="602" width="376" height="9" fill="#000"/><rect x="612" y="628" width="376" height="11" fill="#000"/><rect x="612" y="658" width="376" height="13" fill="#000"/><rect x="612" y="692" width="376" height="16" fill="#000"/><rect x="612" y="730" width="376" height="20" fill="#000"/>
+  </mask>
+</defs>
+
+<rect width="1600" height="1000" fill="url(#sky-a)"/>
+<circle cx="1514" cy="280" r="1.84" fill="#F5E6C8" opacity="0.34"/><circle cx="1403" cy="286" r="0.82" fill="#F5E6C8" opacity="0.29"/><circle cx="1040" cy="147" r="0.69" fill="#F5E6C8" opacity="0.66"/><circle cx="613" cy="128" r="2.14" fill="#F5E6C8" opacity="0.75"/><circle cx="244" cy="424" r="2.18" fill="#F5E6C8" opacity="0.49"/><circle cx="1308" cy="359" r="2.00" fill="#F5E6C8" opacity="0.65"/><circle cx="1469" cy="403" r="0.73" fill="#F5E6C8" opacity="0.42"/><circle cx="1546" cy="403" r="1.24" fill="#F5E6C8" opacity="0.75"/><circle cx="560" cy="419" r="1.73" fill="#F5E6C8" opacity="0.33"/><circle cx="979" cy="419" r="1.40" fill="#F5E6C8" opacity="0.82"/><circle cx="1329" cy="379" r="1.39" fill="#F5E6C8" opacity="0.87"/><circle cx="496" cy="386" r="1.74" fill="#F5E6C8" opacity="0.74"/><circle cx="1181" cy="145" r="1.26" fill="#F5E6C8" opacity="0.60"/><circle cx="216" cy="459" r="1.84" fill="#F5E6C8" opacity="0.43"/><circle cx="96" cy="353" r="1.74" fill="#F5E6C8" opacity="0.79"/><circle cx="896" cy="292" r="1.64" fill="#F5E6C8" opacity="0.34"/><circle cx="10" cy="37" r="1.22" fill="#F5E6C8" opacity="0.34"/><circle cx="209" cy="187" r="0.90" fill="#F5E6C8" opacity="0.50"/><circle cx="796" cy="149" r="2.18" fill="#F5E6C8" opacity="0.42"/><circle cx="271" cy="428" r="0.73" fill="#F5E6C8" opacity="0.56"/><circle cx="713" cy="237" r="1.09" fill="#F5E6C8" opacity="0.70"/><circle cx="617" cy="375" r="1.51" fill="#F5E6C8" opacity="0.28"/><circle cx="968" cy="469" r="0.81" fill="#F5E6C8" opacity="0.26"/><circle cx="1178" cy="169" r="1.90" fill="#F5E6C8" opacity="0.30"/><circle cx="1202" cy="363" r="1.38" fill="#F5E6C8" opacity="0.84"/><circle cx="306" cy="300" r="1.04" fill="#F5E6C8" opacity="0.33"/><circle cx="1277" cy="112" r="2.28" fill="#F5E6C8" opacity="0.46"/><circle cx="354" cy="310" r="0.83" fill="#F5E6C8" opacity="0.58"/><circle cx="384" cy="226" r="1.09" fill="#F5E6C8" opacity="0.48"/><circle cx="1284" cy="378" r="1.82" fill="#F5E6C8" opacity="0.76"/><circle cx="781" cy="249" r="2.23" fill="#F5E6C8" opacity="0.39"/><circle cx="454" cy="266" r="2.09" fill="#F5E6C8" opacity="0.32"/><circle cx="266" cy="250" r="2.24" fill="#F5E6C8" opacity="0.86"/><circle cx="755" cy="95" r="1.60" fill="#F5E6C8" opacity="0.62"/><circle cx="816" cy="186" r="1.27" fill="#F5E6C8" opacity="0.72"/><circle cx="240" cy="116" r="2.25" fill="#F5E6C8" opacity="0.65"/><circle cx="109" cy="189" r="1.22" fill="#F5E6C8" opacity="0.28"/><circle cx="696" cy="221" r="1.24" fill="#F5E6C8" opacity="0.72"/><circle cx="298" cy="131" r="0.72" fill="#F5E6C8" opacity="0.93"/>
+
+<!-- sun glow -->
+<circle cx="800" cy="520" r="430" fill="url(#glow-a)"/>
+
+<!-- perspective tech grid -->
+<g stroke="#E8A85A" stroke-width="1.4" opacity="0.5"><line x1="800" y1="560" x2="-800" y2="1000"/><line x1="800" y1="560" x2="-650" y2="1000"/><line x1="800" y1="560" x2="-500" y2="1000"/><line x1="800" y1="560" x2="-350" y2="1000"/><line x1="800" y1="560" x2="-200" y2="1000"/><line x1="800" y1="560" x2="-50" y2="1000"/><line x1="800" y1="560" x2="100" y2="1000"/><line x1="800" y1="560" x2="250" y2="1000"/><line x1="800" y1="560" x2="400" y2="1000"/><line x1="800" y1="560" x2="550" y2="1000"/><line x1="800" y1="560" x2="700" y2="1000"/><line x1="800" y1="560" x2="850" y2="1000"/><line x1="800" y1="560" x2="1000" y2="1000"/><line x1="800" y1="560" x2="1150" y2="1000"/><line x1="800" y1="560" x2="1300" y2="1000"/><line x1="800" y1="560" x2="1450" y2="1000"/><line x1="800" y1="560" x2="1600" y2="1000"/><line x1="800" y1="560" x2="1750" y2="1000"/><line x1="800" y1="560" x2="1900" y2="1000"/><line x1="800" y1="560" x2="2050" y2="1000"/><line x1="800" y1="560" x2="2200" y2="1000"/><line x1="800" y1="560" x2="2350" y2="1000"/><line x1="0" y1="566" x2="1600" y2="566"/><line x1="0" y1="576" x2="1600" y2="576"/><line x1="0" y1="590" x2="1600" y2="590"/><line x1="0" y1="610" x2="1600" y2="610"/><line x1="0" y1="638" x2="1600" y2="638"/><line x1="0" y1="676" x2="1600" y2="676"/><line x1="0" y1="726" x2="1600" y2="726"/><line x1="0" y1="792" x2="1600" y2="792"/><line x1="0" y1="878" x2="1600" y2="878"/><line x1="0" y1="985" x2="1600" y2="985"/></g>
+<g stroke="#7fd4d4" stroke-width="1.2" opacity="0.18"><line x1="0" y1="566" x2="1600" y2="566"/></g>
+<rect x="0" y="560" width="1600" height="440" fill="url(#floorfade-a)"/>
+
+<!-- horizon glow line -->
+<rect x="0" y="557" width="1600" height="6" fill="#E8A85A" opacity="0.65" filter="url(#blur-a)"/>
+
+<!-- dune horizon -->
+<path d="M0 580 L0 556 L200 561 L400 536 L600 530 L800 561 L1000 531 L1200 555 L1400 562 L1600 555 L1600 620 L0 620 Z" fill="#140c05"/>
+
+<!-- retro sun -->
+<circle cx="800" cy="520" r="178" fill="url(#sun-a)" mask="url(#sunmask-a)"/>
+
+<rect width="1600" height="1000" fill="url(#vig-a)"/>
+</svg>

@@ -14,6 +14,9 @@ Static marketing site for Sarza AI. No build step — plain HTML/CSS/JS deployed
 | `404.html` | Not-found page |
 | `styles.css` | Shared stylesheet (cached across pages) |
 | `app.js` | Mobile nav toggle + contact form handling |
+| `assets/scene-*.svg` | Futuristic-desert background art (3 variants) |
+| `assets/og.png` | Social-share image (1200×630), rasterized from `scene-a` |
+| `assets/generate-art.js` | Regenerates the scene SVGs |
 | `favicon.svg` | Site icon |
 | `site.webmanifest` | PWA / mobile metadata |
 | `robots.txt` | Crawl rules (explicitly allows AI crawlers) |
@@ -22,6 +25,15 @@ Static marketing site for Sarza AI. No build step — plain HTML/CSS/JS deployed
 | `vercel.json` | Clean URLs + security/cache headers |
 
 Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/services`.
+
+### Imagery
+
+The site uses custom "desert high-tech futuristic" SVG art (a synthwave retro sun, perspective
+tech grid, starfield, and dune horizon) instead of stock photos — lightweight (~7 KB each),
+fully on-brand, and consistent. Edit the palette/sun positions in `assets/generate-art.js`
+and run `node assets/generate-art.js` to regenerate `scene-a/b/c.svg`. To refresh the social
+image after a change: `npx sharp-cli -i assets/scene-a.svg -o <dir> -f png resize 1200 630 --fit cover`
+and save the result as `assets/og.png`.
 
 ## What to finish (manual steps)
 
@@ -37,9 +49,8 @@ Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/service
    [Bing Webmaster Tools](https://www.bing.com/webmasters), then submit `sitemap.xml`.
 4. **Set up a Google Business Profile** and keep the name/email consistent with the site —
    this strengthens the entity signal that AI assistants rely on.
-5. **(Optional) Self-host images & add analytics.** Images currently load from Unsplash's CDN.
-   For full control, download and serve them from the repo. Add privacy-friendly analytics
-   (e.g. Plausible, Fathom) if you want traffic data.
+5. **(Optional) Add analytics.** Add privacy-friendly analytics (e.g. Plausible, Fathom)
+   if you want traffic data.
 
 ## Adding a new blog post
 
