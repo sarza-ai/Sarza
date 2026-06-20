@@ -3,457 +3,150 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sarza AI — AI Integration for Small Businesses</title>
+
+<title>Sarza AI — AI Automation & Integration for Small Businesses</title>
+<meta name="description" content="Sarza AI helps small businesses automate repetitive work, respond to customers faster, and grow with practical AI — no technical background needed. Book a free 30-minute strategy call." />
+<link rel="canonical" href="https://sarza.ai/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#1A1008" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="Sarza AI — AI Automation & Integration for Small Businesses" />
+<meta property="og:description" content="Automate the repetitive, move faster, and compete like companies ten times your size. Practical AI for small businesses. Book a free strategy call." />
+<meta property="og:url" content="https://sarza.ai/" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=80&auto=format&fit=crop" />
+<meta property="og:image:alt" content="Desert dunes at sunset — Sarza AI" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sarza AI — AI Automation for Small Businesses" />
+<meta name="twitter:description" content="Practical AI that automates the repetitive and helps small businesses compete bigger. Book a free strategy call." />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=80&auto=format&fit=crop" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://images.unsplash.com" />
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1600&q=80&auto=format&fit=crop" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link rel="stylesheet" href="/styles.css" />
 
-  :root {
-    --bg:          #1A1008;
-    --bg2:         #221508;
-    --bg3:         #2C1C0C;
-    --border:      rgba(210,140,60,0.12);
-    --border-hover:rgba(210,140,60,0.25);
-    --text:        #F5E6C8;
-    --text-muted:  #B89A6A;
-    --text-dim:    #7A5E3A;
-    --accent:      #D4822A;
-    --accent-light:#E8A85A;
-    --accent-glow: rgba(212,130,42,0.15);
-    --sand:        #C8A96A;
-    --sienna:      #A0522D;
-    --terracotta:  #C1440E;
-    --green:       #7AB88A;
-    --radius:      12px;
-    --radius-sm:   8px;
-  }
+<!-- Structured data: Organization + WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sarza.ai/#org",
+      "name": "Sarza AI",
+      "url": "https://sarza.ai/",
+      "logo": "https://sarza.ai/favicon.svg",
+      "email": "hello@sarzaai.com",
+      "description": "AI integration and automation consultancy for small businesses. Sarza AI automates repetitive work, deploys AI customer support, and trains teams to use AI effectively.",
+      "knowsAbout": ["AI automation", "AI customer support", "Business process automation", "AI strategy", "AI content generation", "AI training"],
+      "areaServed": "US",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@sarzaai.com",
+        "contactType": "sales",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sarza.ai/#website",
+      "url": "https://sarza.ai/",
+      "name": "Sarza AI",
+      "publisher": { "@id": "https://sarza.ai/#org" },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: 'Space Grotesk', sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 2.5rem;
-    background: rgba(26,16,8,0.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px; font-weight: 700;
-    color: var(--text); text-decoration: none;
-    letter-spacing: -0.03em;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; align-items: center; gap: 2rem; }
-  .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
-  .nav-cta {
-    background: var(--accent); color: #fff !important;
-    padding: 9px 20px; border-radius: var(--radius-sm);
-    font-size: 14px; font-weight: 500; text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* ── PAGES ── */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 5rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1600&q=80&auto=format&fit=crop');
-    background-size: cover; background-position: center 40%;
-    filter: brightness(0.28) saturate(1.2);
-  }
-  .hero-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to bottom, rgba(26,16,8,0.3) 0%, rgba(26,16,8,0.7) 60%, rgba(26,16,8,1) 100%);
-  }
-  .hero > *:not(.hero-bg):not(.hero-overlay) { position: relative; z-index: 2; }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(212,130,42,0.12);
-    border: 1px solid rgba(212,130,42,0.3);
-    color: var(--accent-light);
-    font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
-    padding: 6px 16px; border-radius: 100px;
-    margin-bottom: 2rem;
-  }
-  .hero-badge::before { content: '●'; font-size: 8px; color: var(--green); }
-
-  .hero h1 {
-    font-size: clamp(42px, 7vw, 72px);
-    font-weight: 700; color: var(--text);
-    max-width: 780px; margin-bottom: 1.5rem;
-  }
-  .hero h1 em { color: var(--accent-light); font-style: normal; }
-
-  .hero p {
-    font-size: 18px; color: var(--text-muted);
-    max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7;
-  }
-
-  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
-
-  .btn-primary {
-    background: var(--accent); color: #fff;
-    padding: 14px 30px; border-radius: var(--radius-sm);
-    font-size: 15px; font-weight: 500; text-decoration: none;
-    transition: opacity 0.2s, transform 0.15s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  .btn-ghost {
-    background: transparent; color: var(--text);
-    padding: 14px 30px; border-radius: var(--radius-sm);
-    font-size: 15px; font-weight: 500; text-decoration: none;
-    border: 1px solid var(--border-hover);
-    transition: border-color 0.2s, transform 0.15s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-ghost:hover { border-color: rgba(210,140,60,0.5); transform: translateY(-1px); }
-
-  .hero-stats {
-    display: flex; gap: 3rem; justify-content: center;
-    flex-wrap: wrap; padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    width: 100%; max-width: 600px;
-  }
-  .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 32px; font-weight: 700; color: var(--text);
-  }
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
-
-  /* ── DESERT IMAGE STRIP ── */
-  .img-strip {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 3px; height: 260px; overflow: hidden;
-  }
-  .img-strip-item {
-    overflow: hidden; position: relative;
-  }
-  .img-strip-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease;
-    filter: brightness(0.75) saturate(1.1);
-  }
-  .img-strip-item:hover img { transform: scale(1.04); filter: brightness(0.9) saturate(1.2); }
-  .img-strip-item.tall { grid-row: span 2; }
-
-  /* ── SECTION SHARED ── */
-  section { padding: 6rem 2rem; }
-  .section-inner { max-width: 1080px; margin: 0 auto; }
-
-  .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700; color: var(--text); margin-bottom: 1rem;
-  }
-  .section-sub {
-    font-size: 17px; color: var(--text-muted);
-    max-width: 520px; line-height: 1.7;
-  }
-
-  /* ── PROBLEMS ── */
-  .problems { background: var(--bg2); }
-  .problems-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    margin-top: 3rem;
-  }
-  .problem-item { background: var(--bg2); padding: 2rem 1.75rem; }
-  .problem-icon { font-size: 24px; margin-bottom: 1rem; }
-  .problem-item h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-  .problem-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-  /* ── DESERT FEATURE IMAGE ── */
-  .feature-img-section {
-    padding: 0;
-    position: relative; overflow: hidden; height: 420px;
-  }
-  .feature-img-section img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(0.45) saturate(1.15);
-  }
-  .feature-img-overlay {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 2rem;
-    background: linear-gradient(to right, rgba(26,16,8,0.6) 0%, rgba(26,16,8,0.2) 50%, rgba(26,16,8,0.6) 100%);
-  }
-  .feature-img-overlay h2 {
-    font-size: clamp(26px, 4vw, 48px); font-weight: 700;
-    color: var(--text); margin-bottom: 0.75rem; max-width: 600px;
-  }
-  .feature-img-overlay p { font-size: 16px; color: var(--text-muted); max-width: 460px; }
-
-  /* ── STEPS ── */
-  .steps-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; }
-  .step-row {
-    display: grid; grid-template-columns: 60px 1fr;
-    gap: 1.5rem; align-items: start;
-    padding: 2rem 0; border-bottom: 1px solid var(--border);
-  }
-  .step-row:last-child { border-bottom: none; }
-  .step-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 700; color: var(--accent);
-    background: var(--accent-glow);
-    border: 1px solid rgba(212,130,42,0.25);
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .step-content h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; margin-top: 8px; }
-  .step-content p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
-
-  /* ── RESULTS ── */
-  .results { background: var(--bg2); }
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.25rem; margin-top: 3rem;
-  }
-  .result-card {
-    background: var(--bg3); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 1.75rem;
-    transition: border-color 0.2s;
-  }
-  .result-card:hover { border-color: var(--border-hover); }
-  .result-card .result-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 40px; font-weight: 700; color: var(--accent);
-    line-height: 1; margin-bottom: 0.4rem;
-  }
-  .result-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-  .result-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-  /* ── CTA BANNER ── */
-  .cta-banner {
-    margin: 0 auto 6rem; padding: 4rem 2rem;
-    max-width: 1080px; text-align: center;
-    background: linear-gradient(135deg, #2C1C0C 0%, #1A1008 100%);
-    border: 1px solid rgba(212,130,42,0.25);
-    border-radius: 20px;
-  }
-  .cta-banner h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; color: var(--text); margin-bottom: 1rem; }
-  .cta-banner p { font-size: 16px; color: var(--text-muted); margin-bottom: 2rem; }
-
-  /* ── SERVICES PAGE ── */
-  .services-hero {
-    padding: 0; position: relative; overflow: hidden; height: 420px;
-  }
-  .services-hero img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(0.38) saturate(1.1);
-  }
-  .services-hero-content {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 2rem;
-    padding-top: 6rem;
-  }
-  .services-hero-content h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 1rem; }
-  .services-hero-content p { font-size: 18px; color: var(--text-muted); max-width: 480px; }
-
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.25rem; margin-top: 3rem;
-  }
-  .service-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 2rem;
-    transition: border-color 0.25s, transform 0.2s;
-  }
-  .service-card:hover { border-color: rgba(212,130,42,0.4); transform: translateY(-3px); }
-  .service-tag {
-    display: inline-block;
-    background: var(--accent-glow); color: var(--accent-light);
-    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 4px 12px; border-radius: 100px; margin-bottom: 1.25rem;
-    border: 1px solid rgba(212,130,42,0.25);
-  }
-  .service-card h3 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
-  .service-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
-  .service-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .service-features li {
-    font-size: 14px; color: var(--text-muted);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .service-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 13px; flex-shrink: 0; }
-
-  .pricing-note {
-    margin-top: 4rem; text-align: center; padding: 2rem;
-    background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
-  }
-  .pricing-note p { font-size: 16px; color: var(--text-muted); }
-  .pricing-note strong { color: var(--text); }
-
-  /* ── CONTACT PAGE ── */
-  .contact-hero {
-    padding: 0; position: relative; overflow: hidden; height: 340px;
-  }
-  .contact-hero img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center 60%;
-    filter: brightness(0.35) saturate(1.1);
-  }
-  .contact-hero-content {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 2rem; padding-top: 5rem;
-  }
-  .contact-hero-content h1 { font-size: clamp(32px, 5vw, 50px); font-weight: 700; margin-bottom: 0.75rem; }
-  .contact-hero-content p { font-size: 17px; color: var(--text-muted); max-width: 420px; }
-
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3rem; max-width: 900px; margin: 3rem auto 6rem; padding: 0 2rem;
-  }
-  .contact-info h2 { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
-  .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
-  .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
-  .contact-item {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 1.25rem; background: var(--bg2);
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-  }
-  .contact-icon {
-    width: 38px; height: 38px; border-radius: var(--radius-sm);
-    background: var(--accent-glow); border: 1px solid rgba(212,130,42,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .contact-item-text strong { font-size: 14px; color: var(--text); display: block; margin-bottom: 2px; }
-  .contact-item-text span { font-size: 14px; color: var(--text-muted); }
-
-  .contact-form-wrap {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 2rem;
-  }
-  .form-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 1.5rem; }
-  .form-group { margin-bottom: 1.25rem; }
-  .form-group label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%; background: var(--bg3);
-    border: 1px solid var(--border-hover);
-    border-radius: var(--radius-sm);
-    color: var(--text); font-family: 'Inter', sans-serif;
-    font-size: 14px; padding: 11px 14px; outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus { border-color: var(--accent); }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--text-dim); }
-  .form-group textarea { resize: vertical; min-height: 110px; }
-  .form-group select { appearance: none; cursor: pointer; }
-  .form-group select option { background: var(--bg3); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .submit-btn {
-    width: 100%; background: var(--accent); color: #fff;
-    padding: 13px; border-radius: var(--radius-sm);
-    font-size: 15px; font-weight: 500; border: none; cursor: pointer;
-    font-family: 'Inter', sans-serif; transition: opacity 0.2s; margin-top: 0.5rem;
-  }
-  .submit-btn:hover { opacity: 0.85; }
-
-  .form-success { display: none; text-align: center; padding: 2rem; }
-  .form-success .check { font-size: 40px; margin-bottom: 1rem; }
-  .form-success h3 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-  .form-success p { font-size: 15px; color: var(--text-muted); }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border); padding: 2rem 2.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
-  .footer-logo span { color: var(--accent); }
-  footer p { font-size: 13px; color: var(--text-dim); }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--text); }
-
-  @media (max-width: 700px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1rem; }
-    .hero-stats { gap: 1.5rem; }
-    .img-strip { height: 180px; }
-    .feature-img-section { height: 300px; }
-  }
-</style>
+<!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does AI automation cost for a small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every engagement begins with a free 30-minute discovery call, then pricing is scoped to your business — there are no fixed, one-size-fits-all packages. Most small-business projects are designed to pay for themselves within the first 30 to 90 days through time saved and lower operating costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I see results from AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients see measurable results within about 30 days. Larger implementations typically run on a 30/60/90-day plan so improvements compound over the first quarter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need any technical background to work with Sarza AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Sarza AI handles the setup and integration end to end and connects everything to the tools you already use. You never need to write or touch a line of code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my business too small for AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Sarza AI works exclusively with small businesses. The services are built to give small teams the leverage of much larger companies, without enterprise complexity or cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tools and AI models does Sarza AI work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sarza AI integrates with the tools you already rely on — CRMs, email, scheduling, and help-desk software — and builds on leading AI models such as Claude and GPT, choosing the right fit for each task."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="showPage('home')">Sarza<span>AI</span></a>
-  <div class="nav-links">
-    <a href="#" onclick="showPage('home')">Home</a>
-    <a href="#" onclick="showPage('services')">Services</a>
-    <a href="#" onclick="showPage('contact')" class="nav-cta">Book a call</a>
+  <a href="/" class="nav-logo" aria-label="Sarza AI home">Sarza<span>AI</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="/" aria-current="page">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact" class="nav-cta">Book a call</a>
   </div>
 </nav>
 
-<!-- ═══════════════ HOME ═══════════════ -->
-<div class="page active" id="page-home">
+<main id="main">
 
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-badge">Now serving small businesses</div>
+    <p class="hero-badge">Now serving small businesses</p>
     <h1>Your business runs smarter<br>with <em>AI on your side</em></h1>
     <p>Sarza AI helps small businesses automate the repetitive, move faster, and compete like companies ten times their size.</p>
     <div class="hero-btns">
-      <a href="#" class="btn-primary" onclick="showPage('contact')">Book a free strategy call →</a>
-      <a href="#" class="btn-ghost" onclick="showPage('services')">See what we do</a>
+      <a href="/contact" class="btn-primary">Book a free strategy call →</a>
+      <a href="/services" class="btn-ghost">See what we do</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
@@ -474,39 +167,39 @@
   <!-- Desert image strip -->
   <div class="img-strip">
     <div class="img-strip-item">
-      <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80&auto=format&fit=crop" alt="Desert sand dunes at sunset" />
+      <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80&auto=format&fit=crop" alt="Desert sand dunes at sunset" width="800" height="520" loading="lazy" decoding="async" />
     </div>
     <div class="img-strip-item">
-      <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80&auto=format&fit=crop" alt="Desert canyon landscape" />
+      <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80&auto=format&fit=crop" alt="Desert canyon landscape" width="800" height="520" loading="lazy" decoding="async" />
     </div>
     <div class="img-strip-item">
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80&auto=format&fit=crop" alt="Desert road horizon" />
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80&auto=format&fit=crop" alt="Desert road stretching to the horizon" width="800" height="520" loading="lazy" decoding="async" />
     </div>
   </div>
 
   <section class="problems">
     <div class="section-inner">
-      <div class="eyebrow">Sound familiar?</div>
+      <p class="eyebrow">Sound familiar?</p>
       <h2 class="section-title">The same hours lost, every week</h2>
       <p class="section-sub">Most small businesses are doing things manually that AI could handle in seconds. Here's where we see it most.</p>
       <div class="problems-grid">
         <div class="problem-item">
-          <div class="problem-icon">📋</div>
+          <div class="problem-icon" aria-hidden="true">📋</div>
           <h3>Drowning in admin</h3>
           <p>Scheduling, invoicing, follow-ups, data entry — hours that could be spent on real work.</p>
         </div>
         <div class="problem-item">
-          <div class="problem-icon">💬</div>
+          <div class="problem-icon" aria-hidden="true">💬</div>
           <h3>Slow customer responses</h3>
           <p>Leads go cold and customers get frustrated while you're busy with everything else.</p>
         </div>
         <div class="problem-item">
-          <div class="problem-icon">📊</div>
+          <div class="problem-icon" aria-hidden="true">📊</div>
           <h3>No time for strategy</h3>
           <p>You're too deep in the day-to-day to zoom out and actually grow the business.</p>
         </div>
         <div class="problem-item">
-          <div class="problem-icon">🔧</div>
+          <div class="problem-icon" aria-hidden="true">🔧</div>
           <h3>Tech that doesn't connect</h3>
           <p>Your tools don't talk to each other, so you're copying and pasting between systems.</p>
         </div>
@@ -516,7 +209,7 @@
 
   <!-- Desert feature image with text -->
   <div class="feature-img-section">
-    <img src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=1600&q=80&auto=format&fit=crop" alt="Vast desert landscape" />
+    <img src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=1600&q=80&auto=format&fit=crop" alt="Vast open desert landscape under a clear sky" width="1600" height="420" loading="lazy" decoding="async" />
     <div class="feature-img-overlay">
       <h2>The desert rewards those who prepare</h2>
       <p>The right tools, applied wisely, turn the hardest terrain into an advantage. AI is that tool for your business.</p>
@@ -525,45 +218,45 @@
 
   <section>
     <div class="section-inner">
-      <div class="eyebrow">Our process</div>
+      <p class="eyebrow">Our process</p>
       <h2 class="section-title">From first call to fully automated</h2>
       <p class="section-sub">We make AI integration simple and fast — no technical background needed on your end.</p>
-      <div class="steps-list">
-        <div class="step-row">
+      <ol class="steps-list">
+        <li class="step-row">
           <div class="step-num">01</div>
           <div class="step-content">
             <h3>Discovery call (free, 30 min)</h3>
             <p>We learn about your business, your biggest time drains, and where AI could have the most immediate impact. No pitch — just an honest conversation.</p>
           </div>
-        </div>
-        <div class="step-row">
+        </li>
+        <li class="step-row">
           <div class="step-num">02</div>
           <div class="step-content">
             <h3>AI opportunity audit</h3>
             <p>We map your current workflows and build a custom plan showing exactly which tasks to automate, which tools to use, and what your ROI looks like.</p>
           </div>
-        </div>
-        <div class="step-row">
+        </li>
+        <li class="step-row">
           <div class="step-num">03</div>
           <div class="step-content">
-            <h3>Build & integrate</h3>
+            <h3>Build &amp; integrate</h3>
             <p>Our team sets everything up and connects it to the tools you already use. You don't need to touch a line of code.</p>
           </div>
-        </div>
-        <div class="step-row">
+        </li>
+        <li class="step-row">
           <div class="step-num">04</div>
           <div class="step-content">
-            <h3>Train your team & optimize</h3>
+            <h3>Train your team &amp; optimize</h3>
             <p>We make sure your team knows how to use their new AI tools, and we stick around to tune things as your business grows.</p>
           </div>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
   <section class="results">
     <div class="section-inner">
-      <div class="eyebrow">Real results</div>
+      <p class="eyebrow">Real results</p>
       <h2 class="section-title">What small businesses are seeing</h2>
       <p class="section-sub">Numbers from businesses like yours, after 30–90 days with Sarza AI.</p>
       <div class="results-grid">
@@ -586,260 +279,81 @@
     </div>
   </section>
 
-  <div style="padding: 0 2rem;">
-    <div class="cta-banner">
-      <h2>Ready to stop doing it all manually?</h2>
-      <p>Book a free 30-minute call. We'll show you exactly where AI can help — no jargon, no pressure.</p>
-      <a href="#" class="btn-primary" onclick="showPage('contact')">Book your free call →</a>
+  <!--
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │ TESTIMONIALS — add real client quotes here, then delete this comment. │
+    │ Replace the names/initials/businesses with genuine, permission-given  │
+    │ quotes. Do NOT publish fabricated reviews. Once you have real ones,   │
+    │ we can also add Review / AggregateRating structured data for rich     │
+    │ star-rating results in Google and AI answers.                         │
+    └─────────────────────────────────────────────────────────────────────┘
+  <section>
+    <div class="section-inner">
+      <p class="eyebrow">In their words</p>
+      <h2 class="section-title">Trusted by small businesses</h2>
+      <div class="testimonials-grid">
+        <figure class="testimonial-card">
+          <blockquote class="quote">Real client quote goes here.</blockquote>
+          <figcaption class="testimonial-author">
+            <div class="testimonial-avatar">AB</div>
+            <div><strong>Client Name</strong><span>Business name</span></div>
+          </figcaption>
+        </figure>
+      </div>
     </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo">Sarza<span>AI</span></div>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('services')">Services</a>
-      <a href="#" onclick="showPage('contact')">Contact</a>
-    </div>
-    <p>© 2026 Sarza AI. All rights reserved.</p>
-  </footer>
-</div>
-
-<!-- ═══════════════ SERVICES ═══════════════ -->
-<div class="page" id="page-services">
-
-  <div class="services-hero">
-    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1600&q=80&auto=format&fit=crop" alt="Desert dunes" />
-    <div class="services-hero-content">
-      <div class="eyebrow">What we offer</div>
-      <h1>AI services built for<br>small businesses</h1>
-      <p>Practical, affordable AI integration — not enterprise complexity, not cookie-cutter solutions.</p>
-    </div>
-  </div>
+  </section>
+  -->
 
   <section>
     <div class="section-inner">
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-tag">Most popular</div>
-          <h3>AI automation setup</h3>
-          <p>We identify your most time-consuming manual tasks and automate them — from inbox management to appointment scheduling to follow-up sequences.</p>
-          <ul class="service-features">
-            <li>Workflow analysis & mapping</li>
-            <li>Custom automation builds</li>
-            <li>Integration with your existing tools</li>
-            <li>Testing & handoff</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-tag">High ROI</div>
-          <h3>AI customer support</h3>
-          <p>Deploy a smart AI assistant that answers customer questions instantly, 24/7. Handles FAQs, bookings, and common requests without any human needed.</p>
-          <ul class="service-features">
-            <li>Custom-trained on your business info</li>
-            <li>Live chat & email integration</li>
-            <li>Handoff to human when needed</li>
-            <li>Monthly performance reports</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-tag">Strategy</div>
-          <h3>AI audit & roadmap</h3>
-          <p>Not sure where to start? We audit your entire operation and deliver a prioritized plan showing exactly where AI will have the biggest impact.</p>
-          <ul class="service-features">
-            <li>Full workflow audit</li>
-            <li>ROI projections by use case</li>
-            <li>Tool recommendations</li>
-            <li>30/60/90 day implementation plan</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-tag">Content</div>
-          <h3>AI content system</h3>
-          <p>Set up an AI-powered content engine that generates social posts, email newsletters, blog drafts, and marketing copy — all in your brand voice.</p>
-          <ul class="service-features">
-            <li>Brand voice training</li>
-            <li>Content calendar automation</li>
-            <li>Multi-channel publishing setup</li>
-            <li>Templates & prompts library</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-tag">Training</div>
-          <h3>Team AI training</h3>
-          <p>Get your whole team comfortable and confident using AI tools daily. Hands-on workshops tailored to your industry and specific software stack.</p>
-          <ul class="service-features">
-            <li>Group workshops (in-person or remote)</li>
-            <li>Role-specific training materials</li>
-            <li>Prompt library for your team</li>
-            <li>30-day follow-up support</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-tag">Ongoing</div>
-          <h3>AI retainer & support</h3>
-          <p>Stay ahead as AI evolves. Monthly retainer to manage, optimize, and expand your AI systems as your business grows and new tools emerge.</p>
-          <ul class="service-features">
-            <li>Monthly optimization sessions</li>
-            <li>New tool evaluation & rollout</li>
-            <li>Priority support channel</li>
-            <li>Quarterly strategy reviews</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pricing-note">
-        <p>All engagements start with a <strong>free 30-minute discovery call</strong>. Pricing is scoped to your business — no one-size-fits-all packages.</p>
+      <p class="eyebrow">Questions</p>
+      <h2 class="section-title">Frequently asked</h2>
+      <p class="section-sub">Straight answers to what small-business owners ask us most.</p>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How much does AI automation cost for a small business?</summary>
+          <div class="faq-body"><p>Every engagement begins with a free 30-minute discovery call, then pricing is scoped to your business — there are no fixed, one-size-fits-all packages. Most small-business projects are designed to pay for themselves within the first 30 to 90 days through time saved and lower operating costs.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How long until I see results from AI?</summary>
+          <div class="faq-body"><p>Most clients see measurable results within about 30 days. Larger implementations typically run on a 30/60/90-day plan so improvements compound over the first quarter.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need any technical background?</summary>
+          <div class="faq-body"><p>No. We handle the setup and integration end to end and connect everything to the tools you already use. You never need to write or touch a line of code.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is my business too small for AI?</summary>
+          <div class="faq-body"><p>No — we work exclusively with small businesses. Our services are built to give small teams the leverage of much larger companies, without enterprise complexity or cost.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What tools and AI models do you work with?</summary>
+          <div class="faq-body"><p>We integrate with the tools you already rely on — CRMs, email, scheduling, and help-desk software — and build on leading AI models such as Claude and GPT, choosing the right fit for each task.</p></div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- second desert image -->
-  <div class="feature-img-section" style="margin-bottom: 4rem;">
-    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80&auto=format&fit=crop" alt="Desert road stretching to horizon" />
-    <div class="feature-img-overlay">
-      <h2>Every journey starts with a single step</h2>
-      <p>The path forward is clearer than you think. Let's map it together.</p>
+  <div class="cta-wrap">
+    <div class="cta-banner">
+      <h2>Ready to stop doing it all manually?</h2>
+      <p>Book a free 30-minute call. We'll show you exactly where AI can help — no jargon, no pressure.</p>
+      <a href="/contact" class="btn-primary">Book your free call →</a>
     </div>
   </div>
 
-  <div style="padding: 0 2rem; margin-bottom: 6rem;">
-    <div class="cta-banner" style="margin-bottom: 0;">
-      <h2>Not sure which service fits?</h2>
-      <p>Tell us about your business and we'll tell you exactly where to start.</p>
-      <a href="#" class="btn-primary" onclick="showPage('contact')">Get a free recommendation →</a>
-    </div>
-  </div>
+</main>
 
-  <footer>
-    <div class="footer-logo">Sarza<span>AI</span></div>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('services')">Services</a>
-      <a href="#" onclick="showPage('contact')">Contact</a>
-    </div>
-    <p>© 2026 Sarza AI. All rights reserved.</p>
-  </footer>
-</div>
+<footer>
+  <div class="footer-logo">Sarza<span>AI</span></div>
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <p>© 2026 Sarza AI. All rights reserved.</p>
+</footer>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
-<div class="page" id="page-contact">
-
-  <div class="contact-hero">
-    <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1600&q=80&auto=format&fit=crop" alt="Desert landscape at golden hour" />
-    <div class="contact-hero-content">
-      <div class="eyebrow">Let's talk</div>
-      <h1>Book your free strategy call</h1>
-      <p>30 minutes. No pitch. Just an honest look at where AI can help your business.</p>
-    </div>
-  </div>
-
-  <div class="contact-grid">
-    <div class="contact-info">
-      <h2>What to expect</h2>
-      <p>On the call, we'll learn about your business, walk through your biggest pain points, and show you what's actually possible with AI — in plain language.</p>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div class="contact-item-text">
-            <strong>30 minutes</strong>
-            <span>Focused and no-fluff</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">💡</div>
-          <div class="contact-item-text">
-            <strong>You'll leave with clarity</strong>
-            <span>A real picture of what AI can do for your specific situation</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🚫</div>
-          <div class="contact-item-text">
-            <strong>Zero pressure</strong>
-            <span>No sales tactics, no obligation to move forward</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📧</div>
-          <div class="contact-item-text">
-            <strong>hello@sarzaai.com</strong>
-            <span>Prefer email? We respond within 24 hours</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form-wrap">
-      <div class="form-title">Tell us about your business</div>
-      <div id="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First name</label>
-            <input type="text" placeholder="Jane" id="fname" />
-          </div>
-          <div class="form-group">
-            <label>Last name</label>
-            <input type="text" placeholder="Smith" id="lname" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Business email</label>
-          <input type="email" placeholder="jane@yourbusiness.com" id="email" />
-        </div>
-        <div class="form-group">
-          <label>Business name</label>
-          <input type="text" placeholder="Your company name" id="bizname" />
-        </div>
-        <div class="form-group">
-          <label>What's your biggest challenge right now?</label>
-          <select id="challenge">
-            <option value="" disabled selected>Select one</option>
-            <option>Too much manual admin work</option>
-            <option>Slow customer response times</option>
-            <option>Not enough content / marketing</option>
-            <option>My team isn't using AI yet</option>
-            <option>I don't know where to start</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Anything else you'd like us to know?</label>
-          <textarea placeholder="Tell us a bit more about your business or what you're hoping to achieve..." id="message"></textarea>
-        </div>
-        <button class="submit-btn" onclick="submitForm()">Send & book your call →</button>
-      </div>
-      <div class="form-success" id="form-success">
-        <div class="check">✅</div>
-        <h3>You're booked in!</h3>
-        <p>We'll reach out within 1 business day to confirm your call time. Check your inbox for a confirmation.</p>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo">Sarza<span>AI</span></div>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('services')">Services</a>
-      <a href="#" onclick="showPage('contact')">Contact</a>
-    </div>
-    <p>© 2026 Sarza AI. All rights reserved.</p>
-  </footer>
-</div>
-
-<script>
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function submitForm() {
-  const email = document.getElementById('email').value;
-  const fname = document.getElementById('fname').value;
-  if (!fname || !email) { alert('Please fill in at least your name and email.'); return; }
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
-</script>
+<script src="/app.js" defer></script>
 </body>
 </html>

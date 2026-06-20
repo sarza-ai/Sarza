@@ -1,0 +1,38 @@
+# Sarza AI
+
+> Sarza AI helps small businesses adopt AI — automating repetitive work, speeding up
+> customer response, and giving small teams the leverage of companies ten times their size.
+> Every engagement starts with a free 30-minute discovery call; pricing is scoped per business.
+
+## About
+Sarza AI is an AI integration and automation consultancy focused exclusively on small
+businesses. The team handles the technical setup end to end, integrates with the tools a
+business already uses, and trains the team — no coding required on the client's side.
+Contact: hello@sarzaai.com (replies within 24 hours).
+
+Reported outcomes for clients after 30–90 days: ~40% average cost reduction, up to 3×
+productivity increase, ~60% less time spent on customer support, ~8 hours/week saved on
+admin, and 2× faster lead response. Typical time to first results is about 30 days.
+
+## Services
+- [AI Automation Setup](https://sarza.ai/services): Identify and automate the most
+  time-consuming manual tasks (inbox, scheduling, follow-ups) and integrate with existing tools.
+- [AI Customer Support](https://sarza.ai/services): A 24/7 AI assistant trained on the
+  business, handling FAQs, bookings, and common requests with handoff to humans when needed.
+- [AI Audit & Roadmap](https://sarza.ai/services): A full workflow audit with ROI projections
+  and a 30/60/90-day implementation plan.
+- [AI Content System](https://sarza.ai/services): An AI content engine for social posts,
+  newsletters, blog drafts, and marketing copy in the brand's voice.
+- [Team AI Training](https://sarza.ai/services): Hands-on workshops, role-specific materials,
+  and a prompt library tailored to the team's tools.
+- [AI Retainer & Support](https://sarza.ai/services): Ongoing optimization, new-tool rollout,
+  priority support, and quarterly strategy reviews.
+
+## Key pages
+- [Home](https://sarza.ai/): Overview, process, and results.
+- [Services](https://sarza.ai/services): Full list of services and what each includes.
+- [Contact](https://sarza.ai/contact): Book a free 30-minute strategy call.
+
+## How to engage
+Book a free 30-minute discovery call via https://sarza.ai/contact or email hello@sarzaai.com.
+There are no fixed packages — pricing is scoped to each business after the discovery call.

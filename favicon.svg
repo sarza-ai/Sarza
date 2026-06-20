@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sarza AI">
+  <rect width="64" height="64" rx="14" fill="#1A1008"/>
+  <circle cx="32" cy="27" r="11" fill="#D4822A"/>
+  <circle cx="32" cy="27" r="11" fill="none" stroke="#E8A85A" stroke-width="1.5" opacity="0.5"/>
+  <path d="M4 46 C16 38 22 44 32 41 C42 38 48 44 60 40 L60 64 L4 64 Z" fill="#A0522D"/>
+  <path d="M4 52 C18 47 26 53 36 50 C46 47 52 51 60 49 L60 64 L4 64 Z" fill="#2C1C0C"/>
+</svg>

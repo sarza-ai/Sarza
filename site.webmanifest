@@ -1,0 +1,12 @@
+{
+  "name": "Sarza AI",
+  "short_name": "Sarza AI",
+  "description": "AI integration and automation for small businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1008",
+  "theme_color": "#1A1008",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+  ]
+}
