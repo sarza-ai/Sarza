@@ -125,11 +125,15 @@
     <div class="contact-form-wrap">
       <div class="form-title">Tell us about your business</div>
       <!--
-        This form opens a pre-filled email out of the box (works immediately).
-        To capture leads automatically, create a free endpoint at https://formspree.io
-        and add it here, e.g.  data-endpoint="https://formspree.io/f/abcdwxyz"
+        Submissions are sent to Formspree (form ID mgojwopl) via AJAX in /app.js,
+        which posts with Accept: application/json and shows the success message
+        inline. If Formspree is ever unreachable, app.js falls back to a
+        pre-filled email to hello@sarzaai.com so no lead is lost.
       -->
-      <form id="contact-form" novalidate>
+      <form id="contact-form" data-endpoint="https://formspree.io/f/mgojwopl" novalidate>
+        <!-- Spam honeypot: real users leave this empty; bots fill it. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <input type="hidden" name="_subject" value="New strategy call request — sarza.ai" />
         <div class="form-row">
           <div class="form-group">
             <label for="fname">First name</label>
@@ -142,7 +146,7 @@
         </div>
         <div class="form-group">
           <label for="email">Business email</label>
-          <input type="email" name="Email" placeholder="jane@yourbusiness.com" id="email" autocomplete="email" required />
+          <input type="email" name="email" placeholder="jane@yourbusiness.com" id="email" autocomplete="email" required />
         </div>
         <div class="form-group">
           <label for="bizname">Business name</label>
@@ -169,8 +173,8 @@
       </form>
       <div class="form-success" id="form-success" role="status">
         <div class="check" aria-hidden="true">✅</div>
-        <h3>Thanks — almost there!</h3>
-        <p>We've opened a pre-filled email for you to send. If nothing opened, email us directly at <a href="mailto:hello@sarzaai.com">hello@sarzaai.com</a> and we'll reply within 1 business day.</p>
+        <h3>Thanks — we've got it!</h3>
+        <p>We'll reply within 1 business day to set up your call. Prefer email? Reach us anytime at <a href="mailto:hello@sarzaai.com">hello@sarzaai.com</a>.</p>
       </div>
     </div>
   </div>
