@@ -31,7 +31,14 @@ admin, and 2× faster lead response. Typical time to first results is about 30 d
 ## Key pages
 - [Home](https://sarza.ai/): Overview, process, and results.
 - [Services](https://sarza.ai/services): Full list of services and what each includes.
+- [Blog](https://sarza.ai/blog): Practical, jargon-free guides on AI for small businesses.
 - [Contact](https://sarza.ai/contact): Book a free 30-minute strategy call.
+
+## Articles
+- [How Much Does AI Automation Cost for a Small Business?](https://sarza.ai/blog/how-much-does-ai-automation-cost):
+  What drives the price, realistic ranges, and how to tell if a project pays for itself.
+- [The 5 Tasks Every Small Business Should Automate With AI First](https://sarza.ai/blog/which-tasks-to-automate-first):
+  The highest-ROI starting points — customer questions, follow-ups, scheduling, data entry, and content.
 
 ## How to engage
 Book a free 30-minute discovery call via https://sarza.ai/contact or email hello@sarzaai.com.
