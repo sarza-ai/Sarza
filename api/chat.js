@@ -75,7 +75,7 @@ async function tryOllama(messages) {
 
 async function tryClaude(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) return { reply: null, error: 'no_key' };
+  if (!key) return null;
 
   const controller = new AbortController();
   const tid = setTimeout(() => controller.abort(), 25000);
@@ -96,15 +96,11 @@ async function tryClaude(messages) {
         messages,
       }),
     });
-    if (!res.ok) {
-      const body = await res.text();
-      return { reply: null, error: `claude_${res.status}`, detail: body.slice(0, 300) };
-    }
+    if (!res.ok) return null;
     const data = await res.json();
-    const text = (data?.content?.[0]?.text || '').trim();
-    return { reply: text || null, error: text ? null : 'empty_response' };
-  } catch (e) {
-    return { reply: null, error: 'claude_fetch_error', detail: String(e?.message || e) };
+    return (data?.content?.[0]?.text || '').trim() || null;
+  } catch {
+    return null;
   } finally {
     clearTimeout(tid);
   }
@@ -126,13 +122,10 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const ollamaReply = await tryOllama(messages);
-    if (ollamaReply) { res.status(200).json({ reply: ollamaReply }); return; }
+    const reply = (await tryOllama(messages)) ?? (await tryClaude(messages));
+    if (reply) { res.status(200).json({ reply }); return; }
 
-    const claude = await tryClaude(messages);
-    if (claude.reply) { res.status(200).json({ reply: claude.reply }); return; }
-
-    res.status(503).json({ error: 'offline', debug: { claudeError: claude.error, claudeDetail: claude.detail } });
+    res.status(503).json({ error: 'offline' });
   } catch (err) {
     res.status(502).json({ error: 'upstream', detail: String(err?.message || err) });
   }
