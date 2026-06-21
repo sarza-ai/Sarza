@@ -122,9 +122,15 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const reply = (await tryOllama(messages)) ?? (await tryClaude(messages));
+    const ollamaConfigured = !!process.env.OLLAMA_URL;
+    const claudeConfigured = !!process.env.ANTHROPIC_API_KEY;
+
+    const ollamaReply = await tryOllama(messages);
+    const claudeReply = ollamaReply === null ? await tryClaude(messages) : null;
+    const reply = ollamaReply ?? claudeReply;
+
     if (!reply) {
-      res.status(503).json({ error: 'offline' });
+      res.status(503).json({ error: 'offline', debug: { ollamaConfigured, claudeConfigured } });
       return;
     }
     res.status(200).json({ reply });
