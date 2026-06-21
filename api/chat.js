@@ -75,7 +75,7 @@ async function tryOllama(messages) {
 
 async function tryClaude(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) return null;
+  if (!key) return { reply: null, error: 'no_key' };
 
   const controller = new AbortController();
   const tid = setTimeout(() => controller.abort(), 25000);
@@ -96,11 +96,15 @@ async function tryClaude(messages) {
         messages,
       }),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const body = await res.text();
+      return { reply: null, error: `claude_${res.status}`, detail: body.slice(0, 300) };
+    }
     const data = await res.json();
-    return (data?.content?.[0]?.text || '').trim() || null;
-  } catch {
-    return null;
+    const text = (data?.content?.[0]?.text || '').trim();
+    return { reply: text || null, error: text ? null : 'empty_response' };
+  } catch (e) {
+    return { reply: null, error: 'claude_fetch_error', detail: String(e?.message || e) };
   } finally {
     clearTimeout(tid);
   }
@@ -122,18 +126,13 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const ollamaConfigured = !!(process.env.OLLAMA_URL || process.env.OLLAMA_BASE_URL);
-    const claudeConfigured = !!process.env.ANTHROPIC_API_KEY;
-
     const ollamaReply = await tryOllama(messages);
-    const claudeReply = ollamaReply === null ? await tryClaude(messages) : null;
-    const reply = ollamaReply ?? claudeReply;
+    if (ollamaReply) { res.status(200).json({ reply: ollamaReply }); return; }
 
-    if (!reply) {
-      res.status(503).json({ error: 'offline', debug: { ollamaConfigured, claudeConfigured } });
-      return;
-    }
-    res.status(200).json({ reply });
+    const claude = await tryClaude(messages);
+    if (claude.reply) { res.status(200).json({ reply: claude.reply }); return; }
+
+    res.status(503).json({ error: 'offline', debug: { claudeError: claude.error, claudeDetail: claude.detail } });
   } catch (err) {
     res.status(502).json({ error: 'upstream', detail: String(err?.message || err) });
   }
