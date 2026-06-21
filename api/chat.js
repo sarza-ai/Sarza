@@ -125,7 +125,14 @@ module.exports = async (req, res) => {
     const reply = (await tryOllama(messages)) ?? (await tryClaude(messages));
     if (reply) { res.status(200).json({ reply }); return; }
 
-    res.status(503).json({ error: 'offline' });
+    res.status(503).json({
+      error: 'offline',
+      debug: {
+        hasOllama: !!(process.env.OLLAMA_URL || process.env.OLLAMA_BASE_URL),
+        hasClaude: !!process.env.ANTHROPIC_API_KEY,
+        keyPrefix: process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.slice(0, 14) + '...' : null,
+      }
+    });
   } catch (err) {
     res.status(502).json({ error: 'upstream', detail: String(err?.message || err) });
   }
