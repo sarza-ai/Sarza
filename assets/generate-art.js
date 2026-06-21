@@ -175,6 +175,74 @@ ${o.monolith != null ? monolith(name, o.monolith, accent, glow) : ''}
 `;
 }
 
+// Wide continuous night panorama (used as a single full-bleed band)
+function panorama() {
+  const PW = 2800, PH = 700, HZ = 380;
+  const rng = mulberry32(99173);
+  const accent = '#7fd4d4', glow = '#5b7fb0';
+  const moons = [[1980, 250, 96], [720, 232, 46]];
+
+  // stars (culled around the moons)
+  let starsSvg = '';
+  for (let i = 0; i < 170; i++) {
+    const x = Math.round(rng() * PW), y = Math.round(20 + rng() * (HZ - 50));
+    let near = false;
+    for (const m of moons) if (Math.hypot(x - m[0], y - m[1]) < m[2] + 60) near = true;
+    if (near) continue;
+    starsSvg += `<circle cx="${x}" cy="${y}" r="${(0.6 + rng() * 1.7).toFixed(2)}" fill="#F5E6C8" opacity="${(0.25 + rng() * 0.7).toFixed(2)}"/>`;
+  }
+
+  // continuous dune horizon
+  let dune = `M0 ${HZ + 18}`;
+  const seg = 18;
+  for (let i = 0; i <= seg; i++) {
+    dune += ` L${((PW / seg) * i).toFixed(0)} ${(HZ - 12 + Math.sin(i * 1.1 + rng() * 6) * 15).toFixed(0)}`;
+  }
+  dune += ` L${PW} ${HZ + 80} L0 ${HZ + 80} Z`;
+
+  // perspective grid (vanishing point centred)
+  const vpX = 1400;
+  let g = '';
+  for (let xb = vpX - 2800; xb <= vpX + 2800; xb += 150) g += `<line x1="${vpX}" y1="${HZ}" x2="${xb}" y2="${PH}"/>`;
+  for (const y of [384, 392, 403, 418, 438, 464, 498, 542, 598, 668]) g += `<line x1="0" y1="${y}" x2="${PW}" y2="${y}"/>`;
+
+  const moonSvg = moons.map((m, i) =>
+    `<circle cx="${m[0]}" cy="${m[1]}" r="${m[2] * 3}" fill="url(#mglow-n)" opacity="${i ? 0.7 : 1}"/>
+     <circle cx="${m[0]}" cy="${m[1]}" r="${m[2]}" fill="url(#moon-n)"/>`).join('');
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${PW} ${PH}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Panoramic futuristic desert night with twin moons, a constellation and a glowing tech grid">
+<defs>
+  <linearGradient id="sky-n" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0d0a16"/><stop offset="0.45" stop-color="#1b1326"/>
+    <stop offset="0.72" stop-color="#2a1a1e"/><stop offset="1" stop-color="#1A1008"/>
+  </linearGradient>
+  <linearGradient id="moon-n" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F3EAFE"/><stop offset="0.5" stop-color="#C9CFE8"/><stop offset="1" stop-color="#8a93c4"/>
+  </linearGradient>
+  <radialGradient id="mglow-n" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="${glow}" stop-opacity="0.5"/><stop offset="0.5" stop-color="${glow}" stop-opacity="0.16"/><stop offset="1" stop-color="${glow}" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="floorfade-n" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1A1008" stop-opacity="0"/><stop offset="1" stop-color="#1A1008" stop-opacity="0.85"/>
+  </linearGradient>
+  <radialGradient id="vig-n" cx="50%" cy="44%" r="72%">
+    <stop offset="0.55" stop-color="#1A1008" stop-opacity="0"/><stop offset="1" stop-color="#1A1008" stop-opacity="0.65"/>
+  </radialGradient>
+  <filter id="blur-n" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+</defs>
+<rect width="${PW}" height="${PH}" fill="url(#sky-n)"/>
+${starsSvg}
+${constellation(rng, 560, 232, accent)}
+${moonSvg}
+<g stroke="${accent}" stroke-width="1.4" opacity="0.45">${g}</g>
+<rect x="0" y="${HZ}" width="${PW}" height="${PH - HZ}" fill="url(#floorfade-n)"/>
+<rect x="0" y="${HZ - 3}" width="${PW}" height="6" fill="${accent}" opacity="0.5" filter="url(#blur-n)"/>
+<path d="${dune}" fill="#120c14"/>
+<rect width="${PW}" height="${PH}" fill="url(#vig-n)"/>
+</svg>
+`;
+}
+
 const scenes = [
   // a — classic centered slatted sun, warm amber
   { name: 'a', sunX: 800, skyTop: '#160d06', skyMid: '#2a1a0b', glow: '#C1440E', accent: '#E8A85A' },
@@ -204,3 +272,7 @@ for (const s of scenes) {
   fs.writeFileSync(file, scene(s));
   console.log('wrote', path.relative(path.join(dir, '..'), file), fs.statSync(file).size + ' bytes');
 }
+
+const nightFile = path.join(dir, 'scene-night.svg');
+fs.writeFileSync(nightFile, panorama());
+console.log('wrote', path.relative(path.join(dir, '..'), nightFile), fs.statSync(nightFile).size + ' bytes');

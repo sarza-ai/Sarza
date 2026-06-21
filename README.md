@@ -31,7 +31,9 @@ Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/service
 The site uses custom "desert high-tech futuristic" SVG art (a synthwave retro sun, perspective
 tech grid, starfield, and dune horizon) instead of stock photos — lightweight (~7 KB each),
 fully on-brand, and consistent. Edit the palette/sun positions in `assets/generate-art.js`
-and run `node assets/generate-art.js` to regenerate `scene-a/b/c.svg`. To refresh the social
+and run `node assets/generate-art.js` to regenerate the scene SVGs
+(`scene-a/b/c/d/e.svg` plus the wide `scene-night.svg` panorama used as
+the home-page band). To refresh the social
 image after a change: `npx sharp-cli -i assets/scene-a.svg -o <dir> -f png resize 1200 630 --fit cover`
 and save the result as `assets/og.png`.
 

@@ -187,18 +187,12 @@ body > nav {
 .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
 
 /* ── DESERT IMAGE STRIP ── */
-.img-strip {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 3px; height: 260px; overflow: hidden;
+.img-strip { height: 300px; overflow: hidden; }
+.img-strip img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  object-position: center 42%;
+  filter: brightness(1) saturate(1.05);
 }
-.img-strip-item { overflow: hidden; position: relative; }
-.img-strip-item img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.5s ease;
-  filter: brightness(0.95) saturate(1.05);
-}
-.img-strip-item:hover img { transform: scale(1.04); filter: brightness(1.1) saturate(1.15); }
-.img-strip-item.tall { grid-row: span 2; }
 
 /* ── SECTION SHARED ── */
 section { padding: 6rem 2rem; }
@@ -510,7 +504,7 @@ footer p { font-size: 13px; color: var(--text-dim); }
   section { padding: 4rem 1.25rem; }
   .hero { padding: 7rem 1.25rem 4rem; }
   .hero-stats { gap: 1.5rem; }
-  .img-strip { height: 180px; }
+  .img-strip { height: 200px; }
   .feature-img-section { height: 300px; }
   .contact-grid { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.25rem; }
   .form-row { grid-template-columns: 1fr; }
