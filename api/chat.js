@@ -96,10 +96,14 @@ async function tryClaude(messages) {
         messages,
       }),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw Object.assign(new Error('claude_error'), { status: res.status, errType: errBody?.error?.type });
+    }
     const data = await res.json();
     return (data?.content?.[0]?.text || '').trim() || null;
-  } catch {
+  } catch (e) {
+    if (e.status) throw e;
     return null;
   } finally {
     clearTimeout(tid);
@@ -122,15 +126,24 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const reply = (await tryOllama(messages)) ?? (await tryClaude(messages));
-    if (reply) { res.status(200).json({ reply }); return; }
+    const ollamaReply = await tryOllama(messages);
+    if (ollamaReply) { res.status(200).json({ reply: ollamaReply }); return; }
+
+    let claudeStatus = null, claudeErrType = null;
+    try {
+      const claudeReply = await tryClaude(messages);
+      if (claudeReply) { res.status(200).json({ reply: claudeReply }); return; }
+    } catch (e) {
+      claudeStatus = e.status || null;
+      claudeErrType = e.errType || null;
+    }
 
     res.status(503).json({
       error: 'offline',
       debug: {
-        hasOllama: !!(process.env.OLLAMA_URL || process.env.OLLAMA_BASE_URL),
-        hasClaude: !!process.env.ANTHROPIC_API_KEY,
         keyPrefix: process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.slice(0, 14) + '...' : null,
+        claudeStatus,
+        claudeErrType,
       }
     });
   } catch (err) {
