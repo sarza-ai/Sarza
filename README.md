@@ -37,6 +37,22 @@ the home-page band). To refresh the social
 image after a change: `npx sharp-cli -i assets/scene-a.svg -o <dir> -f png resize 1200 630 --fit cover`
 and save the result as `assets/og.png`.
 
+## Chat widget
+
+A floating AI chat widget (bottom-right on every page) proxies through `api/chat.js`.
+It tries Ollama first, then falls back to Claude if Ollama is down or not configured.
+Set these in the **Vercel dashboard → Settings → Environment Variables**:
+
+| Variable | Required | Description |
+|---|---|---|
+| `OLLAMA_URL` | Optional | Base URL of your Ollama server (primary LLM) |
+| `OLLAMA_MODEL` | Optional | Ollama model name (default: `llama3.1`) |
+| `OLLAMA_AUTH` | Optional | Bearer token if your Ollama endpoint is protected |
+| `ANTHROPIC_API_KEY` | Optional | Anthropic key — used as fallback when Ollama is unavailable |
+| `CLAUDE_MODEL` | Optional | Claude model ID for the fallback (default: `claude-haiku-4-5-20251001`) |
+
+If neither is configured the widget shows an offline message with a contact link.
+
 ## What to finish (manual steps)
 
 1. **Contact form → real leads.** Out of the box the form opens a pre-filled email to
