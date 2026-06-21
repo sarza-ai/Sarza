@@ -42,7 +42,7 @@ function sanitise(incoming) {
 }
 
 async function tryOllama(messages) {
-  const base = process.env.OLLAMA_URL;
+  const base = process.env.OLLAMA_URL || process.env.OLLAMA_BASE_URL;
   if (!base) return null;
 
   const headers = { 'Content-Type': 'application/json' };
@@ -122,7 +122,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const ollamaConfigured = !!process.env.OLLAMA_URL;
+    const ollamaConfigured = !!(process.env.OLLAMA_URL || process.env.OLLAMA_BASE_URL);
     const claudeConfigured = !!process.env.ANTHROPIC_API_KEY;
 
     const ollamaReply = await tryOllama(messages);
