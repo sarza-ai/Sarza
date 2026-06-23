@@ -8,7 +8,7 @@
 <meta name="description" content="Practical, affordable AI services for small businesses: automation setup, 24/7 AI customer support, AI audits & roadmaps, content systems, team training, and ongoing support." />
 <link rel="canonical" href="https://sarza.ai/services" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0B0A08" />
+<meta name="theme-color" content="#0A0A0A" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=3" />
+<link rel="stylesheet" href="/styles.css?v=4" />
 
 <!-- Structured data: Breadcrumb + Services -->
 <script type="application/ld+json">
@@ -71,155 +71,154 @@
 
 <!-- HEADER -->
 <header class="site-header" id="site-header">
-  <a href="/" class="brand" aria-label="Sarza AI home">Sarza<span>AI</span></a>
-  <div class="header-actions">
-    <div class="menu" id="menu">
-      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-dropdown">
-        <span class="menu-text">Menu</span>
-        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
-      <nav class="menu-dropdown" id="menu-dropdown" aria-label="Main">
-        <a href="/">Home</a>
-        <a href="/services" aria-current="page">Services</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Book a call</a>
-      </nav>
-    </div>
-    <a href="/contact" class="btn-cta">Book a free call</a>
-  </div>
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza AI</a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services" aria-current="page">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+    <a href="/contact" class="nav-book">Book a call</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
 </header>
+
+<!-- FULLSCREEN MENU -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/contact">Book a free call</a>
+  </div>
+</div>
 
 <main id="main">
 
   <header class="page-hero">
-    <p class="eyebrow reveal">What we offer</p>
+    <span class="mono-label">What we offer</span>
     <h1 class="lines" data-reveal-words>AI services built for small businesses</h1>
     <p class="reveal">Practical, affordable AI integration — not enterprise complexity, not cookie-cutter solutions.</p>
   </header>
 
   <section>
-    <div class="section-inner">
-      <div class="services-grid">
-        <article class="service-card reveal">
-          <div class="service-tag">Most popular</div>
-          <h2>AI automation setup</h2>
-          <p>We identify your most time-consuming manual tasks and automate them — from inbox management to appointment scheduling to follow-up sequences.</p>
-          <ul class="service-features">
-            <li>Workflow analysis &amp; mapping</li>
-            <li>Custom automation builds</li>
-            <li>Integration with your existing tools</li>
-            <li>Testing &amp; handoff</li>
-          </ul>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-tag">High ROI</div>
-          <h2>AI customer support</h2>
-          <p>Deploy a smart AI assistant that answers customer questions instantly, 24/7. Handles FAQs, bookings, and common requests without any human needed.</p>
-          <ul class="service-features">
-            <li>Custom-trained on your business info</li>
-            <li>Live chat &amp; email integration</li>
-            <li>Handoff to human when needed</li>
-            <li>Monthly performance reports</li>
-          </ul>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-tag">Strategy</div>
-          <h2>AI audit &amp; roadmap</h2>
-          <p>Not sure where to start? We audit your entire operation and deliver a prioritized plan showing exactly where AI will have the biggest impact.</p>
-          <ul class="service-features">
-            <li>Full workflow audit</li>
-            <li>ROI projections by use case</li>
-            <li>Tool recommendations</li>
-            <li>30/60/90 day implementation plan</li>
-          </ul>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-tag">Content</div>
-          <h2>AI content system</h2>
-          <p>Set up an AI-powered content engine that generates social posts, email newsletters, blog drafts, and marketing copy — all in your brand voice.</p>
-          <ul class="service-features">
-            <li>Brand voice training</li>
-            <li>Content calendar automation</li>
-            <li>Multi-channel publishing setup</li>
-            <li>Templates &amp; prompts library</li>
-          </ul>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-tag">Training</div>
-          <h2>Team AI training</h2>
-          <p>Get your whole team comfortable and confident using AI tools daily. Hands-on workshops tailored to your industry and specific software stack.</p>
-          <ul class="service-features">
-            <li>Group workshops (in-person or remote)</li>
-            <li>Role-specific training materials</li>
-            <li>Prompt library for your team</li>
-            <li>30-day follow-up support</li>
-          </ul>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-tag">Ongoing</div>
-          <h2>AI retainer &amp; support</h2>
-          <p>Stay ahead as AI evolves. Monthly retainer to manage, optimize, and expand your AI systems as your business grows and new tools emerge.</p>
-          <ul class="service-features">
-            <li>Monthly optimization sessions</li>
-            <li>New tool evaluation &amp; rollout</li>
-            <li>Priority support channel</li>
-            <li>Quarterly strategy reviews</li>
-          </ul>
-        </article>
-      </div>
-      <div class="pricing-note reveal">
-        <p>All engagements start with a <strong>free 30-minute discovery call</strong>. Pricing is scoped to your business — no one-size-fits-all packages.</p>
-      </div>
+    <div class="svc-grid">
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">01</span><span class="svc-tag">Most popular</span></div>
+        <h2>Automation setup</h2>
+        <p>We identify your most time-consuming manual tasks and automate them — from inbox management to appointment scheduling to follow-up sequences.</p>
+        <ul class="svc-features">
+          <li>Workflow analysis &amp; mapping</li>
+          <li>Custom automation builds</li>
+          <li>Integration with your existing tools</li>
+          <li>Testing &amp; handoff</li>
+        </ul>
+      </article>
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">02</span><span class="svc-tag">High ROI</span></div>
+        <h2>AI customer support</h2>
+        <p>Deploy a smart AI assistant that answers customer questions instantly, 24/7. Handles FAQs, bookings, and common requests without any human needed.</p>
+        <ul class="svc-features">
+          <li>Custom-trained on your business info</li>
+          <li>Live chat &amp; email integration</li>
+          <li>Handoff to human when needed</li>
+          <li>Monthly performance reports</li>
+        </ul>
+      </article>
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">03</span><span class="svc-tag">Strategy</span></div>
+        <h2>Audit &amp; roadmap</h2>
+        <p>Not sure where to start? We audit your entire operation and deliver a prioritized plan showing exactly where AI will have the biggest impact.</p>
+        <ul class="svc-features">
+          <li>Full workflow audit</li>
+          <li>ROI projections by use case</li>
+          <li>Tool recommendations</li>
+          <li>30/60/90 day implementation plan</li>
+        </ul>
+      </article>
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">04</span><span class="svc-tag">Content</span></div>
+        <h2>Content system</h2>
+        <p>Set up an AI-powered content engine that generates social posts, email newsletters, blog drafts, and marketing copy — all in your brand voice.</p>
+        <ul class="svc-features">
+          <li>Brand voice training</li>
+          <li>Content calendar automation</li>
+          <li>Multi-channel publishing setup</li>
+          <li>Templates &amp; prompts library</li>
+        </ul>
+      </article>
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">05</span><span class="svc-tag">Training</span></div>
+        <h2>Team training</h2>
+        <p>Get your whole team comfortable and confident using AI tools daily. Hands-on workshops tailored to your industry and specific software stack.</p>
+        <ul class="svc-features">
+          <li>Group workshops (in-person or remote)</li>
+          <li>Role-specific training materials</li>
+          <li>Prompt library for your team</li>
+          <li>30-day follow-up support</li>
+        </ul>
+      </article>
+      <article class="svc-cell reveal">
+        <div class="svc-top"><span class="svc-num">06</span><span class="svc-tag">Ongoing</span></div>
+        <h2>Retainer &amp; support</h2>
+        <p>Stay ahead as AI evolves. Monthly retainer to manage, optimize, and expand your AI systems as your business grows and new tools emerge.</p>
+        <ul class="svc-features">
+          <li>Monthly optimization sessions</li>
+          <li>New tool evaluation &amp; rollout</li>
+          <li>Priority support channel</li>
+          <li>Quarterly strategy reviews</li>
+        </ul>
+      </article>
     </div>
   </section>
 
-  <div class="cta-wrap">
-    <div class="cta-banner reveal">
-      <h2>Not sure which service fits?</h2>
-      <p>Tell us about your business and we'll tell you exactly where to start.</p>
-      <a href="/contact" class="btn-primary">Get a free recommendation →</a>
+  <section class="pricing-note">
+    <div class="section-inner">
+      <p class="reveal">Every engagement starts with a <strong>free 30-minute discovery call.</strong> <span class="muted">Pricing is scoped to your business — no one-size-fits-all packages.</span></p>
     </div>
-  </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta section">
+    <div class="section-inner">
+      <h2 class="lines" data-reveal-words>Not sure which fits?</h2>
+      <p class="reveal">Tell us about your business and we'll tell you exactly where to start.</p>
+      <a href="/contact" class="btn btn-fill reveal">Get a free recommendation <span class="arr">→</span></a>
+    </div>
+  </section>
 
 </main>
 
 <!-- MEGA FOOTER -->
 <footer class="mega-footer">
-  <div class="mega-footer__title">Let's build it.</div>
   <div class="mega-footer__grid">
-    <div class="foot-col">
-      <h4>Sarza AI</h4>
-      <p>Practical AI automation<br>for small businesses.</p>
-    </div>
+    <p class="foot-lead">Practical AI for small businesses.</p>
     <div class="foot-col">
       <h4>Navigate</h4>
       <a href="/">Home</a>
       <a href="/services">Services</a>
       <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
       <a href="/contact">Book a call</a>
     </div>
     <div class="foot-col">
-      <h4>Get in touch</h4>
-      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
-      <a href="/contact">Free strategy call</a>
-    </div>
-    <div class="foot-col">
       <h4>Follow</h4>
-      <div class="foot-socials">
-        <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-        </a>
-        <a href="https://x.com/sarza_ai" target="_blank" rel="noopener" aria-label="X">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="mailto:hello@sarza.ai" aria-label="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-        </a>
-      </div>
+      <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/sarza_ai" target="_blank" rel="noopener">X / Twitter</a>
     </div>
   </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
   <div class="mega-footer__bottom">
-    <p>© 2026 Sarza AI. All rights reserved.</p>
+    <p>© 2026 Sarza AI — All rights reserved</p>
     <div class="legal">
       <a href="/services">Services</a>
       <a href="/blog">Blog</a>
@@ -228,6 +227,6 @@
   </div>
 </footer>
 
-<script src="/app.js?v=3" defer></script>
+<script src="/app.js?v=4" defer></script>
 </body>
 </html>

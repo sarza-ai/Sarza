@@ -8,7 +8,7 @@
 <meta name="description" content="Book a free 30-minute AI strategy call with Sarza AI. No pitch, no pressure — just an honest look at where AI can help your small business. Or email hello@sarza.ai." />
 <link rel="canonical" href="https://sarza.ai/contact" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0B0A08" />
+<meta name="theme-color" content="#0A0A0A" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=3" />
+<link rel="stylesheet" href="/styles.css?v=4" />
 
 <!-- Structured data: Breadcrumb + ContactPage -->
 <script type="application/ld+json">
@@ -63,28 +63,37 @@
 
 <!-- HEADER -->
 <header class="site-header" id="site-header">
-  <a href="/" class="brand" aria-label="Sarza AI home">Sarza<span>AI</span></a>
-  <div class="header-actions">
-    <div class="menu" id="menu">
-      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-dropdown">
-        <span class="menu-text">Menu</span>
-        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
-      <nav class="menu-dropdown" id="menu-dropdown" aria-label="Main">
-        <a href="/">Home</a>
-        <a href="/services">Services</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact" aria-current="page">Book a call</a>
-      </nav>
-    </div>
-    <a href="/contact" class="btn-cta">Book a free call</a>
-  </div>
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza AI</a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact" aria-current="page">Contact</a>
+    <a href="/contact" class="nav-book">Book a call</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
 </header>
+
+<!-- FULLSCREEN MENU -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/contact">Book a free call</a>
+  </div>
+</div>
 
 <main id="main">
 
   <header class="page-hero">
-    <p class="eyebrow reveal">Let's talk</p>
+    <span class="mono-label">Let's talk</span>
     <h1 class="lines" data-reveal-words>Book your free strategy call</h1>
     <p class="reveal">30 minutes. No pitch. Just an honest look at where AI can help your business.</p>
   </header>
@@ -95,28 +104,28 @@
       <p>On the call, we'll learn about your business, walk through your biggest pain points, and show you what's actually possible with AI — in plain language.</p>
       <div class="contact-items">
         <div class="contact-item">
-          <div class="contact-icon" aria-hidden="true">🕐</div>
+          <span class="ci-num">01</span>
           <div class="contact-item-text">
             <strong>30 minutes</strong>
             <span>Focused and no-fluff</span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon" aria-hidden="true">💡</div>
+          <span class="ci-num">02</span>
           <div class="contact-item-text">
             <strong>You'll leave with clarity</strong>
             <span>A real picture of what AI can do for your specific situation</span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon" aria-hidden="true">🚫</div>
+          <span class="ci-num">03</span>
           <div class="contact-item-text">
             <strong>Zero pressure</strong>
             <span>No sales tactics, no obligation to move forward</span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon" aria-hidden="true">📧</div>
+          <span class="ci-num">04</span>
           <div class="contact-item-text">
             <strong><a href="mailto:hello@sarza.ai">hello@sarza.ai</a></strong>
             <span>Prefer email? We respond within 24 hours</span>
@@ -175,8 +184,7 @@
         <p class="form-error" id="form-error" role="alert"></p>
       </form>
       <div class="form-success" id="form-success" role="status">
-        <div class="check" aria-hidden="true">✅</div>
-        <h3>Thanks — we've got it!</h3>
+        <h3>Thanks — we've got it</h3>
         <p>We'll reply within 1 business day to set up your call. Prefer email? Reach us anytime at <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>.</p>
       </div>
     </div>
@@ -186,41 +194,29 @@
 
 <!-- MEGA FOOTER -->
 <footer class="mega-footer">
-  <div class="mega-footer__title">Let's build it.</div>
   <div class="mega-footer__grid">
-    <div class="foot-col">
-      <h4>Sarza AI</h4>
-      <p>Practical AI automation<br>for small businesses.</p>
-    </div>
+    <p class="foot-lead">Practical AI for small businesses.</p>
     <div class="foot-col">
       <h4>Navigate</h4>
       <a href="/">Home</a>
       <a href="/services">Services</a>
       <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
       <a href="/contact">Book a call</a>
     </div>
     <div class="foot-col">
-      <h4>Get in touch</h4>
-      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
-      <a href="/contact">Free strategy call</a>
-    </div>
-    <div class="foot-col">
       <h4>Follow</h4>
-      <div class="foot-socials">
-        <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-        </a>
-        <a href="https://x.com/sarza_ai" target="_blank" rel="noopener" aria-label="X">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="mailto:hello@sarza.ai" aria-label="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-        </a>
-      </div>
+      <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/sarza_ai" target="_blank" rel="noopener">X / Twitter</a>
     </div>
   </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
   <div class="mega-footer__bottom">
-    <p>© 2026 Sarza AI. All rights reserved.</p>
+    <p>© 2026 Sarza AI — All rights reserved</p>
     <div class="legal">
       <a href="/services">Services</a>
       <a href="/blog">Blog</a>
@@ -229,6 +225,6 @@
   </div>
 </footer>
 
-<script src="/app.js?v=3" defer></script>
+<script src="/app.js?v=4" defer></script>
 </body>
 </html>

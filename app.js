@@ -20,7 +20,7 @@
   var tick = setInterval(function () {
     p += Math.random() * 18 + 6;
     if (p >= 100) { p = 100; clearInterval(tick); finish(); }
-    if (bar) bar.style.width = p + '%';
+    if (bar) bar.style.right = (100 - p) + '%';
     if (pct) pct.textContent = Math.floor(p) + '%';
   }, 130);
 
@@ -44,30 +44,31 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
 
-// ── Menu dropdown ──
+// ── Fullscreen overlay menu ──
 (function () {
-  var menu = document.getElementById('menu');
-  var btn = document.getElementById('menu-btn');
-  if (!menu || !btn) return;
+  var toggle = document.getElementById('nav-toggle');
+  var overlay = document.getElementById('nav-overlay');
+  var closeBtn = document.getElementById('nav-close');
+  if (!toggle || !overlay) return;
 
+  function open() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
   function close() {
-    menu.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-  }
-  function toggle() {
-    var open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
-  btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
-  document.addEventListener('click', function (e) {
-    if (menu.classList.contains('open') && !menu.contains(e.target)) close();
-  });
+  toggle.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) { close(); btn.focus(); }
-  });
-  menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', close);
+    if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); toggle.focus(); }
   });
 })();
 
