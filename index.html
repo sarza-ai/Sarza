@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=4" />
+<link rel="stylesheet" href="/styles.css?v=5" />
 
 <!-- Structured data: Organization + WebSite -->
 <script type="application/ld+json">
@@ -165,6 +165,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="/assets/scene-b.svg" alt="" width="1600" height="1000" fetchpriority="high" decoding="async" />
+    </div>
     <span class="mono-label hero__eyebrow">Now serving small businesses</span>
     <h1 class="lines" data-reveal-words>We automate the work <span class="thin">that slows you down</span></h1>
     <div class="hero__row reveal">
@@ -189,6 +192,15 @@
   <section class="statement section">
     <div class="section-inner">
       <p class="reveal">Most small businesses are doing by hand <span class="muted">what AI could handle in seconds.</span> We find that work, and we take it off your plate.</p>
+    </div>
+  </section>
+
+  <!-- FEATURE BAND (full-bleed desert moment) -->
+  <section class="feature-band reveal">
+    <img src="/assets/scene-night.svg" alt="Panoramic futuristic desert at night with twin moons, a constellation, and a glowing tech grid" width="3000" height="520" loading="lazy" decoding="async" />
+    <div class="feature-band__cap">
+      <h2>The desert rewards those who prepare</h2>
+      <span class="feature-band__num" aria-hidden="true">✦</span>
     </div>
   </section>
 
@@ -237,6 +249,38 @@
           <span class="idx-arr" aria-hidden="true">↗</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (editorial numbered image cards) -->
+  <section class="section">
+    <div class="section-inner" style="padding-bottom:0;">
+      <div class="section-head">
+        <span class="mono-label">Selected views</span>
+        <h2 class="section-title lines" data-reveal-words>In the field</h2>
+      </div>
+    </div>
+    <div class="gallery-grid reveal">
+      <figure class="gal">
+        <img src="/assets/scene-a.svg" alt="Futuristic desert with a glowing retro sun and a perspective tech grid" width="1600" height="1000" loading="lazy" decoding="async" />
+        <span class="gal-arr" aria-hidden="true">↗</span>
+        <figcaption><span class="gal-cap">Every hour reclaimed</span><span class="gal-num">01</span></figcaption>
+      </figure>
+      <figure class="gal">
+        <img src="/assets/scene-d.svg" alt="Neon desert horizon with layered dunes and a starfield" width="1600" height="1000" loading="lazy" decoding="async" />
+        <span class="gal-arr" aria-hidden="true">↗</span>
+        <figcaption><span class="gal-cap">Built for small teams</span><span class="gal-num">02</span></figcaption>
+      </figure>
+      <figure class="gal">
+        <img src="/assets/scene-c.svg" alt="Sci-fi desert at dusk with a luminous sun and starfield" width="1600" height="1000" loading="lazy" decoding="async" />
+        <span class="gal-arr" aria-hidden="true">↗</span>
+        <figcaption><span class="gal-cap">The work, automated</span><span class="gal-num">03</span></figcaption>
+      </figure>
+      <figure class="gal">
+        <img src="/assets/scene-e.svg" alt="Twilight desert with a radiant horizon and tech grid stretching to the vanishing point" width="1600" height="1000" loading="lazy" decoding="async" />
+        <span class="gal-arr" aria-hidden="true">↗</span>
+        <figcaption><span class="gal-cap">Always-on support</span><span class="gal-num">04</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -390,6 +434,6 @@
   </div>
 </footer>
 
-<script src="/app.js?v=4" defer></script>
+<script src="/app.js?v=5" defer></script>
 </body>
 </html>

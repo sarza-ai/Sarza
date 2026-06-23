@@ -446,6 +446,59 @@ a.idx-row:hover .idx-arr { opacity: 1; transform: translateY(-50%) translateX(0)
 .article-cta p { font-size: 15px; color: var(--muted); margin-bottom: 1.8rem; }
 
 /* ============================================================
+   IMAGERY — editorial, grayscale → warm-color on hover
+   (Agentura-style treatment of the original Sarza desert art)
+   ============================================================ */
+.hero-media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.hero-media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+  filter: grayscale(1) contrast(1.12) brightness(0.42);
+  transition: filter 1.2s var(--ease), transform 1.6s var(--ease);
+}
+.hero:hover .hero-media img { filter: grayscale(0.5) contrast(1.05) brightness(0.5); transform: scale(1.03); }
+.hero-media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.45), rgba(10,10,10,0.6) 55%, rgba(10,10,10,0.92)); }
+@media (prefers-reduced-motion: reduce) { .hero-media img { transition: none !important; } }
+
+.feature-band { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+.feature-band img {
+  width: 100%; height: clamp(340px, 56vh, 660px); object-fit: cover; object-position: center;
+  filter: grayscale(1) contrast(1.08) brightness(0.8);
+  transition: filter 0.8s var(--ease), transform 1.4s var(--ease);
+}
+.feature-band:hover img { filter: grayscale(0) contrast(1.02) brightness(0.95); transform: scale(1.04); }
+.feature-band::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(10,10,10,0.82), rgba(10,10,10,0.15) 50%, rgba(10,10,10,0.35)); }
+.feature-band__cap {
+  position: absolute; left: var(--pad); right: var(--pad); bottom: clamp(26px, 4vw, 56px); z-index: 1;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; pointer-events: none;
+}
+.feature-band__cap .mono-label { color: var(--fg); }
+.feature-band__cap h2 { font-size: clamp(28px, 5.4vw, 78px); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95; max-width: 17ch; }
+.feature-band__num { font-family: var(--disp); font-size: clamp(20px, 2.4vw, 30px); color: var(--fg); }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+.gal { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); display: block; }
+.gal img {
+  width: 100%; height: clamp(300px, 42vw, 560px); object-fit: cover;
+  filter: grayscale(1) contrast(1.08) brightness(0.78);
+  transition: filter 0.8s var(--ease), transform 1.4s var(--ease);
+}
+.gal:hover img { filter: grayscale(0) contrast(1.02) brightness(0.95); transform: scale(1.05); }
+.gal::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(10,10,10,0.88), rgba(10,10,10,0.1) 48%, transparent 72%); }
+.gal figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: clamp(20px, 2.6vw, 34px);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
+}
+.gal .gal-num { font-size: 12px; letter-spacing: 0.12em; color: var(--muted); flex-shrink: 0; }
+.gal .gal-cap { font-family: var(--disp); font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; font-size: clamp(19px, 2.6vw, 32px); line-height: 1; max-width: 13ch; }
+.gal .gal-arr { position: absolute; top: clamp(20px,2.6vw,34px); right: clamp(20px,2.6vw,34px); font-size: 20px; opacity: 0; transform: translate(-6px,6px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+.gal:hover .gal-arr { opacity: 1; transform: none; }
+@media (max-width: 700px) { .gallery-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .feature-band img, .gal img { transition: none !important; } }
+
+/* ============================================================
    MEGA FOOTER
    ============================================================ */
 .mega-footer { border-top: 1px solid var(--line); padding: clamp(60px, 8vw, 110px) var(--pad) 0; }
