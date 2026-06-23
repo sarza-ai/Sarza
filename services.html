@@ -8,7 +8,7 @@
 <meta name="description" content="Practical, affordable AI services for small businesses: automation setup, 24/7 AI customer support, AI audits & roadmaps, content systems, team training, and ongoing support." />
 <link rel="canonical" href="https://sarza.ai/services" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#1A1008" />
+<meta name="theme-color" content="#0B0A08" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sarza.ai/assets/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Sarza AI — a futuristic desert with a retro sun and tech grid" />
+<meta property="og:image:alt" content="Sarza AI — practical AI automation for small businesses" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -33,9 +33,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="image" href="/assets/scene-b.svg" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=2" />
+<link rel="stylesheet" href="/styles.css?v=3" />
 
 <!-- Structured data: Breadcrumb + Services -->
 <script type="application/ld+json">
@@ -70,35 +69,38 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo" aria-label="Sarza AI home">Sarza<span>AI</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
-  <div class="nav-links" id="nav-links">
-    <a href="/">Home</a>
-    <a href="/services" aria-current="page">Services</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact" class="nav-cta">Book a call</a>
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza<span>AI</span></a>
+  <div class="header-actions">
+    <div class="menu" id="menu">
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-dropdown">
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="menu-dropdown" id="menu-dropdown" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/services" aria-current="page">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Book a call</a>
+      </nav>
+    </div>
+    <a href="/contact" class="btn-cta">Book a free call</a>
   </div>
-</nav>
+</header>
 
 <main id="main">
 
-  <div class="services-hero">
-    <img src="/assets/scene-b.svg" alt="Futuristic desert with a glowing sun and tech grid" width="1600" height="1000" fetchpriority="high" decoding="async" />
-    <div class="services-hero-content">
-      <p class="eyebrow">What we offer</p>
-      <h1>AI services built for<br>small businesses</h1>
-      <p>Practical, affordable AI integration — not enterprise complexity, not cookie-cutter solutions.</p>
-    </div>
-  </div>
+  <header class="page-hero">
+    <p class="eyebrow reveal">What we offer</p>
+    <h1 class="lines" data-reveal-words>AI services built for small businesses</h1>
+    <p class="reveal">Practical, affordable AI integration — not enterprise complexity, not cookie-cutter solutions.</p>
+  </header>
 
   <section>
     <div class="section-inner">
       <div class="services-grid">
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">Most popular</div>
           <h2>AI automation setup</h2>
           <p>We identify your most time-consuming manual tasks and automate them — from inbox management to appointment scheduling to follow-up sequences.</p>
@@ -109,7 +111,7 @@
             <li>Testing &amp; handoff</li>
           </ul>
         </article>
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">High ROI</div>
           <h2>AI customer support</h2>
           <p>Deploy a smart AI assistant that answers customer questions instantly, 24/7. Handles FAQs, bookings, and common requests without any human needed.</p>
@@ -120,7 +122,7 @@
             <li>Monthly performance reports</li>
           </ul>
         </article>
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">Strategy</div>
           <h2>AI audit &amp; roadmap</h2>
           <p>Not sure where to start? We audit your entire operation and deliver a prioritized plan showing exactly where AI will have the biggest impact.</p>
@@ -131,7 +133,7 @@
             <li>30/60/90 day implementation plan</li>
           </ul>
         </article>
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">Content</div>
           <h2>AI content system</h2>
           <p>Set up an AI-powered content engine that generates social posts, email newsletters, blog drafts, and marketing copy — all in your brand voice.</p>
@@ -142,7 +144,7 @@
             <li>Templates &amp; prompts library</li>
           </ul>
         </article>
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">Training</div>
           <h2>Team AI training</h2>
           <p>Get your whole team comfortable and confident using AI tools daily. Hands-on workshops tailored to your industry and specific software stack.</p>
@@ -153,7 +155,7 @@
             <li>30-day follow-up support</li>
           </ul>
         </article>
-        <article class="service-card">
+        <article class="service-card reveal">
           <div class="service-tag">Ongoing</div>
           <h2>AI retainer &amp; support</h2>
           <p>Stay ahead as AI evolves. Monthly retainer to manage, optimize, and expand your AI systems as your business grows and new tools emerge.</p>
@@ -165,23 +167,14 @@
           </ul>
         </article>
       </div>
-      <div class="pricing-note">
+      <div class="pricing-note reveal">
         <p>All engagements start with a <strong>free 30-minute discovery call</strong>. Pricing is scoped to your business — no one-size-fits-all packages.</p>
       </div>
     </div>
   </section>
 
-  <!-- second desert image -->
-  <div class="feature-img-section" style="margin-bottom: 4rem;">
-    <img src="/assets/scene-a.svg" alt="Neon desert horizon with a perspective grid stretching ahead" width="1600" height="1000" loading="lazy" decoding="async" />
-    <div class="feature-img-overlay">
-      <h2>Every journey starts with a single step</h2>
-      <p>The path forward is clearer than you think. Let's map it together.</p>
-    </div>
-  </div>
-
-  <div class="cta-wrap" style="margin-bottom: 6rem;">
-    <div class="cta-banner" style="margin-bottom: 0;">
+  <div class="cta-wrap">
+    <div class="cta-banner reveal">
       <h2>Not sure which service fits?</h2>
       <p>Tell us about your business and we'll tell you exactly where to start.</p>
       <a href="/contact" class="btn-primary">Get a free recommendation →</a>
@@ -190,17 +183,51 @@
 
 </main>
 
-<footer>
-  <div class="footer-logo">Sarza<span>AI</span></div>
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact">Contact</a>
-  </nav>
-  <p>© 2026 Sarza AI. All rights reserved.</p>
+<!-- MEGA FOOTER -->
+<footer class="mega-footer">
+  <div class="mega-footer__title">Let's build it.</div>
+  <div class="mega-footer__grid">
+    <div class="foot-col">
+      <h4>Sarza AI</h4>
+      <p>Practical AI automation<br>for small businesses.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Book a call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Free strategy call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <div class="foot-socials">
+        <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://x.com/sarza_ai" target="_blank" rel="noopener" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="mailto:hello@sarza.ai" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI. All rights reserved.</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
 </footer>
 
-<script src="/app.js?v=2" defer></script>
+<script src="/app.js?v=3" defer></script>
 </body>
 </html>

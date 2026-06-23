@@ -1,40 +1,141 @@
 /* ============================================================
-   Sarza AI — shared scripts (nav + contact form)
+   Sarza AI — shared scripts
+   Loader · header · menu · scroll reveal · contact form · chat
    ============================================================ */
 
-// ── Mobile navigation toggle ──
+// ── Loader ──
 (function () {
-  var toggle = document.querySelector('.nav-toggle');
-  var links = document.getElementById('nav-links');
-  if (!toggle || !links) return;
+  var loader = document.getElementById('loader');
+  if (!loader) return;
+  var bar = document.getElementById('loader-bar');
+  var pct = document.getElementById('loader-pct');
+  var p = 0;
 
-  toggle.addEventListener('click', function () {
-    var open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // If the user prefers reduced motion, skip straight through.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    loader.classList.add('done');
+    return;
+  }
+
+  var tick = setInterval(function () {
+    p += Math.random() * 18 + 6;
+    if (p >= 100) { p = 100; clearInterval(tick); finish(); }
+    if (bar) bar.style.width = p + '%';
+    if (pct) pct.textContent = Math.floor(p) + '%';
+  }, 130);
+
+  function finish() {
+    setTimeout(function () { loader.classList.add('done'); }, 280);
+  }
+
+  // Safety: never trap the user behind the loader.
+  setTimeout(function () { clearInterval(tick); loader.classList.add('done'); }, 3500);
+})();
+
+// ── Header scroll state ──
+(function () {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  function onScroll() {
+    if (window.scrollY > 20) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// ── Menu dropdown ──
+(function () {
+  var menu = document.getElementById('menu');
+  var btn = document.getElementById('menu-btn');
+  if (!menu || !btn) return;
+
+  function close() {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  function toggle() {
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !menu.contains(e.target)) close();
   });
-
-  // Close the menu after tapping a link
-  links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Close on Escape
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && links.classList.contains('open')) {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.focus();
-    }
+    if (e.key === 'Escape' && menu.classList.contains('open')) { close(); btn.focus(); }
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', close);
+  });
+})();
+
+// ── Scroll reveal (elements + word cascade) ──
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Split flagged headlines into per-word spans for the cascade effect.
+  // Preserves inline <em> emphasis and <br> breaks.
+  document.querySelectorAll('[data-reveal-words]').forEach(function (el) {
+    el.classList.add('lines');
+    wrapWords(el);
+  });
+
+  function wrapWords(el) {
+    var nodes = Array.prototype.slice.call(el.childNodes);
+    nodes.forEach(function (node) {
+      if (node.nodeType === 3) {
+        // text node → split into words
+        var frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(function (part) {
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); }
+          else if (part.length) {
+            var s = document.createElement('span');
+            s.className = 'w'; s.textContent = part;
+            frag.appendChild(s);
+          }
+        });
+        el.replaceChild(frag, node);
+      } else if (node.nodeType === 1 && node.tagName !== 'BR') {
+        // element (e.g. <em>) → wrap its inner text as one reveal unit
+        node.classList.add('w');
+      }
+    });
+  }
+
+  function stagger(el) {
+    var words = el.querySelectorAll('.w');
+    words.forEach(function (w, i) { w.style.transitionDelay = (i * 0.045) + 's'; });
+  }
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal, .lines').forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('lines')) stagger(entry.target);
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.reveal, .lines').forEach(function (el) { io.observe(el); });
+
+  // Hero reveals fire on load so they're visible immediately after the loader.
+  window.addEventListener('load', function () {
+    document.querySelectorAll('.hero .reveal, .hero .lines').forEach(function (el) {
+      if (el.classList.contains('lines')) stagger(el);
+      el.classList.add('in');
+    });
   });
 })();
 
 // ── Contact form ──
-// Works with zero setup: opens a pre-filled email to hello@sarza.ai.
-// To capture leads automatically instead, create a free form endpoint at
-// https://formspree.io and set data-endpoint on the <form> to that URL.
 (function () {
   var form = document.getElementById('contact-form');
   if (!form) return;
@@ -74,7 +175,6 @@
     }
 
     if (endpoint) {
-      // Submit to a form backend (e.g. Formspree) via fetch.
       var data = new FormData(form);
       fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (r) {
@@ -90,7 +190,6 @@
       return;
     }
 
-    // No backend configured — open a pre-filled email (always works).
     var subject = 'Strategy call request — ' + (biz || (fname + ' ' + lname).trim());
     var body =
       'Name: ' + fname + ' ' + lname + '\n' +
@@ -127,7 +226,7 @@
     host.id = 'sarza-chat';
     host.innerHTML =
       '<button class="chat-bubble" id="chat-bubble" aria-label="Chat with Sarza AI" aria-expanded="false">' +
-        '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' +
+        '<svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' +
       '</button>' +
       '<div class="chat-panel" id="chat-panel" role="dialog" aria-label="Sarza AI assistant" aria-hidden="true">' +
         '<div class="chat-header">' +

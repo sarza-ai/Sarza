@@ -26,16 +26,23 @@ Static marketing site for Sarza AI. No build step — plain HTML/CSS/JS deployed
 
 Clean URLs are enabled via `vercel.json`, so `services.html` serves at `/services`.
 
-### Imagery
+### Design
 
-The site uses custom "desert high-tech futuristic" SVG art (a synthwave retro sun, perspective
-tech grid, starfield, and dune horizon) instead of stock photos — lightweight (~7 KB each),
-fully on-brand, and consistent. Edit the palette/sun positions in `assets/generate-art.js`
-and run `node assets/generate-art.js` to regenerate the scene SVGs
-(`scene-a/b/c/d/e.svg` plus the wide `scene-night.svg` panorama used as
-the home-page band). To refresh the social
-image after a change: `npx sharp-cli -i assets/scene-a.svg -o <dir> -f png resize 1200 630 --fit cover`
+The site uses a dark, cinematic design (`styles.css`): a near-black warm background, large
+Space Grotesk display type, a gradient amber→terracotta accent, a glassmorphism floating
+header with a Menu dropdown, a loading screen, word-by-word scroll-reveal animations, a
+stepped process flow, and a large typographic "mega footer". All motion is driven by
+`app.js` (loader, header scroll state, menu, IntersectionObserver reveals) and respects
+`prefers-reduced-motion`.
+
+The home, services, and contact heroes are pure CSS (no images). The **blog** still uses the
+custom "desert high-tech futuristic" SVG art (`assets/scene-*.svg`) for post thumbnails and
+article feature images. Regenerate those with `node assets/generate-art.js`. To refresh the
+social image: `npx sharp-cli -i assets/scene-a.svg -o <dir> -f png resize 1200 630 --fit cover`
 and save the result as `assets/og.png`.
+
+Asset versions: `styles.css` and `app.js` are referenced with a `?v=N` query string for
+cache-busting. Bump `N` in every HTML file when you change either file.
 
 ## Chat widget
 

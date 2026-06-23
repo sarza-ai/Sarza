@@ -8,7 +8,7 @@
 <meta name="description" content="Sarza AI helps small businesses automate repetitive work, respond to customers faster, and grow with practical AI — no technical background needed. Book a free 30-minute strategy call." />
 <link rel="canonical" href="https://sarza.ai/" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#1A1008" />
+<meta name="theme-color" content="#0B0A08" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sarza.ai/assets/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Sarza AI — a futuristic desert with a retro sun and tech grid" />
+<meta property="og:image:alt" content="Sarza AI — practical AI automation for small businesses" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -33,9 +33,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="image" href="/assets/scene-a.svg" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=2" />
+<link rel="stylesheet" href="/styles.css?v=3" />
 
 <!-- Structured data: Organization + WebSite -->
 <script type="application/ld+json">
@@ -124,33 +123,46 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo" aria-label="Sarza AI home">Sarza<span>AI</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
-  <div class="nav-links" id="nav-links">
-    <a href="/" aria-current="page">Home</a>
-    <a href="/services">Services</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact" class="nav-cta">Book a call</a>
+<!-- LOADER -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__logo">Sarza<span>AI</span></div>
+  <div class="loader__bar"><i id="loader-bar"></i></div>
+  <div class="loader__pct" id="loader-pct">0%</div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza<span>AI</span></a>
+  <div class="header-actions">
+    <div class="menu" id="menu">
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-dropdown">
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="menu-dropdown" id="menu-dropdown" aria-label="Main">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/services">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Book a call</a>
+      </nav>
+    </div>
+    <a href="/contact" class="btn-cta">Book a free call</a>
   </div>
-</nav>
+</header>
 
 <main id="main">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
     <p class="hero-badge">Now serving small businesses</p>
-    <h1>Your business runs smarter<br>with <em>AI on your side</em></h1>
-    <p>Sarza AI helps small businesses automate the repetitive, move faster, and compete like companies ten times their size.</p>
-    <div class="hero-btns">
+    <h1 class="lines" data-reveal-words>Your business runs smarter with <em>AI on your side</em></h1>
+    <p class="hero-lead reveal">Sarza AI helps small businesses automate the repetitive, move faster, and compete like companies ten times their size.</p>
+    <div class="hero-btns reveal">
       <a href="/contact" class="btn-primary">Book a free strategy call →</a>
       <a href="/services" class="btn-ghost">See what we do</a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats reveal">
       <div class="stat-item">
         <div class="stat-num">40<span>%</span></div>
         <div class="stat-label">Average cost reduction</div>
@@ -164,19 +176,16 @@
         <div class="stat-label">Typical time to results</div>
       </div>
     </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll<i></i></div>
   </section>
 
-  <!-- Desert image strip -->
-  <div class="img-strip">
-    <img src="/assets/scene-night.svg" alt="Panoramic futuristic desert night with twin moons, a constellation, and a glowing tech grid" width="3000" height="520" loading="lazy" decoding="async" />
-  </div>
-
-  <section class="problems">
+  <!-- PROBLEMS -->
+  <section>
     <div class="section-inner">
-      <p class="eyebrow">Sound familiar?</p>
-      <h2 class="section-title">The same hours lost, every week</h2>
-      <p class="section-sub">Most small businesses are doing things manually that AI could handle in seconds. Here's where we see it most.</p>
-      <div class="problems-grid">
+      <p class="tag reveal">Sound familiar?</p>
+      <h2 class="section-title lines" data-reveal-words>The same hours lost, every week</h2>
+      <p class="section-sub reveal">Most small businesses are doing things manually that AI could handle in seconds. Here's where we see it most.</p>
+      <div class="problems-grid reveal">
         <div class="problem-item">
           <div class="problem-icon" aria-hidden="true">📋</div>
           <h3>Drowning in admin</h3>
@@ -201,59 +210,56 @@
     </div>
   </section>
 
-  <!-- Desert feature image with text -->
-  <div class="feature-img-section">
-    <img src="/assets/scene-c.svg" alt="Futuristic desert at dusk with a glowing horizon grid" width="1600" height="1000" loading="lazy" decoding="async" />
-    <div class="feature-img-overlay">
-      <h2>The desert rewards those who prepare</h2>
-      <p>The right tools, applied wisely, turn the hardest terrain into an advantage. AI is that tool for your business.</p>
+  <!-- FLOW -->
+  <section class="flow">
+    <div class="flow-head">
+      <p class="tag reveal">Our process</p>
+      <h2 class="section-title lines" data-reveal-words>From first call to fully automated</h2>
+      <p class="section-sub reveal">We make AI integration simple and fast — no technical background needed on your end.</p>
     </div>
-  </div>
-
-  <section>
-    <div class="section-inner">
-      <p class="eyebrow">Our process</p>
-      <h2 class="section-title">From first call to fully automated</h2>
-      <p class="section-sub">We make AI integration simple and fast — no technical background needed on your end.</p>
-      <ol class="steps-list">
-        <li class="step-row">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>Discovery call (free, 30 min)</h3>
-            <p>We learn about your business, your biggest time drains, and where AI could have the most immediate impact. No pitch — just an honest conversation.</p>
-          </div>
-        </li>
-        <li class="step-row">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h3>AI opportunity audit</h3>
-            <p>We map your current workflows and build a custom plan showing exactly which tasks to automate, which tools to use, and what your ROI looks like.</p>
-          </div>
-        </li>
-        <li class="step-row">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h3>Build &amp; integrate</h3>
-            <p>Our team sets everything up and connects it to the tools you already use. You don't need to touch a line of code.</p>
-          </div>
-        </li>
-        <li class="step-row">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h3>Train your team &amp; optimize</h3>
-            <p>We make sure your team knows how to use their new AI tools, and we stick around to tune things as your business grows.</p>
-          </div>
-        </li>
-      </ol>
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <div class="flow-step-body">
+          <div class="step-tag">Discovery call</div>
+          <h3>A free, 30-minute conversation</h3>
+          <p>We learn about your business, your biggest time drains, and where AI could have the most immediate impact. No pitch — just an honest conversation.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">02</div>
+        <div class="flow-step-body">
+          <div class="step-tag">Opportunity audit</div>
+          <h3>We map exactly what to automate</h3>
+          <p>We map your current workflows and build a custom plan showing which tasks to automate, which tools to use, and what your ROI looks like.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">03</div>
+        <div class="flow-step-body">
+          <div class="step-tag">Build &amp; integrate</div>
+          <h3>We set it all up for you</h3>
+          <p>Our team sets everything up and connects it to the tools you already use. You don't need to touch a single line of code.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">04</div>
+        <div class="flow-step-body">
+          <div class="step-tag">Train &amp; optimize</div>
+          <h3>Your team gets confident, fast</h3>
+          <p>We make sure your team knows how to use their new AI tools, and we stick around to tune things as your business grows.</p>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- RESULTS -->
   <section class="results">
     <div class="section-inner">
-      <p class="eyebrow">Real results</p>
-      <h2 class="section-title">What small businesses are seeing</h2>
-      <p class="section-sub">Numbers from businesses like yours, after 30–90 days with Sarza AI.</p>
-      <div class="results-grid">
+      <p class="tag reveal">Real results</p>
+      <h2 class="section-title lines" data-reveal-words>What small businesses are seeing</h2>
+      <p class="section-sub reveal">Numbers from businesses like yours, after 30 to 90 days with Sarza AI.</p>
+      <div class="results-grid reveal">
         <div class="result-card">
           <div class="result-num">60%</div>
           <h3>Less time on customer support</h3>
@@ -276,34 +282,17 @@
   <!--
     ┌─────────────────────────────────────────────────────────────────────┐
     │ TESTIMONIALS — add real client quotes here, then delete this comment. │
-    │ Replace the names/initials/businesses with genuine, permission-given  │
-    │ quotes. Do NOT publish fabricated reviews. Once you have real ones,   │
-    │ we can also add Review / AggregateRating structured data for rich     │
-    │ star-rating results in Google and AI answers.                         │
+    │ Do NOT publish fabricated reviews. Once you have genuine, permission- │
+    │ given quotes, we can add Review / AggregateRating structured data.    │
     └─────────────────────────────────────────────────────────────────────┘
-  <section>
-    <div class="section-inner">
-      <p class="eyebrow">In their words</p>
-      <h2 class="section-title">Trusted by small businesses</h2>
-      <div class="testimonials-grid">
-        <figure class="testimonial-card">
-          <blockquote class="quote">Real client quote goes here.</blockquote>
-          <figcaption class="testimonial-author">
-            <div class="testimonial-avatar">AB</div>
-            <div><strong>Client Name</strong><span>Business name</span></div>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
   -->
 
-  <section>
+  <!-- FAQ -->
+  <section class="faq">
     <div class="section-inner">
-      <p class="eyebrow">Questions</p>
-      <h2 class="section-title">Frequently asked</h2>
-      <p class="section-sub">Straight answers to what small-business owners ask us most.</p>
-      <div class="faq-list">
+      <p class="tag reveal">Questions</p>
+      <h2 class="section-title lines" data-reveal-words>Frequently asked</h2>
+      <div class="faq-list reveal">
         <details class="faq-item">
           <summary>How much does AI automation cost for a small business?</summary>
           <div class="faq-body"><p>Every engagement begins with a free 30-minute discovery call, then pricing is scoped to your business — there are no fixed, one-size-fits-all packages. Most small-business projects are designed to pay for themselves within the first 30 to 90 days through time saved and lower operating costs.</p></div>
@@ -328,8 +317,9 @@
     </div>
   </section>
 
+  <!-- CTA -->
   <div class="cta-wrap">
-    <div class="cta-banner">
+    <div class="cta-banner reveal">
       <h2>Ready to stop doing it all manually?</h2>
       <p>Book a free 30-minute call. We'll show you exactly where AI can help — no jargon, no pressure.</p>
       <a href="/contact" class="btn-primary">Book your free call →</a>
@@ -338,17 +328,51 @@
 
 </main>
 
-<footer>
-  <div class="footer-logo">Sarza<span>AI</span></div>
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact">Contact</a>
-  </nav>
-  <p>© 2026 Sarza AI. All rights reserved.</p>
+<!-- MEGA FOOTER -->
+<footer class="mega-footer">
+  <div class="mega-footer__title">Let's build it.</div>
+  <div class="mega-footer__grid">
+    <div class="foot-col">
+      <h4>Sarza AI</h4>
+      <p>Practical AI automation<br>for small businesses.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Book a call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Free strategy call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <div class="foot-socials">
+        <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://x.com/sarza_ai" target="_blank" rel="noopener" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="mailto:hello@sarza.ai" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI. All rights reserved.</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
 </footer>
 
-<script src="/app.js?v=2" defer></script>
+<script src="/app.js?v=3" defer></script>
 </body>
 </html>
