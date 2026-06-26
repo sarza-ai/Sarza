@@ -20,8 +20,8 @@
   --maxw:      1320px;
   --pad:       clamp(20px, 5vw, 64px);
   --ease:      cubic-bezier(0.16, 1, 0.3, 1);
-  --disp:      'Space Grotesk', 'Arial Narrow', sans-serif;
-  --body:      'Inter', system-ui, sans-serif;
+  --disp:      'DM Sans', system-ui, sans-serif;
+  --body:      'DM Sans', system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
