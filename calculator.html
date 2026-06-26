@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>AI Employee ROI Calculator — Sarza AI</title>
+<meta name="description" content="Estimate the revenue an always-on AI employee could add to your small business. See after-hours capture, speed-to-lead lift, projected annual revenue, and ROI in seconds — free, no signup." />
+<link rel="canonical" href="https://sarza.ai/calculator" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0D0A06" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="AI Employee ROI Calculator — Sarza AI" />
+<meta property="og:description" content="Estimate the revenue a 24/7 AI employee could add to your business. After-hours capture, speed-to-lead lift, and projected annual ROI in seconds." />
+<meta property="og:url" content="https://sarza.ai/calculator" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Sarza AI — AI Employee ROI Calculator" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Employee ROI Calculator — Sarza AI" />
+<meta name="twitter:description" content="Estimate the revenue a 24/7 AI employee could add to your business. Free, instant, no signup." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=8" />
+
+<!-- Structured data: Breadcrumb + WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "AI Employee ROI Calculator", "item": "https://sarza.ai/calculator" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "AI Employee ROI Calculator",
+      "url": "https://sarza.ai/calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "A free calculator that estimates the additional annual revenue and ROI a small business could gain by deploying a 24/7 AI employee to answer every lead instantly.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Sarza AI", "url": "https://sarza.ai/" }
+    }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   ROI CALCULATOR — page-scoped styles
+   Reuses the site's monochrome tokens (var(--bg)/--fg/--line…).
+   ============================================================ */
+.calc-wrap { border-top: 1px solid var(--line); }
+.calc-grid {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(40px, 5vw, 72px) var(--pad) clamp(70px, 9vw, 120px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+@media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+
+/* ── Inputs panel ── */
+.calc-panel { border: 1px solid var(--line); padding: clamp(24px, 3vw, 40px); }
+.calc-panel__title {
+  font-family: var(--disp); font-size: clamp(18px, 2.2vw, 24px); text-transform: uppercase;
+  letter-spacing: -0.02em; margin-bottom: 2rem;
+}
+.calc-field { margin-bottom: 1.9rem; }
+.calc-field:last-child { margin-bottom: 0; }
+.calc-field label,
+.field-head label {
+  display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.7rem;
+}
+.calc-field .hint { display: block; font-size: 11px; color: var(--dim); margin-top: 0.5rem; letter-spacing: 0.02em; text-transform: none; }
+
+/* money + number inputs (bottom-border style, matches contact form) */
+.money { position: relative; display: flex; align-items: baseline; border-bottom: 1px solid var(--line-2); transition: border-color 0.25s; }
+.money:focus-within { border-bottom-color: var(--fg); }
+.money .sym { color: var(--muted); font-size: 18px; padding-right: 6px; font-variant-numeric: tabular-nums; }
+.calc-num {
+  width: 100%; padding: 12px 0; background: transparent; border: none; color: var(--fg);
+  font-family: var(--disp); font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums; -moz-appearance: textfield;
+}
+.calc-num:focus { outline: none; }
+.calc-num::-webkit-outer-spin-button, .calc-num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.money.bare { border-bottom: 1px solid var(--line-2); }
+
+/* range rows */
+.field-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.field-head .val { font-family: var(--disp); font-size: clamp(20px, 2.4vw, 26px); color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 26px; background: transparent; cursor: pointer; margin-top: 2px;
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 1px; background: var(--line-2); }
+input[type="range"]::-moz-range-track { height: 1px; background: var(--line-2); }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; margin-top: -8px;
+  width: 17px; height: 17px; border-radius: 50%; background: var(--fg); border: none;
+  transition: transform 0.2s var(--ease);
+}
+input[type="range"]::-moz-range-thumb { width: 17px; height: 17px; border: none; border-radius: 50%; background: var(--fg); }
+input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.18); }
+input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+/* select reuse */
+.calc-field select {
+  width: 100%; padding: 12px 0; background: transparent; border: none; border-bottom: 1px solid var(--line-2);
+  color: var(--fg); font-family: var(--disp); font-size: clamp(18px, 2vw, 22px); letter-spacing: -0.01em;
+  appearance: none; cursor: pointer; padding-right: 28px; transition: border-color 0.25s;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B89A6A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right center;
+}
+.calc-field select:focus { outline: none; border-bottom-color: var(--fg); }
+.calc-field select option { background: var(--bg); color: var(--fg); }
+
+/* ── Results panel ── */
+.calc-results { position: sticky; top: 96px; }
+@media (max-width: 900px) { .calc-results { position: static; } }
+.result-hero { border: 1px solid var(--line); padding: clamp(24px, 3vw, 40px); }
+.result-hero .cap { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.result-hero .big {
+  font-family: var(--disp); font-weight: 600; font-size: clamp(48px, 8vw, 92px); line-height: 0.9;
+  letter-spacing: -0.04em; margin: 0.6rem 0 0.2rem; font-variant-numeric: tabular-nums;
+}
+.result-hero .sub { font-size: 13px; color: var(--muted); letter-spacing: 0.02em; }
+
+.result-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--line); border-top: none; }
+@media (max-width: 480px) { .result-tiles { grid-template-columns: 1fr; } }
+.tile { padding: clamp(18px, 2.2vw, 26px); border-right: 1px solid var(--line); }
+.tile:last-child { border-right: none; }
+@media (max-width: 480px) { .tile { border-right: none; border-bottom: 1px solid var(--line); } .tile:last-child { border-bottom: none; } }
+.tile .t-cap { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); min-height: 2.4em; display: block; }
+.tile .t-val { font-family: var(--disp); font-weight: 600; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.03em; margin-top: 0.7rem; font-variant-numeric: tabular-nums; }
+
+/* comparison bars */
+.cmp { border: 1px solid var(--line); border-top: none; padding: clamp(20px, 2.6vw, 30px); }
+.cmp .cmp-cap { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem; }
+.cmp-row { margin-bottom: 1.2rem; }
+.cmp-row:last-child { margin-bottom: 0; }
+.cmp-row .cmp-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.cmp-row .cmp-label b { font-family: var(--disp); font-size: clamp(16px, 1.8vw, 20px); color: var(--fg); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.cmp-bar { height: 10px; background: rgba(243,230,201,0.08); position: relative; overflow: hidden; }
+.cmp-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; transition: width 0.6s var(--ease); }
+.cmp-bar.now i  { background: var(--dim); }
+.cmp-bar.ai i   { background: var(--fg); }
+
+/* roi line */
+.roi { border: 1px solid var(--line); border-top: none; padding: clamp(20px, 2.6vw, 30px); display: flex; flex-wrap: wrap; gap: 1.5rem 2.4rem; }
+.roi .roi-item .r-cap { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.roi .roi-item .r-val { font-family: var(--disp); font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.03em; margin-top: 0.4rem; font-variant-numeric: tabular-nums; }
+
+.calc-cta { margin-top: 1.6rem; }
+.calc-cta .btn { width: 100%; justify-content: center; }
+
+.calc-note { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) clamp(60px, 8vw, 100px); }
+.calc-note details { border-top: 1px solid var(--line); padding-top: 1.4rem; }
+.calc-note summary { cursor: pointer; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); list-style: none; display: inline-flex; align-items: center; gap: 10px; }
+.calc-note summary::-webkit-details-marker { display: none; }
+.calc-note summary::after { content: "+"; color: var(--dim); font-family: var(--disp); }
+.calc-note details[open] summary::after { content: "–"; }
+.calc-note .note-body { margin-top: 1.2rem; font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 70ch; }
+.calc-note .note-body strong { color: var(--fg); font-weight: 500; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza AI</a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+    <a href="/contact" class="nav-book">Book a call</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<!-- FULLSCREEN MENU -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/contact">Book a free call</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <header class="page-hero">
+    <span class="mono-label">Free tool</span>
+    <h1 class="lines" data-reveal-words>What could an AI employee add to your revenue?</h1>
+    <p class="reveal">Estimate the revenue an always on AI employee could add by answering every lead instantly, day or night. Move the numbers to match your business. Everything updates live.</p>
+  </header>
+
+  <section class="calc-wrap">
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <form class="calc-panel" id="calc-form" aria-label="ROI calculator inputs" autocomplete="off">
+        <h2 class="calc-panel__title">Your numbers</h2>
+
+        <div class="calc-field">
+          <label for="leads">Leads or inquiries per month</label>
+          <div class="money bare">
+            <input class="calc-num" type="number" id="leads" inputmode="numeric" min="0" step="1" value="100" />
+          </div>
+          <span class="hint">Calls, forms, chats, and messages combined.</span>
+        </div>
+
+        <div class="calc-field">
+          <label for="deal">Average value of a closed customer</label>
+          <div class="money">
+            <span class="sym">$</span>
+            <input class="calc-num" type="number" id="deal" inputmode="numeric" min="0" step="50" value="1500" />
+          </div>
+          <span class="hint">Average revenue from one new customer or job.</span>
+        </div>
+
+        <div class="calc-field">
+          <div class="field-head">
+            <label for="conv">Current lead to customer conversion</label>
+            <span class="val"><span id="convVal">5</span>%</span>
+          </div>
+          <input type="range" id="conv" min="1" max="50" step="1" value="5" />
+        </div>
+
+        <div class="calc-field">
+          <div class="field-head">
+            <label for="after">Inquiries that arrive after hours</label>
+            <span class="val"><span id="afterVal">40</span>%</span>
+          </div>
+          <input type="range" id="after" min="0" max="80" step="5" value="40" />
+          <span class="hint">Nights and weekends, when no one is there to reply.</span>
+        </div>
+
+        <div class="calc-field">
+          <label for="response">How fast do you reply to a new lead today?</label>
+          <select id="response">
+            <option value="0">Within an hour</option>
+            <option value="0.08" selected>A few hours</option>
+            <option value="0.13">Same day</option>
+            <option value="0.17">Next day</option>
+            <option value="0.20">A day or more</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="cost">Estimated cost of the AI employee per month</label>
+          <div class="money">
+            <span class="sym">$</span>
+            <input class="calc-num" type="number" id="cost" inputmode="numeric" min="0" step="25" value="300" />
+          </div>
+          <span class="hint">Optional. Used for the ROI figure.</span>
+        </div>
+      </form>
+
+      <!-- RESULTS -->
+      <div class="calc-results" aria-live="polite">
+        <div class="result-hero">
+          <span class="cap">Projected annual lift</span>
+          <div class="big" id="r-lift">$0</div>
+          <span class="sub" id="r-lift-sub">Extra revenue per year with a 24/7 AI employee</span>
+        </div>
+
+        <div class="result-tiles">
+          <div class="tile">
+            <span class="t-cap">After hours capture</span>
+            <div class="t-val" id="r-after">$0</div>
+          </div>
+          <div class="tile">
+            <span class="t-cap">Speed to lead lift</span>
+            <div class="t-val" id="r-speed">$0</div>
+          </div>
+          <div class="tile">
+            <span class="t-cap">Staff hours reclaimed / yr</span>
+            <div class="t-val" id="r-hours">0</div>
+          </div>
+        </div>
+
+        <div class="cmp">
+          <div class="cmp-cap">Annual revenue, current vs with AI</div>
+          <div class="cmp-row">
+            <div class="cmp-label">Today <b id="r-now">$0</b></div>
+            <div class="cmp-bar now"><i id="bar-now"></i></div>
+          </div>
+          <div class="cmp-row">
+            <div class="cmp-label">With AI employee <b id="r-withai">$0</b></div>
+            <div class="cmp-bar ai"><i id="bar-ai"></i></div>
+          </div>
+        </div>
+
+        <div class="roi">
+          <div class="roi-item">
+            <div class="r-cap">Net gain after AI cost</div>
+            <div class="r-val" id="r-net">$0</div>
+          </div>
+          <div class="roi-item">
+            <div class="r-cap">Return on investment</div>
+            <div class="r-val" id="r-roi">—</div>
+          </div>
+        </div>
+
+        <div class="calc-cta">
+          <a href="/contact" class="btn btn-fill">See these numbers for your business <span class="arr">→</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calc-note">
+      <details>
+        <summary>How this is calculated</summary>
+        <div class="note-body">
+          <p>This is a planning estimate built on widely cited sales benchmarks, not a guarantee. <strong>After hours capture</strong> assumes the share of inquiries that arrive nights and weekends currently go unanswered until the next business day, and that answering them instantly recovers conversions at a 20% uplift. <strong>Speed to lead lift</strong> applies a smaller conversion gain to your daytime leads, scaled to how quickly you reply today, since a faster first response makes a lead far more likely to convert. <strong>Staff hours reclaimed</strong> assumes roughly fifteen minutes of staff time per inquiry for the first response and qualification that the AI now handles. Adjust any input to see how the numbers move.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta section">
+    <div class="section-inner">
+      <h2 class="lines" data-reveal-words>Like what you see?</h2>
+      <p class="reveal">Book a free 30-minute call and we'll map exactly how an AI employee fits your business, with a real number for your setup.</p>
+      <a href="/contact" class="btn btn-fill reveal">Book your free call <span class="arr">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- MEGA FOOTER -->
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Practical AI for small businesses.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/sarza_ai" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=8" defer></script>
+<script>
+(function () {
+  // ── ROI model ──────────────────────────────────────────────
+  // After-hours leads are assumed to wait until the next business
+  // day today; answered instantly they convert with a 20% uplift.
+  // Daytime leads get a smaller speed-to-lead gain scaled to the
+  // current reply speed. Hours saved = ~15 min of staff time/lead.
+  var AFTER_UPLIFT = 0.20;
+  var MIN_PER_LEAD = 15;
+
+  var el = function (id) { return document.getElementById(id); };
+  var inputs = ['leads', 'deal', 'conv', 'after', 'response', 'cost'].map(el);
+
+  var fmtUSD = function (n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+  var fmtNum = function (n) { return Math.round(n).toLocaleString('en-US'); };
+
+  function num(id, fallback) {
+    var v = parseFloat(el(id).value);
+    return isFinite(v) && v >= 0 ? v : fallback;
+  }
+
+  function calc() {
+    var monthly = num('leads', 0);
+    var deal    = num('deal', 0);
+    var conv    = num('conv', 0) / 100;
+    var after   = num('after', 0) / 100;
+    var speed   = parseFloat(el('response').value) || 0;
+    var cost    = num('cost', 0);
+
+    // live slider labels
+    el('convVal').textContent = Math.round(conv * 100);
+    el('afterVal').textContent = Math.round(after * 100);
+
+    var leadsYr   = monthly * 12;
+    var afterYr   = leadsYr * after;
+    var dayYr     = leadsYr - afterYr;
+
+    var afterCapture = afterYr * conv * AFTER_UPLIFT * deal;
+    var speedLift    = dayYr * conv * speed * deal;
+    var annualLift   = afterCapture + speedLift;
+
+    var nowRev   = leadsYr * conv * deal;
+    var withAi   = nowRev + annualLift;
+    var hours    = leadsYr * (MIN_PER_LEAD / 60);
+    var net      = annualLift - cost * 12;
+
+    // paint
+    el('r-lift').textContent  = fmtUSD(annualLift);
+    el('r-after').textContent = fmtUSD(afterCapture);
+    el('r-speed').textContent = fmtUSD(speedLift);
+    el('r-hours').textContent = fmtNum(hours);
+    el('r-now').textContent   = fmtUSD(nowRev);
+    el('r-withai').textContent = fmtUSD(withAi);
+    el('r-net').textContent   = fmtUSD(net);
+
+    if (cost > 0) {
+      var roi = annualLift / (cost * 12);
+      el('r-roi').textContent = (roi >= 10 ? Math.round(roi) : roi.toFixed(1)) + '×';
+    } else {
+      el('r-roi').textContent = 'No cost set';
+    }
+
+    // bars relative to the larger value (with-AI)
+    var max = Math.max(withAi, 1);
+    el('bar-now').style.width = (nowRev / max * 100) + '%';
+    el('bar-ai').style.width  = (withAi / max * 100) + '%';
+  }
+
+  inputs.forEach(function (i) {
+    i.addEventListener('input', calc);
+    i.addEventListener('change', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

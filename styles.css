@@ -357,6 +357,15 @@ a.idx-row:hover .idx-arr { opacity: 1; transform: translateY(-50%) translateX(0)
 .pricing-note strong { color: var(--fg); }
 .pricing-note .muted { color: var(--dim); }
 
+/* ROI calculator promo band */
+.tool-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: clamp(20px, 4vw, 48px); border: 1px solid var(--line); padding: clamp(32px, 4vw, 56px); }
+.tool-band .mono-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; }
+.tool-band .mono-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(224,147,74,0.6); }
+.tool-band__text { max-width: 30ch; }
+.tool-band__text h2 { font-size: clamp(26px, 4vw, 48px); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.98; }
+.tool-band__text p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-top: 1rem; }
+.tool-band .btn { flex-shrink: 0; }
+
 /* ============================================================
    CONTACT
    ============================================================ */

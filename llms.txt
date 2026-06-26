@@ -31,6 +31,9 @@ admin, and 2× faster lead response. Typical time to first results is about 30 d
 ## Key pages
 - [Home](https://sarza.ai/): Overview, process, and results.
 - [Services](https://sarza.ai/services): Full list of services and what each includes.
+- [AI Employee ROI Calculator](https://sarza.ai/calculator): A free, instant tool that estimates
+  the additional annual revenue and ROI a small business could gain from a 24/7 AI employee that
+  answers every lead instantly (after-hours capture, speed-to-lead lift, staff hours reclaimed).
 - [Blog](https://sarza.ai/blog): Practical, jargon-free guides on AI for small businesses.
 - [Contact](https://sarza.ai/contact): Book a free 30-minute strategy call.
 
