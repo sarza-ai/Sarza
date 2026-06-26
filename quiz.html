@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>AI Fit Quiz — Find Where AI Can Save Your Business Time & Money | Sarza AI</title>
+<meta name="description" content="Answer a few quick questions and find out where AI could save your small business time and money. Free, no obligation. Takes about 2 minutes." />
+<link rel="canonical" href="https://sarza.ai/quiz" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0D0A06" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="AI Fit Quiz — Where Can AI Save Your Business Time & Money?" />
+<meta property="og:description" content="Answer a few quick questions and see where AI could save your business time and money. Free, no obligation, about 2 minutes." />
+<meta property="og:url" content="https://sarza.ai/quiz" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Sarza AI — AI Fit Quiz" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Fit Quiz — Sarza AI" />
+<meta name="twitter:description" content="See where AI could save your business time and money. Free, about 2 minutes." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=8" />
+
+<!-- Structured data: Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "AI Fit Quiz", "item": "https://sarza.ai/quiz" }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   AI FIT QUIZ — page-scoped styles (reuse global tokens)
+   ============================================================ */
+.quiz-wrap { border-top: 1px solid var(--line); }
+.quiz-inner { max-width: 780px; margin: 0 auto; padding: clamp(32px, 4vw, 56px) var(--pad) clamp(70px, 9vw, 120px); }
+
+/* progress */
+.q-progress { margin-bottom: clamp(28px, 4vw, 44px); }
+.q-progress .q-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; }
+.q-progress .q-step-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.q-progress .q-step-count { font-family: var(--disp); font-size: 13px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.q-bar { height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.q-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 16%; background: var(--accent); transition: width 0.4s var(--ease); }
+
+/* steps */
+.q-step { display: none; }
+.q-step.active { display: block; animation: qfade 0.4s var(--ease); }
+@keyframes qfade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.q-step h2 { font-size: clamp(24px, 3.6vw, 40px); text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.0; margin-bottom: 0.6rem; }
+.q-step .q-sub { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; max-width: 52ch; }
+
+/* fields */
+.q-field { margin-bottom: 1.8rem; }
+.q-field > label, .q-field .q-legend { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+.q-field .hint { display: block; font-size: 11px; color: var(--dim); margin-top: 0.5rem; }
+.q-input, .q-select {
+  width: 100%; padding: 13px 0; background: transparent; border: none; border-bottom: 1px solid var(--line-2);
+  color: var(--fg); font-family: var(--disp); font-size: clamp(18px, 2.2vw, 22px); letter-spacing: -0.01em; transition: border-color 0.25s;
+}
+.q-input::placeholder { color: var(--dim); }
+.q-input:focus, .q-select:focus { outline: none; border-bottom-color: var(--fg); }
+.q-select { appearance: none; cursor: pointer; padding-right: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B89A6A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right center; }
+.q-select option { background: var(--bg); color: var(--fg); }
+.q-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+@media (max-width: 560px) { .q-row { grid-template-columns: 1fr; } }
+
+/* option chips (single + multi) */
+.q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 560px) { .q-opts { grid-template-columns: 1fr; } }
+.q-opt { position: relative; }
+.q-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.q-opt span {
+  display: block; padding: 15px 16px; border: 1px solid var(--line-2); cursor: pointer;
+  font-size: 14.5px; color: var(--muted); letter-spacing: 0.01em; transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.q-opt input:hover + span { border-color: var(--fg); color: var(--fg); }
+.q-opt input:checked + span { border-color: var(--accent); color: var(--fg); background: rgba(224,147,74,0.08); }
+.q-opt input:focus-visible + span { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+/* nav buttons */
+.q-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.q-back { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+.q-back:hover { color: var(--fg); }
+.q-back[hidden] { visibility: hidden; }
+.q-err { display: none; font-size: 13px; color: #E5A99B; margin-top: 1rem; }
+
+/* result */
+.q-result-band { border: 1px solid var(--line); padding: clamp(24px, 3vw, 40px); margin-bottom: 1.4rem; }
+.q-result-band .cap { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.q-result-band .verdict { font-family: var(--disp); font-weight: 600; font-size: clamp(28px, 5vw, 52px); letter-spacing: -0.03em; line-height: 0.98; margin: 0.7rem 0 0.6rem; }
+.q-result-band .blurb { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 56ch; }
+.q-recs { border: 1px solid var(--line); border-top: none; padding: clamp(20px, 2.6vw, 30px); margin-bottom: 1.4rem; }
+.q-recs h3 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+.q-recs ul { list-style: none; }
+.q-recs li { position: relative; padding: 0.9rem 0 0.9rem 26px; border-top: 1px solid var(--line); font-size: 15px; color: var(--fg); line-height: 1.5; }
+.q-recs li:first-child { border-top: none; }
+.q-recs li::before { content: ""; position: absolute; left: 0; top: 1.2rem; width: 13px; height: 8px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+
+/* capture */
+.q-capture { border: 1px solid var(--line); border-top: none; padding: clamp(24px, 3vw, 36px); }
+.q-capture .cap { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.6rem; display: block; }
+
+/* done */
+.q-done { display: none; text-align: center; padding: clamp(40px, 6vw, 80px) var(--pad); border-top: 1px solid var(--line); }
+.q-done h2 { font-size: clamp(28px, 5vw, 56px); text-transform: uppercase; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.q-done p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 52ch; margin: 0 auto 2rem; }
+.q-done a { color: var(--fg); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home">Sarza AI</a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/quiz" class="nav-book">Take AI Quiz</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<!-- FULLSCREEN MENU -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/quiz">Take AI Quiz</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/quiz">Take AI Quiz</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <header class="page-hero">
+    <span class="mono-label">2 minute quiz</span>
+    <h1 class="lines" data-reveal-words>Where can AI save your business time and money?</h1>
+    <p class="reveal">Answer a few quick questions about how you work today. We'll show you where AI fits, and send a tailored plan. Free, no obligation.</p>
+  </header>
+
+  <section class="quiz-wrap">
+    <div class="quiz-inner">
+
+      <!-- progress -->
+      <div class="q-progress" aria-hidden="true">
+        <div class="q-meta">
+          <span class="q-step-label" id="q-label">About your business</span>
+          <span class="q-step-count"><span id="q-cur">1</span> / 6</span>
+        </div>
+        <div class="q-bar"><i id="q-bar"></i></div>
+      </div>
+
+      <form id="quiz-form" data-endpoint="https://formspree.io/f/mgojwopl" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <input type="hidden" name="_subject" value="New AI Quiz submission from sarza.ai" />
+
+        <!-- STEP 1 — business -->
+        <fieldset class="q-step active" data-step="0">
+          <h2>About your business</h2>
+          <p class="q-sub">So we can tailor the result to your situation.</p>
+          <div class="q-field">
+            <label for="biz">Business name</label>
+            <input class="q-input" type="text" id="biz" name="Business name" placeholder="Your company" required />
+          </div>
+          <div class="q-row">
+            <div class="q-field">
+              <label for="industry">Industry</label>
+              <select class="q-select" id="industry" name="Industry" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Home services or trades</option>
+                <option>Professional services</option>
+                <option>Health and wellness</option>
+                <option>Retail or ecommerce</option>
+                <option>Real estate</option>
+                <option>Hospitality or food</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="q-field">
+              <label for="team">Team size</label>
+              <select class="q-select" id="team" name="Team size" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Just me</option>
+                <option>2 to 5</option>
+                <option>6 to 20</option>
+                <option>21 to 50</option>
+                <option>51 or more</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STEP 2 — time drains -->
+        <fieldset class="q-step" data-step="1">
+          <h2>Where does the time go?</h2>
+          <p class="q-sub">Pick everything that eats hours every week.</p>
+          <div class="q-field">
+            <span class="q-legend">Biggest time drains</span>
+            <div class="q-opts" data-multi="2" data-min="1">
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Admin and data entry" /><span>Admin and data entry</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Answering customer questions" /><span>Answering customer questions</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Scheduling and reminders" /><span>Scheduling and reminders</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Lead follow up" /><span>Lead follow up</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Quoting and invoicing" /><span>Quoting and invoicing</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Content and marketing" /><span>Content and marketing</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Reporting" /><span>Reporting</span></label>
+              <label class="q-opt"><input type="checkbox" name="Time drains" value="Something else" /><span>Something else</span></label>
+            </div>
+          </div>
+          <div class="q-field">
+            <label for="hours">Hours per week your team spends on repetitive work</label>
+            <select class="q-select" id="hours" name="Repetitive hours per week" required>
+              <option value="" disabled selected>Select one</option>
+              <option data-score="1">Under 5</option>
+              <option data-score="2">5 to 10</option>
+              <option data-score="3">10 to 20</option>
+              <option data-score="4">20 to 40</option>
+              <option data-score="5">40 or more</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- STEP 3 — leads & response -->
+        <fieldset class="q-step" data-step="2">
+          <h2>Customers and leads</h2>
+          <p class="q-sub">How inquiries reach you, and how fast you respond today.</p>
+          <div class="q-field">
+            <label for="leads">Leads or inquiries per month</label>
+            <select class="q-select" id="leads" name="Leads per month" required>
+              <option value="" disabled selected>Select one</option>
+              <option data-score="1">Under 20</option>
+              <option data-score="2">20 to 50</option>
+              <option data-score="3">50 to 150</option>
+              <option data-score="4">150 to 500</option>
+              <option data-score="5">500 or more</option>
+            </select>
+          </div>
+          <div class="q-field">
+            <label for="speed">How fast do you reply to a new lead today?</label>
+            <select class="q-select" id="speed" name="Current response speed" required>
+              <option value="" disabled selected>Select one</option>
+              <option data-score="0">Within an hour</option>
+              <option data-score="1">A few hours</option>
+              <option data-score="2">Same day</option>
+              <option data-score="3">Next day</option>
+              <option data-score="4">A day or more</option>
+            </select>
+          </div>
+          <div class="q-field">
+            <label for="after">Share of inquiries that arrive after hours</label>
+            <select class="q-select" id="after" name="After hours share" required>
+              <option value="" disabled selected>Select one</option>
+              <option data-score="1">Hardly any</option>
+              <option data-score="2">About a quarter</option>
+              <option data-score="3">About half</option>
+              <option data-score="4">More than half</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- STEP 4 — tools & experience -->
+        <fieldset class="q-step" data-step="3">
+          <h2>Your tools and experience</h2>
+          <p class="q-sub">What you already run, and how far you have gone with AI.</p>
+          <div class="q-field">
+            <span class="q-legend">Tools you use today</span>
+            <div class="q-opts">
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="CRM" /><span>CRM</span></label>
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="Email marketing" /><span>Email marketing</span></label>
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="Scheduling" /><span>Scheduling</span></label>
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="Help desk or chat" /><span>Help desk or chat</span></label>
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="Spreadsheets" /><span>Spreadsheets</span></label>
+              <label class="q-opt"><input type="checkbox" name="Current tools" value="None of these" /><span>None of these</span></label>
+            </div>
+          </div>
+          <div class="q-field">
+            <label for="tried">Have you tried AI tools yet?</label>
+            <select class="q-select" id="tried" name="Tried AI yet" required>
+              <option value="" disabled selected>Select one</option>
+              <option>No, not yet</option>
+              <option>A little, here and there</option>
+              <option>Yes, actively</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- STEP 5 — goals & readiness -->
+        <fieldset class="q-step" data-step="4">
+          <h2>Your goal and timing</h2>
+          <p class="q-sub">What a win looks like, and how soon you want it.</p>
+          <div class="q-field">
+            <label for="goal">What would help your business most?</label>
+            <select class="q-select" id="goal" name="Primary goal" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Save time on repetitive work</option>
+              <option>Respond to customers faster</option>
+              <option>Cut operating costs</option>
+              <option>Grow without hiring</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="q-row">
+            <div class="q-field">
+              <label for="timeline">When would you want to start?</label>
+              <select class="q-select" id="timeline" name="Timeline" required>
+                <option value="" disabled selected>Select one</option>
+                <option data-score="3">As soon as possible</option>
+                <option data-score="2">In 1 to 3 months</option>
+                <option data-score="1">In 3 to 6 months</option>
+                <option data-score="0">Just exploring</option>
+              </select>
+            </div>
+            <div class="q-field">
+              <label for="budget">Comfortable monthly budget</label>
+              <select class="q-select" id="budget" name="Monthly budget">
+                <option value="" disabled selected>Optional</option>
+                <option data-score="0">Not sure yet</option>
+                <option data-score="1">Under $500</option>
+                <option data-score="2">$500 to $1,000</option>
+                <option data-score="3">$1,000 to $3,000</option>
+                <option data-score="4">$3,000 or more</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STEP 6 — result + capture -->
+        <fieldset class="q-step" data-step="5">
+          <h2>Your result</h2>
+          <p class="q-sub">Based on your answers. Add your details and we'll send the full tailored plan.</p>
+
+          <div class="q-result-band">
+            <span class="cap">Your AI fit</span>
+            <div class="verdict" id="q-verdict">Strong fit</div>
+            <p class="blurb" id="q-blurb"></p>
+          </div>
+
+          <div class="q-recs">
+            <h3>Where we'd start for you</h3>
+            <ul id="q-recs-list"></ul>
+          </div>
+
+          <div class="q-capture">
+            <span class="cap">Send my tailored plan</span>
+            <div class="q-row">
+              <div class="q-field">
+                <label for="fname">First name</label>
+                <input class="q-input" type="text" id="fname" name="First name" placeholder="Jane" autocomplete="given-name" required />
+              </div>
+              <div class="q-field">
+                <label for="lname">Last name</label>
+                <input class="q-input" type="text" id="lname" name="Last name" placeholder="Smith" autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="q-field">
+              <label for="email">Business email</label>
+              <input class="q-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required />
+            </div>
+            <div class="q-field">
+              <label for="phone">Phone (optional)</label>
+              <input class="q-input" type="tel" id="phone" name="Phone" placeholder="So we can reach you faster" autocomplete="tel" />
+            </div>
+          </div>
+
+          <!-- computed, sent with the lead -->
+          <input type="hidden" name="AI fit result" id="h-verdict" />
+          <input type="hidden" name="Fit score" id="h-score" />
+          <input type="hidden" name="Recommended starting points" id="h-recs" />
+        </fieldset>
+
+        <div class="q-nav">
+          <button type="button" class="q-back" id="q-back" hidden>← Back</button>
+          <button type="button" class="btn btn-fill" id="q-next">Continue <span class="arr">→</span></button>
+        </div>
+        <p class="q-err" id="q-err" role="alert">Please answer the question above to continue.</p>
+      </form>
+
+      <!-- success -->
+      <div class="q-done" id="q-done" role="status">
+        <h2>Thanks — your plan is on the way</h2>
+        <p>We've got your answers and we'll email your tailored AI plan within one business day, then follow up to book your free call. Prefer to talk now? Reach us at <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>.</p>
+        <a href="/calculator" class="btn btn-line">Try the ROI calculator <span class="arr">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- MEGA FOOTER -->
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Practical AI for small businesses.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+      <a href="/quiz">AI Quiz</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a call</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.linkedin.com/company/sarza-ai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/sarza_ai" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=8" defer></script>
+<script>
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.q-step'));
+  var total = steps.length;
+  var i = 0;
+
+  var labels = [
+    'About your business',
+    'Where the time goes',
+    'Customers and leads',
+    'Tools and experience',
+    'Goal and timing',
+    'Your result'
+  ];
+
+  var el = function (id) { return document.getElementById(id); };
+  var backBtn = el('q-back'), nextBtn = el('q-next'), errBox = el('q-err');
+
+  // map a time drain to a recommended Sarza starting point
+  var RECS = {
+    'Admin and data entry': 'Automation setup to take admin and data entry off your team’s plate',
+    'Answering customer questions': 'A 24/7 AI assistant that answers customer questions instantly',
+    'Scheduling and reminders': 'Automated scheduling and reminders to cut no shows',
+    'Lead follow up': 'Instant, automated lead follow up so no lead goes cold',
+    'Quoting and invoicing': 'Automation for quotes and invoices',
+    'Content and marketing': 'An AI content system that writes in your brand voice',
+    'Reporting': 'Automated reporting so no one pulls numbers by hand',
+    'Something else': 'A short AI audit to map your best first automation'
+  };
+
+  function show(n) {
+    i = n;
+    steps.forEach(function (s, idx) { s.classList.toggle('active', idx === n); });
+    el('q-cur').textContent = (n + 1);
+    el('q-label').textContent = labels[n];
+    el('q-bar').style.width = ((n + 1) / total * 100) + '%';
+    backBtn.hidden = (n === 0);
+    var last = (n === total - 1);
+    nextBtn.innerHTML = last ? 'Send my plan <span class="arr">→</span>' : 'Continue <span class="arr">→</span>';
+    if (n === total - 1) buildResult();
+    errBox.style.display = 'none';
+    window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+    var first = steps[n].querySelector('input, select');
+    if (first) setTimeout(function () { try { first.focus({ preventScroll: true }); } catch (e) {} }, 120);
+  }
+
+  function valid(n) {
+    var step = steps[n];
+    // required selects/inputs
+    var reqs = step.querySelectorAll('[required]');
+    for (var k = 0; k < reqs.length; k++) {
+      if (!String(reqs[k].value || '').trim()) { reqs[k].focus(); return false; }
+      if (reqs[k].type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reqs[k].value)) { reqs[k].focus(); return false; }
+    }
+    // multi-select minimum
+    var grp = step.querySelector('.q-opts[data-min]');
+    if (grp) {
+      var min = parseInt(grp.getAttribute('data-min'), 10) || 1;
+      if (grp.querySelectorAll('input:checked').length < min) return false;
+    }
+    return true;
+  }
+
+  function scoreOf(id) {
+    var s = el(id); if (!s) return 0;
+    var o = s.options[s.selectedIndex];
+    return o ? (parseInt(o.getAttribute('data-score'), 10) || 0) : 0;
+  }
+
+  function buildResult() {
+    var drains = Array.prototype.slice.call(form.querySelectorAll('input[name="Time drains"]:checked')).map(function (c) { return c.value; });
+    var score = scoreOf('hours') + scoreOf('leads') + scoreOf('speed') + scoreOf('after') + scoreOf('timeline') + scoreOf('budget') + Math.min(drains.length, 4);
+
+    var verdict, blurb;
+    if (score >= 16) {
+      verdict = 'Excellent fit';
+      blurb = 'You have real volume and clear repetitive work, plus the timing to act. This is exactly where an AI employee pays for itself fastest.';
+    } else if (score >= 11) {
+      verdict = 'Strong fit';
+      blurb = 'There is clear, repeatable work an AI employee could take over, with time and money to be saved within the first few months.';
+    } else if (score >= 6) {
+      verdict = 'Good fit';
+      blurb = 'A focused first automation would free up time without much complexity. A short audit will pinpoint the best place to start.';
+    } else {
+      verdict = 'Worth exploring';
+      blurb = 'You are earlier on, but a quick conversation can still surface one or two automations worth setting up now.';
+    }
+
+    el('q-verdict').textContent = verdict;
+    el('q-blurb').textContent = blurb;
+
+    var picks = (drains.length ? drains : ['Something else']).slice(0, 3).map(function (d) { return RECS[d] || RECS['Something else']; });
+    el('q-recs-list').innerHTML = picks.map(function (p) { return '<li>' + p + '</li>'; }).join('');
+
+    el('h-verdict').value = verdict;
+    el('h-score').value = score;
+    el('h-recs').value = picks.join(' | ');
+  }
+
+  function submit() {
+    var endpoint = form.getAttribute('data-endpoint');
+    nextBtn.disabled = true; nextBtn.textContent = 'Sending…';
+    if (endpoint) {
+      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) { if (r.ok) done(); else throw new Error('bad'); })
+        .catch(function () { fallbackMail(); });
+    } else { fallbackMail(); }
+  }
+
+  function done() {
+    form.style.display = 'none';
+    document.querySelector('.q-progress').style.display = 'none';
+    el('q-done').style.display = 'block';
+    el('q-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function fallbackMail() {
+    var get = function (id) { var x = el(id); return x ? x.value : ''; };
+    var body = 'AI Quiz result: ' + get('h-verdict') + ' (score ' + get('h-score') + ')\n' +
+      'Recommended: ' + get('h-recs') + '\n\n' +
+      'Name: ' + get('fname') + ' ' + get('lname') + '\nEmail: ' + get('email') + '\nBusiness: ' + get('biz');
+    window.location.href = 'mailto:hello@sarza.ai?subject=' + encodeURIComponent('AI Quiz submission') + '&body=' + encodeURIComponent(body);
+    done();
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (!valid(i)) { errBox.style.display = 'block'; return; }
+    errBox.style.display = 'none';
+    if (i === total - 1) { submit(); } else { show(i + 1); }
+  });
+  backBtn.addEventListener('click', function () { if (i > 0) show(i - 1); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+  // clear error as the user interacts
+  form.addEventListener('input', function () { errBox.style.display = 'none'; });
+  form.addEventListener('change', function () { errBox.style.display = 'none'; });
+
+  show(0);
+})();
+</script>
+</body>
+</html>
