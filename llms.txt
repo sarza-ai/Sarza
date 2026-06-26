@@ -1,13 +1,14 @@
 # Sarza AI
 
-> Sarza AI helps small businesses adopt AI — automating repetitive work, speeding up
-> customer response, and giving small teams the leverage of companies ten times their size.
-> Every engagement starts with a free 30-minute discovery call; pricing is scoped per business.
+> Sarza AI helps companies integrate AI. We figure out where AI actually fits, then build and
+> integrate it so it saves real time and money. Every engagement starts with a free one on one
+> consult to confirm we are a good fit and find the best opportunities; pricing is scoped per company.
 
 ## About
-Sarza AI is an AI integration and automation consultancy focused exclusively on small
-businesses. The team handles the technical setup end to end, integrates with the tools a
-business already uses, and trains the team — no coding required on the client's side.
+Sarza AI is an AI integration and consulting firm for companies. We start with a free one on
+one consult to see if we are a good fit and map where AI can help, then handle the build end
+to end, integrate with the tools you already use, and train your team. No coding required on
+your side.
 Contact: hello@sarza.ai (replies within 24 hours).
 
 Reported outcomes for clients after 30–90 days: ~40% average cost reduction, up to 3×
@@ -37,8 +38,8 @@ admin, and 2× faster lead response. Typical time to first results is about 30 d
 - [AI Fit Quiz](https://sarza.ai/quiz): A free 2-minute quiz that asks about a business's time
   drains, lead volume, response speed, tools, goals, and timeline, then returns an AI fit result
   with recommended starting points. The primary lead-qualification path on the site.
-- [Blog](https://sarza.ai/blog): Practical, jargon-free guides on AI for small businesses.
-- [Contact](https://sarza.ai/contact): Book a free 30-minute strategy call.
+- [Blog](https://sarza.ai/blog): Practical, jargon free guides on putting AI to work.
+- [Contact](https://sarza.ai/contact): Book a free one on one consult.
 
 ## Articles
 - [How Much Does AI Automation Cost for a Small Business?](https://sarza.ai/blog/how-much-does-ai-automation-cost):
@@ -47,5 +48,5 @@ admin, and 2× faster lead response. Typical time to first results is about 30 d
   The highest-ROI starting points — customer questions, follow-ups, scheduling, data entry, and content.
 
 ## How to engage
-Book a free 30-minute discovery call via https://sarza.ai/contact or email hello@sarza.ai.
-There are no fixed packages — pricing is scoped to each business after the discovery call.
+Book a free one on one consult via https://sarza.ai/contact or email hello@sarza.ai.
+There are no fixed packages; pricing is scoped to each company after the consult.
