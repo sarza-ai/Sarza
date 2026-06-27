@@ -35,6 +35,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/styles.css?v=10" />
+<style>
+.cal-wrap { border-top: 1px solid var(--line); padding: clamp(32px, 4vw, 64px) var(--pad); }
+.cal-wrap .mono-label { margin-bottom: 1.4rem; display: block; }
+.cal-wrap #cal-booking { min-height: 620px; width: 100%; border-radius: 4px; overflow: hidden; }
+.contact-alt { text-align: center; padding: clamp(24px, 3vw, 40px) var(--pad) 0; border-top: 1px solid var(--line); }
+.contact-alt p { font-size: 14px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+</style>
 
 <!-- Structured data: Breadcrumb + ContactPage -->
 <script type="application/ld+json">
@@ -100,6 +107,16 @@
     <p class="reveal">A free one on one consult. No pitch. Just an honest look at whether we are a good fit and where AI can help your company.</p>
   </header>
 
+  <!-- CAL.COM BOOKING EMBED -->
+  <div class="cal-wrap reveal">
+    <span class="mono-label">Pick a time that works</span>
+    <div id="cal-booking"></div>
+  </div>
+
+  <div class="contact-alt">
+    <p>Prefer to write first? Send a message below and we'll reach out to schedule.</p>
+  </div>
+
   <div class="contact-grid">
     <div class="contact-info reveal">
       <h2>What to expect</h2>
@@ -137,7 +154,7 @@
     </div>
 
     <div class="contact-form-wrap reveal">
-      <div class="form-title">Tell us about your business</div>
+      <div class="form-title">Or send us a message</div>
       <!--
         Submissions are sent to Formspree (form ID mgojwopl) via AJAX in /app.js,
         which posts with Accept: application/json and shows the success message
@@ -229,5 +246,11 @@
 </footer>
 
 <script src="/app.js?v=9" defer></script>
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,ar[2]])}else p(cal,ar);return}p(cal,ar)}})(window,"https://app.cal.com/embed/embed.js","init");
+Cal("init",{origin:"https://cal.com"});
+Cal("inline",{elementOrSelector:"#cal-booking",calLink:"jared-c-o25gqk",layout:"month_view"});
+Cal("ui",{"styles":{"branding":{"brandColor":"#E0934A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>
