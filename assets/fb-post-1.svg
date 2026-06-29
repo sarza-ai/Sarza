@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Sarza AI — AI is here to stay">
+<defs>
+<style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&display=swap');
+.wm{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;letter-spacing:-0.5px;}
+.hl{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;letter-spacing:-2px;}
+.deck{font-family:'DM Sans',system-ui,sans-serif;font-weight:500;}
+.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:600;}</style>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#1a0f10"/><stop offset="0.6" stop-color="#241509"/><stop offset="1" stop-color="#140c05"/>
+</linearGradient>
+<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#FFE3A6"/><stop offset="0.5" stop-color="#D4822A"/><stop offset="1" stop-color="#A0522D"/>
+</linearGradient>
+<linearGradient id="ai" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#FFD08A"/><stop offset="1" stop-color="#D4822A"/>
+</linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%">
+<stop offset="0" stop-color="#D4822A" stop-opacity="0.45"/><stop offset="0.5" stop-color="#A0522D" stop-opacity="0.15"/><stop offset="1" stop-color="#A0522D" stop-opacity="0"/>
+</radialGradient>
+<mask id="m1"><circle cx="64" cy="62" r="26" fill="#fff"/>
+<rect x="36" y="65" width="56" height="1.8" fill="#000"/><rect x="36" y="70" width="56" height="2.2" fill="#000"/><rect x="36" y="76" width="56" height="2.8" fill="#000"/><rect x="36" y="84" width="56" height="3.6" fill="#000"/></mask>
+<clipPath id="c1"><rect x="0" y="0" width="600" height="600"/></clipPath>
+</defs>
+<rect width="600" height="600" fill="url(#sky)"/>
+<g clip-path="url(#c1)">
+<circle cx="470" cy="70" r="2" fill="#F5E6C8" opacity="0.6"/><circle cx="520" cy="120" r="1.4" fill="#F5E6C8" opacity="0.5"/><circle cx="380" cy="95" r="1.6" fill="#F5E6C8" opacity="0.6"/><circle cx="440" cy="150" r="1.2" fill="#F5E6C8" opacity="0.45"/><circle cx="300" cy="60" r="1.4" fill="#F5E6C8" opacity="0.5"/><circle cx="540" cy="200" r="1.5" fill="#F5E6C8" opacity="0.55"/>
+<circle cx="430" cy="150" r="220" fill="url(#glow)"/>
+<circle cx="64" cy="62" r="26" fill="url(#sun)" mask="url(#m1)"/>
+<text x="102" y="72" class="wm" font-size="30" fill="#F5E6C8">SARZA<tspan fill="url(#ai)"> AI</tspan></text>
+<text x="64" y="296" class="hl" font-size="66" fill="#F5E6C8">AI is here</text>
+<text x="64" y="366" class="hl" font-size="66" fill="url(#ai)">to stay.</text>
+<text x="64" y="424" class="deck" font-size="25" fill="#C9A77F">Let's find where it actually fits</text>
+<text x="64" y="456" class="deck" font-size="25" fill="#C9A77F">your business.</text>
+<rect x="64" y="520" width="44" height="3" fill="#D4822A"/>
+<text x="64" y="558" class="tag" font-size="16" letter-spacing="3" fill="#E8A85A">SARZA.AI</text>
+<text x="536" y="558" text-anchor="end" class="tag" font-size="15" letter-spacing="1" fill="#8a6b4a">Free first conversation</text>
+</g>
+</svg>

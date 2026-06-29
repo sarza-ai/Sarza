@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Sarza AI">
+<defs>
+<style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@600;700&display=swap');
+.wm{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;letter-spacing:-1.5px;}
+.tag{font-family:'DM Sans',system-ui,sans-serif;font-weight:600;}</style>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#1a0f10"/><stop offset="0.6" stop-color="#241509"/><stop offset="1" stop-color="#140c05"/>
+</linearGradient>
+<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#FFE3A6"/><stop offset="0.5" stop-color="#D4822A"/><stop offset="1" stop-color="#A0522D"/>
+</linearGradient>
+<linearGradient id="ai" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#FFD08A"/><stop offset="1" stop-color="#D4822A"/>
+</linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%">
+<stop offset="0" stop-color="#D4822A" stop-opacity="0.6"/><stop offset="0.5" stop-color="#A0522D" stop-opacity="0.2"/><stop offset="1" stop-color="#A0522D" stop-opacity="0"/>
+</radialGradient>
+<mask id="m1"><circle cx="300" cy="235" r="95" fill="#fff"/>
+<rect x="205" y="241" width="190" height="4" fill="#000"/><rect x="205" y="250" width="190" height="5" fill="#000"/><rect x="205" y="261" width="190" height="6" fill="#000"/><rect x="205" y="274" width="190" height="7.5" fill="#000"/><rect x="205" y="290" width="190" height="9" fill="#000"/><rect x="205" y="310" width="190" height="12" fill="#000"/></mask>
+<clipPath id="c1"><rect x="0" y="0" width="600" height="600"/></clipPath>
+</defs>
+<rect width="600" height="600" fill="url(#sky)"/>
+<g clip-path="url(#c1)">
+<circle cx="90" cy="80" r="2" fill="#F5E6C8" opacity="0.6"/><circle cx="170" cy="60" r="1.4" fill="#F5E6C8" opacity="0.5"/><circle cx="430" cy="75" r="1.8" fill="#F5E6C8" opacity="0.7"/><circle cx="510" cy="55" r="1.3" fill="#F5E6C8" opacity="0.45"/><circle cx="250" cy="50" r="1.5" fill="#F5E6C8" opacity="0.55"/><circle cx="380" cy="120" r="1.2" fill="#F5E6C8" opacity="0.5"/><circle cx="110" cy="150" r="1.5" fill="#F5E6C8" opacity="0.5"/><circle cx="490" cy="160" r="1.6" fill="#F5E6C8" opacity="0.6"/>
+<circle cx="300" cy="240" r="240" fill="url(#glow)"/>
+<g stroke="#D4822A" stroke-width="1.4" opacity="0.4">
+<line x1="300" y1="332" x2="-120" y2="600"/><line x1="300" y1="332" x2="30" y2="600"/><line x1="300" y1="332" x2="160" y2="600"/><line x1="300" y1="332" x2="300" y2="600"/><line x1="300" y1="332" x2="440" y2="600"/><line x1="300" y1="332" x2="570" y2="600"/><line x1="300" y1="332" x2="720" y2="600"/>
+<line x1="0" y1="348" x2="600" y2="348"/><line x1="0" y1="372" x2="600" y2="372"/><line x1="0" y1="406" x2="600" y2="406"/></g>
+<rect x="0" y="329" width="600" height="5" fill="#D4822A" opacity="0.5"/>
+<circle cx="300" cy="235" r="95" fill="url(#sun)" mask="url(#m1)"/>
+<text x="300" y="448" text-anchor="middle" class="wm" font-size="78" fill="#F5E6C8">SARZA<tspan fill="url(#ai)"> AI</tspan></text>
+<text x="300" y="490" text-anchor="middle" class="tag" font-size="17" letter-spacing="7" fill="#C9925A">AI INTEGRATION SPECIALISTS</text>
+</g>
+</svg>
