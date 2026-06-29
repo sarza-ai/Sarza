@@ -29,6 +29,6 @@
 <rect x="0" y="329" width="600" height="5" fill="#D4822A" opacity="0.5"/>
 <circle cx="300" cy="235" r="95" fill="url(#sun)" mask="url(#m1)"/>
 <text x="300" y="448" text-anchor="middle" class="wm" font-size="78" fill="#F5E6C8">SARZA<tspan fill="url(#ai)"> AI</tspan></text>
-<text x="300" y="490" text-anchor="middle" class="tag" font-size="16" letter-spacing="5" fill="#C9925A">SARZA AI INTEGRATION SPECIALISTS</text>
+<text x="300" y="490" text-anchor="middle" class="tag" font-size="17" letter-spacing="7" fill="#C9925A">INTEGRATION SPECIALISTS</text>
 </g>
 </svg>
