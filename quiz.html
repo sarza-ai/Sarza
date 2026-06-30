@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>AI Fit Quiz — Find Where AI Can Save Your Business Time & Money | Sarza AI</title>
+<title>AI Assessment — Find Where AI Can Save Your Business Time & Money | Sarza AI</title>
 <meta name="description" content="Answer a few quick questions and find out where AI could fit in your company and save you time and money. Free, no obligation. Takes about 2 minutes." />
 <link rel="canonical" href="https://sarza.ai/quiz" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -13,17 +13,17 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Sarza AI" />
-<meta property="og:title" content="AI Fit Quiz — Where Can AI Save Your Business Time & Money?" />
+<meta property="og:title" content="AI Assessment — Where Can AI Save Your Business Time & Money?" />
 <meta property="og:description" content="Answer a few quick questions and see where AI could save your business time and money. Free, no obligation, about 2 minutes." />
 <meta property="og:url" content="https://sarza.ai/quiz" />
 <meta property="og:image" content="https://sarza.ai/assets/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Sarza AI — AI Fit Quiz" />
+<meta property="og:image:alt" content="Sarza AI — AI Assessment" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI Fit Quiz — Sarza AI" />
+<meta name="twitter:title" content="AI Assessment — Sarza AI" />
 <meta name="twitter:description" content="See where AI could save your business time and money. Free, about 2 minutes." />
 <meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
 
@@ -45,7 +45,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
-        { "@type": "ListItem", "position": 2, "name": "AI Fit Quiz", "item": "https://sarza.ai/quiz" }
+        { "@type": "ListItem", "position": 2, "name": "AI Assessment", "item": "https://sarza.ai/quiz" }
       ]
     }
   ]
@@ -54,7 +54,7 @@
 
 <style>
 /* ============================================================
-   AI FIT QUIZ — page-scoped styles (reuse global tokens)
+   AI ASSESSMENT — page-scoped styles (reuse global tokens)
    ============================================================ */
 .quiz-wrap { border-top: 1px solid var(--line); }
 .quiz-inner { max-width: 640px; margin: 0 auto; padding: clamp(40px, 5vw, 72px) var(--pad) clamp(70px, 9vw, 120px); }
@@ -260,7 +260,7 @@
     <a href="/blog">Blog</a>
     <a href="/contact">Contact</a>
     <a href="/calculator">Calculator</a>
-    <a href="/quiz" class="nav-book">Take AI Quiz</a>
+    <a href="/quiz" class="nav-book">Take AI Assessment</a>
   </nav>
   <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
     Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
@@ -276,18 +276,18 @@
     <a href="/blog">Blog</a>
     <a href="/contact">Contact</a>
     <a href="/calculator">Calculator</a>
-    <a href="/quiz">Take AI Quiz</a>
+    <a href="/quiz">Take AI Assessment</a>
   </nav>
   <div class="nav-overlay__foot">
     <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
-    <a href="/quiz">Take AI Quiz</a>
+    <a href="/quiz">Take AI Assessment</a>
   </div>
 </div>
 
 <main id="main">
 
   <header class="page-hero">
-    <span class="mono-label">2 minute quiz</span>
+    <span class="mono-label">2 minute assessment</span>
     <h1 class="lines" data-reveal-words>Where can AI save your business time and money?</h1>
     <p class="reveal">Answer a few quick questions about how your company works today. We'll show you where AI fits, then follow up to set up your free consult. No obligation.</p>
   </header>
@@ -306,7 +306,7 @@
 
       <form id="quiz-form" data-endpoint="https://formspree.io/f/mgojwopl" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
-        <input type="hidden" name="_subject" value="New AI Quiz submission from sarza.ai" />
+        <input type="hidden" name="_subject" value="New AI Assessment submission from sarza.ai" />
 
         <!-- STEP 1 — business -->
         <fieldset class="q-step active" data-step="0">
@@ -549,7 +549,7 @@
       <a href="/blog">Blog</a>
       <a href="/contact">Contact</a>
       <a href="/calculator">Calculator</a>
-      <a href="/quiz">AI Quiz</a>
+      <a href="/quiz">AI Assessment</a>
     </div>
     <div class="foot-col">
       <h4>Contact</h4>
@@ -768,10 +768,10 @@
 
   function fallbackMail() {
     var get = function (id) { var x = el(id); return x ? x.value : ''; };
-    var body = 'AI Quiz result: ' + get('h-verdict') + ' (score ' + get('h-score') + ')\n' +
+    var body = 'AI Assessment result: ' + get('h-verdict') + ' (score ' + get('h-score') + ')\n' +
       'Recommended: ' + get('h-recs') + '\n\n' +
       'Name: ' + get('fname') + '\nEmail: ' + get('email') + '\nBusiness: ' + get('biz');
-    window.location.href = 'mailto:hello@sarza.ai?subject=' + encodeURIComponent('AI Quiz submission') + '&body=' + encodeURIComponent(body);
+    window.location.href = 'mailto:hello@sarza.ai?subject=' + encodeURIComponent('AI Assessment submission') + '&body=' + encodeURIComponent(body);
     done();
   }
 
