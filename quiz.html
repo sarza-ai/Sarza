@@ -63,15 +63,18 @@
 .q-progress { margin-bottom: clamp(36px, 5vw, 56px); }
 .q-progress .q-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 12px; }
 .q-progress .q-step-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.q-progress .q-step-count { font-family: var(--disp); font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
-.q-bar { height: 1px; background: var(--line); position: relative; overflow: hidden; border-radius: 100px; }
-.q-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 16%; background: var(--accent); transition: width 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 100px; }
+.q-progress .q-step-count { font-family: var(--disp); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+.q-bar { height: 3px; background: var(--line); position: relative; overflow: hidden; border-radius: 100px; }
+.q-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 8%; background: var(--accent); box-shadow: 0 0 12px rgba(224,147,74,0.5); transition: width 0.6s var(--ease); border-radius: 100px; }
 
 /* steps — strip all browser fieldset chrome */
 .q-step { display: none; border: none; padding: 0; margin: 0; min-width: 0; }
-.q-step.active { display: block; animation: qfade 0.35s cubic-bezier(0.4,0,0.2,1); }
-@keyframes qfade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.q-step.active { display: block; animation: qfade 0.4s var(--ease); }
+.q-step.active.is-back { animation-name: qfadeBack; }
+@keyframes qfade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes qfadeBack { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 .q-step h2 { font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 0.5rem; font-weight: 700; }
+.q-step h2:focus { outline: none; }
 .q-step .q-sub { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 2.4rem; max-width: 48ch; }
 
 /* fields */
@@ -80,6 +83,7 @@
   display: block; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 10px; font-weight: 500;
 }
+.q-field .q-optional { color: var(--dim); }
 
 /* modern inputs */
 .q-input, .q-select {
@@ -92,7 +96,8 @@
   font-family: var(--disp);
   font-size: 16px;
   letter-spacing: -0.01em;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: inset 0 1px 0 rgba(243,230,201,0.05);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
   -webkit-appearance: none;
   appearance: none;
 }
@@ -101,7 +106,11 @@
   outline: none;
   border-color: var(--accent);
   background: rgba(224,147,74,0.05);
-  box-shadow: 0 0 0 3px rgba(224,147,74,0.1);
+  box-shadow: 0 0 0 3px rgba(224,147,74,0.12);
+}
+.q-input.is-invalid, .q-select.is-invalid {
+  border-color: #E5A99B;
+  box-shadow: 0 0 0 3px rgba(229,169,155,0.12);
 }
 .q-select {
   cursor: pointer;
@@ -111,12 +120,13 @@
   background-position: right 16px center;
 }
 .q-select option { background: #1a1510; color: var(--fg); }
-.q-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.q-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 560px) { .q-row { grid-template-columns: 1fr; } }
 
 /* option chips */
-.q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 @media (max-width: 560px) { .q-opts { grid-template-columns: 1fr; } }
+.q-opts.is-invalid .q-opt span { border-color: rgba(229,169,155,0.5); }
 .q-opt { position: relative; }
 .q-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
 .q-opt span {
@@ -128,18 +138,20 @@
   font-size: 14px;
   color: var(--muted);
   line-height: 1.4;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  box-shadow: inset 0 1px 0 rgba(243,230,201,0.04);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease);
   user-select: none;
 }
 .q-opt span::before {
   content: '';
   width: 16px; height: 16px; min-width: 16px;
-  border: 1px solid rgba(243,230,201,0.2);
+  border: 1px solid rgba(243,230,201,0.25);
   border-radius: 4px;
-  transition: background 0.18s, border-color 0.18s;
+  transform: scale(0.85);
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .q-opt input[type="radio"] + span::before { border-radius: 50%; }
-.q-opt input:hover + span { border-color: rgba(243,230,201,0.3); color: var(--fg); }
+.q-opt input:hover + span { border-color: rgba(243,230,201,0.3); color: var(--fg); transform: translateY(-1px); }
 .q-opt input:checked + span {
   border-color: var(--accent);
   color: var(--fg);
@@ -148,37 +160,52 @@
 .q-opt input:checked + span::before {
   background: var(--accent);
   border-color: var(--accent);
+  transform: scale(1);
   background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5l2.5 2.5 5.5-5' stroke='%230D0A06' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
 }
-.q-opt input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.q-opt input:focus-visible + span { box-shadow: 0 0 0 3px rgba(224,147,74,0.3); border-color: var(--accent); }
 
 /* nav */
 .q-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
-.q-back { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; padding: 0; }
-.q-back:hover { color: var(--fg); }
+.q-back {
+  background: none; cursor: pointer; color: var(--muted);
+  font-family: var(--disp); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(243,230,201,0.18); border-radius: 100px; padding: 11px 20px;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.q-back:hover { color: var(--fg); border-color: rgba(243,230,201,0.4); }
 .q-back[hidden] { visibility: hidden; pointer-events: none; }
-.q-err { display: none; font-size: 13px; color: #E5A99B; margin-top: 0.8rem; }
+.q-err { display: none; font-size: 13px; color: #E5A99B; margin-top: 1rem; text-align: right; line-height: 1.5; }
+.q-err a { color: #E5A99B; text-decoration: underline; }
+
+/* reassurance microcopy */
+.q-reassure { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin: 0 0 1.5rem; max-width: 46ch; }
+.q-reassure strong { color: var(--fg); font-weight: 500; }
 
 /* result */
 .q-result-band {
-  background: rgba(224,147,74,0.06);
-  border: 1px solid rgba(224,147,74,0.2);
-  border-radius: 12px;
-  padding: clamp(24px, 3vw, 36px);
+  position: relative;
+  background: rgba(224,147,74,0.07);
+  border: 1px solid rgba(224,147,74,0.28);
+  border-radius: 14px;
+  padding: clamp(28px, 3.4vw, 44px);
   margin-bottom: 12px;
+  box-shadow: inset 0 1px 0 rgba(243,230,201,0.08), 0 1px 30px rgba(0,0,0,0.4);
 }
 .q-result-band .cap { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-.q-result-band .verdict { font-family: var(--disp); font-weight: 700; font-size: clamp(32px, 5.5vw, 56px); letter-spacing: -0.04em; line-height: 0.95; margin: 0.6rem 0 0.8rem; color: var(--fg); }
+.q-result-band .verdict { font-family: var(--disp); font-weight: 700; font-size: clamp(34px, 6vw, 60px); letter-spacing: -0.04em; line-height: 0.95; margin: 0.6rem 0 0.8rem; color: var(--fg); }
 .q-result-band .blurb { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 52ch; }
 
 .q-recs {
-  background: rgba(243,230,201,0.03);
-  border: 1px solid rgba(243,230,201,0.1);
+  background: rgba(243,230,201,0.02);
+  border: 1px solid rgba(243,230,201,0.08);
   border-radius: 12px;
   padding: clamp(20px, 2.6vw, 28px);
   margin-bottom: 12px;
+  box-shadow: inset 0 1px 0 rgba(243,230,201,0.04);
 }
 .q-recs h3 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
 .q-recs ul { list-style: none; }
@@ -197,18 +224,29 @@
 
 /* capture */
 .q-capture {
-  background: rgba(243,230,201,0.03);
-  border: 1px solid rgba(243,230,201,0.1);
+  background: rgba(243,230,201,0.02);
+  border: 1px solid rgba(243,230,201,0.08);
   border-radius: 12px;
   padding: clamp(24px, 3vw, 32px);
+  box-shadow: inset 0 1px 0 rgba(243,230,201,0.04);
 }
-.q-capture .cap { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.4rem; display: block; }
+.q-capture .cap { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; display: block; }
+
+/* staggered result reveal */
+.q-reveal { opacity: 0; transform: translateY(10px); animation: qReveal 0.5s var(--ease) forwards; }
+@keyframes qReveal { to { opacity: 1; transform: none; } }
 
 /* done */
 .q-done { display: none; text-align: center; padding: clamp(48px, 7vw, 96px) var(--pad); border-top: 1px solid var(--line); }
 .q-done h2 { font-size: clamp(28px, 5vw, 56px); letter-spacing: -0.04em; margin-bottom: 1rem; font-weight: 700; }
 .q-done p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 50ch; margin: 0 auto 2rem; }
 .q-done a { color: var(--fg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .q-step.active, .q-reveal { animation: none; opacity: 1; transform: none; }
+  .q-bar i { transition: none; }
+  .q-opt input:hover + span { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -261,7 +299,7 @@
       <div class="q-progress" aria-hidden="true">
         <div class="q-meta">
           <span class="q-step-label" id="q-label">About your business</span>
-          <span class="q-step-count"><span id="q-cur">1</span> / 6</span>
+          <span class="q-step-count"><span id="q-cur">01</span> / 06</span>
         </div>
         <div class="q-bar"><i id="q-bar"></i></div>
       </div>
@@ -352,25 +390,23 @@
             </select>
           </div>
           <div class="q-field">
-            <label for="speed">How fast do you reply to a new lead today?</label>
-            <select class="q-select" id="speed" name="Current response speed" required>
-              <option value="" disabled selected>Select one</option>
-              <option data-score="0">Within an hour</option>
-              <option data-score="1">A few hours</option>
-              <option data-score="2">Same day</option>
-              <option data-score="3">Next day</option>
-              <option data-score="4">A day or more</option>
-            </select>
+            <span class="q-legend">How fast do you reply to a new lead today?</span>
+            <div class="q-opts" data-min="1">
+              <label class="q-opt"><input type="radio" name="Current response speed" value="Within an hour" data-score="0" /><span>Within an hour</span></label>
+              <label class="q-opt"><input type="radio" name="Current response speed" value="A few hours" data-score="1" /><span>A few hours</span></label>
+              <label class="q-opt"><input type="radio" name="Current response speed" value="Same day" data-score="2" /><span>Same day</span></label>
+              <label class="q-opt"><input type="radio" name="Current response speed" value="Next day" data-score="3" /><span>Next day</span></label>
+              <label class="q-opt"><input type="radio" name="Current response speed" value="A day or more" data-score="4" /><span>A day or more</span></label>
+            </div>
           </div>
           <div class="q-field">
-            <label for="after">Share of inquiries that arrive after hours</label>
-            <select class="q-select" id="after" name="After hours share" required>
-              <option value="" disabled selected>Select one</option>
-              <option data-score="1">Hardly any</option>
-              <option data-score="2">About a quarter</option>
-              <option data-score="3">About half</option>
-              <option data-score="4">More than half</option>
-            </select>
+            <span class="q-legend">Share of inquiries that arrive after hours</span>
+            <div class="q-opts" data-min="1">
+              <label class="q-opt"><input type="radio" name="After hours share" value="Hardly any" data-score="1" /><span>Hardly any</span></label>
+              <label class="q-opt"><input type="radio" name="After hours share" value="About a quarter" data-score="2" /><span>About a quarter</span></label>
+              <label class="q-opt"><input type="radio" name="After hours share" value="About half" data-score="3" /><span>About half</span></label>
+              <label class="q-opt"><input type="radio" name="After hours share" value="More than half" data-score="4" /><span>More than half</span></label>
+            </div>
           </div>
         </fieldset>
 
@@ -443,7 +479,7 @@
         <!-- STEP 6 — result + capture -->
         <fieldset class="q-step" data-step="5">
           <h2>Your result</h2>
-          <p class="q-sub">Based on your answers. Add your details and we'll send the full tailored plan.</p>
+          <p class="q-sub">Based on your answers. Add your details and we'll send your tailored next steps.</p>
 
           <div class="q-result-band">
             <span class="cap">Your AI fit</span>
@@ -457,23 +493,20 @@
           </div>
 
           <div class="q-capture">
-            <span class="cap">Send my tailored plan</span>
+            <span class="cap">Send my next steps</span>
+            <p class="q-reassure">We email your tailored next steps, then follow up once to set up your free consult. <strong>No spam, and we never share your details.</strong></p>
             <div class="q-row">
               <div class="q-field">
                 <label for="fname">First name</label>
                 <input class="q-input" type="text" id="fname" name="First name" placeholder="Jane" autocomplete="given-name" required />
               </div>
               <div class="q-field">
-                <label for="lname">Last name</label>
-                <input class="q-input" type="text" id="lname" name="Last name" placeholder="Smith" autocomplete="family-name" />
+                <label for="email">Business email</label>
+                <input class="q-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required />
               </div>
             </div>
             <div class="q-field">
-              <label for="email">Business email</label>
-              <input class="q-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required />
-            </div>
-            <div class="q-field">
-              <label for="phone">Phone (optional)</label>
+              <label for="phone">Phone <span class="q-optional">(optional)</span></label>
               <input class="q-input" type="tel" id="phone" name="Phone" placeholder="So we can reach you faster" autocomplete="tel" />
             </div>
           </div>
@@ -493,8 +526,8 @@
 
       <!-- success -->
       <div class="q-done" id="q-done" role="status">
-        <h2>Thanks, your plan is on the way</h2>
-        <p>We'll email your tailored AI plan within one business day. Ready to talk now? Skip the wait and book your free consult directly.</p>
+        <h2>Thanks, your next steps are on the way</h2>
+        <p>We'll email your tailored next steps within one business day. Ready to talk now? Skip the wait and book your free consult directly.</p>
         <a href="https://cal.com/jared-c-o25gqk" target="_blank" rel="noopener" class="btn btn-fill" style="margin-bottom:1rem;display:inline-block;">Book your free consult <span class="arr">→</span></a>
         <br />
         <a href="/calculator" class="btn btn-line">Try the ROI calculator <span class="arr">→</span></a>
@@ -560,6 +593,7 @@
 
   var el = function (id) { return document.getElementById(id); };
   var backBtn = el('q-back'), nextBtn = el('q-next'), errBox = el('q-err');
+  var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 
   // map a time drain to a recommended Sarza starting point
   var RECS = {
@@ -573,35 +607,78 @@
     'Something else': 'A short AI audit to map your best first automation'
   };
 
-  function show(n) {
+  function pad(n) { return ('0' + n).slice(-2); }
+
+  // keep the bar shy of full until the lead actually submits
+  function progressPct(n) {
+    if (n >= total - 1) return 92;
+    return Math.round(((n + 1) / total) * 100);
+  }
+
+  function clearInvalid() {
+    Array.prototype.slice.call(form.querySelectorAll('.is-invalid')).forEach(function (x) {
+      x.classList.remove('is-invalid');
+    });
+  }
+
+  function show(n, back) {
     i = n;
-    steps.forEach(function (s, idx) { s.classList.toggle('active', idx === n); });
-    el('q-cur').textContent = (n + 1);
+    steps.forEach(function (s, idx) {
+      s.classList.toggle('is-back', !!back);
+      s.classList.toggle('active', idx === n);
+    });
+    el('q-cur').textContent = pad(n + 1);
     el('q-label').textContent = labels[n];
-    el('q-bar').style.width = ((n + 1) / total * 100) + '%';
+    el('q-bar').style.width = progressPct(n) + '%';
     backBtn.hidden = (n === 0);
     var last = (n === total - 1);
-    nextBtn.innerHTML = last ? 'Send my plan <span class="arr">→</span>' : 'Continue <span class="arr">→</span>';
-    if (n === total - 1) buildResult();
+    nextBtn.innerHTML = last ? 'Get my next steps <span class="arr">→</span>' : 'Continue <span class="arr">→</span>';
+    if (last) { buildResult(); revealResult(); }
     errBox.style.display = 'none';
+    clearInvalid();
     window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
-    var first = steps[n].querySelector('input, select');
-    if (first) setTimeout(function () { try { first.focus({ preventScroll: true }); } catch (e) {} }, 120);
+    // don't pop the mobile keyboard; help keyboard users on desktop
+    if (!isTouch) {
+      var first = steps[n].querySelector('input:not([type=hidden]), select');
+      if (first) setTimeout(function () { try { first.focus({ preventScroll: true }); } catch (e) {} }, 140);
+    }
   }
 
   function valid(n) {
     var step = steps[n];
-    // required selects/inputs
-    var reqs = step.querySelectorAll('[required]');
+    clearInvalid();
+    // required inputs/selects
+    var reqs = Array.prototype.slice.call(step.querySelectorAll('[required]'));
     for (var k = 0; k < reqs.length; k++) {
-      if (!String(reqs[k].value || '').trim()) { reqs[k].focus(); return false; }
-      if (reqs[k].type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reqs[k].value)) { reqs[k].focus(); return false; }
+      var r = reqs[k];
+      if (!String(r.value || '').trim()) {
+        r.classList.add('is-invalid');
+        errBox.textContent = 'Please answer the question above to continue.';
+        errBox.style.display = 'block';
+        try { r.focus(); } catch (e) {}
+        return false;
+      }
+      if (r.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r.value)) {
+        r.classList.add('is-invalid');
+        errBox.textContent = 'Enter a valid email so we can send your next steps.';
+        errBox.style.display = 'block';
+        try { r.focus(); } catch (e) {}
+        return false;
+      }
     }
-    // multi-select minimum
-    var grp = step.querySelector('.q-opts[data-min]');
-    if (grp) {
+    // choice groups with a minimum
+    var groups = Array.prototype.slice.call(step.querySelectorAll('.q-opts[data-min]'));
+    for (var g = 0; g < groups.length; g++) {
+      var grp = groups[g];
       var min = parseInt(grp.getAttribute('data-min'), 10) || 1;
-      if (grp.querySelectorAll('input:checked').length < min) return false;
+      if (grp.querySelectorAll('input:checked').length < min) {
+        grp.classList.add('is-invalid');
+        errBox.textContent = 'Pick at least one option to continue.';
+        errBox.style.display = 'block';
+        var fi = grp.querySelector('input');
+        if (fi) { try { fi.focus(); } catch (e) {} }
+        return false;
+      }
     }
     return true;
   }
@@ -612,9 +689,24 @@
     return o ? (parseInt(o.getAttribute('data-score'), 10) || 0) : 0;
   }
 
+  function radioScore(name) {
+    var r = form.querySelector('input[name="' + name + '"]:checked');
+    return r ? (parseInt(r.getAttribute('data-score'), 10) || 0) : 0;
+  }
+
+  function revealResult() {
+    var blocks = Array.prototype.slice.call(steps[total - 1].querySelectorAll('.q-result-band, .q-recs, .q-capture'));
+    blocks.forEach(function (b, idx) {
+      b.classList.remove('q-reveal');
+      void b.offsetWidth; // force reflow so the animation re-runs on revisit
+      b.style.animationDelay = (idx * 0.09) + 's';
+      b.classList.add('q-reveal');
+    });
+  }
+
   function buildResult() {
     var drains = Array.prototype.slice.call(form.querySelectorAll('input[name="Time drains"]:checked')).map(function (c) { return c.value; });
-    var score = scoreOf('hours') + scoreOf('leads') + scoreOf('speed') + scoreOf('after') + scoreOf('timeline') + scoreOf('budget') + Math.min(drains.length, 4);
+    var score = scoreOf('hours') + scoreOf('leads') + radioScore('Current response speed') + radioScore('After hours share') + scoreOf('timeline') + scoreOf('budget') + Math.min(drains.length, 4);
 
     var verdict, blurb;
     if (score >= 16) {
@@ -642,19 +734,34 @@
     el('h-recs').value = picks.join(' | ');
   }
 
+  function setSending(on) {
+    nextBtn.disabled = on;
+    nextBtn.innerHTML = on ? 'Sending…' : 'Get my next steps <span class="arr">→</span>';
+  }
+
   function submit() {
     var endpoint = form.getAttribute('data-endpoint');
-    nextBtn.disabled = true; nextBtn.textContent = 'Sending…';
-    if (endpoint) {
-      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-        .then(function (r) { if (r.ok) done(); else throw new Error('bad'); })
-        .catch(function () { fallbackMail(); });
-    } else { fallbackMail(); }
+    errBox.style.display = 'none';
+    setSending(true);
+    if (!endpoint) { fallbackMail(); return; }
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (r.ok) { done(); }
+        else { throw new Error('bad status'); }
+      })
+      .catch(function () {
+        // never fake success: re-enable the button and offer a real fallback
+        setSending(false);
+        errBox.innerHTML = 'Something went wrong sending that. Please try again, or email us at <a href="mailto:hello@sarza.ai">hello@sarza.ai</a> and we will set up your consult.';
+        errBox.style.display = 'block';
+      });
   }
 
   function done() {
+    el('q-bar').style.width = '100%';
     form.style.display = 'none';
-    document.querySelector('.q-progress').style.display = 'none';
+    var prog = document.querySelector('.q-progress');
+    if (prog) prog.style.display = 'none';
     el('q-done').style.display = 'block';
     el('q-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -663,23 +770,23 @@
     var get = function (id) { var x = el(id); return x ? x.value : ''; };
     var body = 'AI Quiz result: ' + get('h-verdict') + ' (score ' + get('h-score') + ')\n' +
       'Recommended: ' + get('h-recs') + '\n\n' +
-      'Name: ' + get('fname') + ' ' + get('lname') + '\nEmail: ' + get('email') + '\nBusiness: ' + get('biz');
+      'Name: ' + get('fname') + '\nEmail: ' + get('email') + '\nBusiness: ' + get('biz');
     window.location.href = 'mailto:hello@sarza.ai?subject=' + encodeURIComponent('AI Quiz submission') + '&body=' + encodeURIComponent(body);
     done();
   }
 
   nextBtn.addEventListener('click', function () {
-    if (!valid(i)) { errBox.style.display = 'block'; return; }
+    if (!valid(i)) { return; }
     errBox.style.display = 'none';
-    if (i === total - 1) { submit(); } else { show(i + 1); }
+    if (i === total - 1) { submit(); } else { show(i + 1, false); }
   });
-  backBtn.addEventListener('click', function () { if (i > 0) show(i - 1); });
+  backBtn.addEventListener('click', function () { if (i > 0) show(i - 1, true); });
   form.addEventListener('submit', function (e) { e.preventDefault(); });
-  // clear error as the user interacts
-  form.addEventListener('input', function () { errBox.style.display = 'none'; });
-  form.addEventListener('change', function () { errBox.style.display = 'none'; });
+  // clear error and invalid state as the user interacts
+  form.addEventListener('input', function () { errBox.style.display = 'none'; clearInvalid(); });
+  form.addEventListener('change', function () { errBox.style.display = 'none'; clearInvalid(); });
 
-  show(0);
+  show(0, false);
 })();
 </script>
 </body>
