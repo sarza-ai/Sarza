@@ -174,7 +174,7 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 main { position: relative; }
 .section { border-top: 1px solid var(--line); }
 .section-inner { max-width: var(--maxw); margin: 0 auto; padding: clamp(64px, 9vw, 130px) var(--pad); }
-.section-head { display: grid; grid-template-columns: 1fr; gap: 1.4rem; margin-bottom: clamp(40px, 6vw, 72px); }
+.section-head { display: grid; grid-template-columns: 1fr; gap: 1.4rem; margin-bottom: clamp(40px, 6vw, 72px); justify-items: center; text-align: center; }
 .section-head .mono-label { display: inline-flex; align-items: center; gap: 10px; }
 .section-head .mono-label::before, .section-head .mono-label::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(224,147,74,0.6); }
 .section-title {
