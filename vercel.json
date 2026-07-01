@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/quiz", "destination": "/ai-assessment", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
