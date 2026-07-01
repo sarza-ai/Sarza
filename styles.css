@@ -99,9 +99,11 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
   border-bottom-color: var(--line);
 }
 .brand {
+  display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--disp); font-weight: 600; text-transform: uppercase;
   font-size: 18px; letter-spacing: 0.02em;
 }
+.brand-mark { width: 26px; height: auto; display: block; flex: none; }
 .nav-inline { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
 .nav-inline a {
   font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
