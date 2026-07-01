@@ -195,10 +195,11 @@ main { position: relative; }
   min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
   max-width: var(--maxw); margin: 0 auto; padding: 150px var(--pad) 60px; position: relative;
 }
-.hero__eyebrow { margin-bottom: clamp(28px, 5vw, 52px); display: inline-flex; align-items: center; gap: 12px; }
+.hero__eyebrow { margin-bottom: clamp(28px, 5vw, 52px); display: inline-flex; align-self: center; align-items: center; gap: 12px; }
 .hero__eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(224,147,74,0.6); }
 .hero h1 {
   font-size: clamp(38px, 5.5vw, 84px); text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.9;
+  text-align: center;
 }
 .hero h1 .thin { color: var(--muted); }
 .hero__row {
