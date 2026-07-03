@@ -362,6 +362,15 @@ a.idx-row:hover .idx-arr { opacity: 1; transform: translateY(-50%) translateX(0)
   transition: background 0.35s var(--ease);
 }
 .svc-cell:hover { background: rgba(244,243,239,0.03); }
+.svc-cell { scroll-margin-top: 96px; }
+.svc-cell .svc-media { margin-bottom: 1.8rem; }
+.svc-img {
+  width: clamp(128px, 20vw, 184px); height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+  border-radius: 20px; border: 1px solid var(--line); background: #0D0A06;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  transition: transform 0.5s var(--ease);
+}
+.svc-cell:hover .svc-img { transform: scale(1.03); }
 .svc-cell .svc-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.6rem; }
 .svc-cell .svc-num { font-size: 13px; letter-spacing: 0.1em; color: var(--dim); }
 .svc-cell .svc-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
