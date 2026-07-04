@@ -488,15 +488,15 @@ a.idx-row:hover .idx-arr { opacity: 1; transform: translateY(-50%) translateX(0)
    Warm sand/desert color shown at rest; brighten + slow zoom on hover.
    ============================================================ */
 .hero-media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-.hero-media img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
-  filter: contrast(1.03) brightness(0.82) saturate(1.18);
+.hero-media img, .hero-media video {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 42%;
+  filter: contrast(1.03) brightness(0.8) saturate(1.16);
   transition: filter 1.2s var(--ease), transform 1.6s var(--ease);
 }
-.hero:hover .hero-media img { filter: contrast(1.02) brightness(0.92) saturate(1.22); transform: scale(1.03); }
+.hero:hover .hero-media img, .hero:hover .hero-media video { filter: contrast(1.02) brightness(0.9) saturate(1.2); }
 .hero-media::after { content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(13,10,6,0.28), rgba(13,10,6,0.4) 55%, rgba(13,10,6,0.82)); }
-@media (prefers-reduced-motion: reduce) { .hero-media img { transition: none !important; } }
+  background: linear-gradient(to bottom, rgba(13,10,6,0.32), rgba(13,10,6,0.45) 52%, rgba(13,10,6,0.86)); }
+@media (prefers-reduced-motion: reduce) { .hero-media img, .hero-media video { transition: none !important; } }
 
 .feature-band { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
 .feature-band img {

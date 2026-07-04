@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=20" />
+<link rel="stylesheet" href="/styles.css?v=21" />
 
 <!-- Structured data: Organization + WebSite -->
 <script type="application/ld+json">
@@ -166,7 +166,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
-      <img src="/assets/scene-b.svg" alt="" width="1600" height="1000" fetchpriority="high" decoding="async" />
+      <video autoplay muted loop playsinline poster="/assets/hero-poster.jpg">
+        <source src="/assets/hero.mp4" type="video/mp4" />
+      </video>
     </div>
     <span class="mono-label hero__eyebrow">AI Integration Specialists</span>
     <h1 class="lines" data-reveal-words>Bring AI into your business <span class="thin">without the guesswork</span></h1>
@@ -413,6 +415,17 @@
   </div>
 </footer>
 
+<script>
+/* Respect reduced-motion: freeze the hero video on the poster frame. */
+(function () {
+  try {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var v = document.querySelector('.hero-media video');
+      if (v) { v.removeAttribute('autoplay'); v.pause(); }
+    }
+  } catch (e) {}
+})();
+</script>
 <script src="/app.js?v=9" defer></script>
 </body>
 </html>
