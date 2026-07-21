@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>How to Automate Chasing Unpaid Invoices — Sarza AI</title>
+<meta name="description" content="What it actually costs to chase late payments by hand, what automating it looks like, and a live calculator for the hours and dollars you could get back." />
+<link rel="canonical" href="https://sarza.ai/blog/automate-invoice-chasing" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0A0A0A" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="How to Automate Chasing Unpaid Invoices" />
+<meta property="og:description" content="What chasing late payments by hand really costs, and what it looks like to automate it instead." />
+<meta property="og:url" content="https://sarza.ai/blog/automate-invoice-chasing" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-07-21" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to Automate Chasing Unpaid Invoices" />
+<meta name="twitter:description" content="What chasing late payments by hand really costs, and what automating it actually looks like." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="/assets/scene-a.svg" fetchpriority="high" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=21" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sarza.ai/blog" },
+        { "@type": "ListItem", "position": 3, "name": "Automate invoice chasing", "item": "https://sarza.ai/blog/automate-invoice-chasing" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to Automate Chasing Unpaid Invoices",
+      "description": "What it actually costs to chase late payments by hand, what automating it looks like, and a live calculator for the hours and dollars you could get back.",
+      "image": "https://sarza.ai/assets/og.png",
+      "datePublished": "2026-07-21",
+      "dateModified": "2026-07-21",
+      "author": { "@type": "Organization", "name": "Sarza AI", "url": "https://sarza.ai/" },
+      "publisher": { "@type": "Organization", "name": "Sarza AI", "logo": { "@type": "ImageObject", "url": "https://sarza.ai/favicon.svg" } },
+      "mainEntityOfPage": "https://sarza.ai/blog/automate-invoice-chasing"
+    }
+  ]
+}
+</script>
+
+<style>
+/* Invoice chasing widget, page scoped, reuses site tokens */
+.widget { border: 1px solid var(--line); margin: 2.2rem 0 2.6rem; }
+.widget-head { padding: clamp(20px, 2.6vw, 28px) clamp(20px, 2.6vw, 28px) 0; }
+.widget-head .cap { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.widget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+@media (max-width: 720px) { .widget-grid { grid-template-columns: 1fr; } }
+.widget-inputs { padding: clamp(20px, 2.6vw, 28px); border-right: 1px solid var(--line); }
+@media (max-width: 720px) { .widget-inputs { border-right: none; border-bottom: 1px solid var(--line); } }
+.widget-field { margin-bottom: 1.7rem; }
+.widget-field:last-child { margin-bottom: 0; }
+.widget-field .field-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.widget-field label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.widget-field .val { font-family: var(--disp); font-size: clamp(18px, 2vw, 22px); color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.widget input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 26px; background: transparent; cursor: pointer; margin-top: 4px;
+}
+.widget input[type="range"]::-webkit-slider-runnable-track { height: 1px; background: var(--line-2); }
+.widget input[type="range"]::-moz-range-track { height: 1px; background: var(--line-2); }
+.widget input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; margin-top: -8px;
+  width: 17px; height: 17px; border-radius: 50%; background: var(--fg); border: none;
+  transition: transform 0.2s var(--ease);
+}
+.widget input[type="range"]::-moz-range-thumb { width: 17px; height: 17px; border: none; border-radius: 50%; background: var(--fg); }
+.widget input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.18); }
+.widget-results { padding: clamp(20px, 2.6vw, 28px); }
+.widget-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 1.4rem; }
+.widget-tile .t-cap { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.widget-tile .t-val { font-family: var(--disp); font-weight: 600; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.03em; margin-top: 0.4rem; font-variant-numeric: tabular-nums; }
+.widget-bar-row { margin-bottom: 0.9rem; }
+.widget-bar-row .b-label { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.widget-bar { height: 8px; background: rgba(243,230,201,0.08); position: relative; overflow: hidden; }
+.widget-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; transition: width 0.5s var(--ease); background: var(--dim); }
+.widget-bar.after i { background: var(--fg); }
+.widget-note { padding: 0 clamp(20px, 2.6vw, 28px) clamp(20px, 2.6vw, 28px); font-size: 12.5px; color: var(--muted); line-height: 1.7; grid-column: 1 / -1; }
+.no-js .widget-live { display: none; }
+.js .widget-fallback { display: none; }
+.widget-fallback table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.widget-fallback td { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.widget-fallback td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--fg); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home"><svg class="brand-mark" viewBox="0 0 52 48" width="26" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A6"/><stop offset=".5" stop-color="#E8A85A"/><stop offset="1" stop-color="#C1440E"/></linearGradient><mask id="bm-mask"><circle cx="26" cy="24" r="20" fill="#fff"/><rect x="2" y="28.04" width="48" height="0.72" fill="#000"/><rect x="2" y="30.38" width="48" height="0.84" fill="#000"/><rect x="2" y="32.88" width="48" height="1.04" fill="#000"/><rect x="2" y="35.54" width="48" height="1.32" fill="#000"/><rect x="2" y="38.58" width="48" height="1.64" fill="#000"/><rect x="2" y="42" width="48" height="2" fill="#000"/></mask></defs><circle cx="26" cy="24" r="20" fill="url(#bm-sun)" mask="url(#bm-mask)"/></svg><span>Sarza AI</span></a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/ai-assessment" class="nav-book">AI Assessment</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/ai-assessment">AI Assessment</a>
+  </div>
+</div>
+
+<main id="main">
+  <article class="article-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog">Blog</a> / <span>Guide</span>
+    </nav>
+
+    <header class="article-head">
+      <span class="post-tag">Guide</span>
+      <h1>How to Automate Chasing Unpaid Invoices</h1>
+      <p class="article-meta">By the Sarza AI team · Published July 21, 2026 · 7 min read</p>
+    </header>
+
+    <div class="article-feature">
+      <img src="/assets/scene-a.svg" alt="Futuristic desert with a glowing retro sun and tech grid" width="1200" height="600" fetchpriority="high" decoding="async" />
+    </div>
+
+    <div class="article-body">
+      <p class="lead">Nobody puts "chase late payments" on a job description. It just shows up, a phone call here, a follow up email there, a note to remember to check again next week, and it quietly eats hours that never make it onto any timesheet. It is one of the most common tasks small businesses do entirely by hand, and one of the easiest to hand off.</p>
+
+      <h2>The task and its hidden cost</h2>
+      <p>Every business with invoices has a version of this routine. A payment is due, then it is a few days late, then someone has to notice, decide how firm to be, and reach out. Do it again in a week if nothing changes. Do it again after that. Multiply by every customer who pays late, every month, and it adds up to a real, recurring drain on whoever owns the books, usually the owner, an office manager, or a bookkeeper who is also doing five other things.</p>
+      <p>The real cost is not just the minutes spent writing an email or making a call. It is the mental overhead of remembering who owes what, the awkwardness of asking a customer for money more than once, and the late payments that get missed entirely because nobody circled back in time. That last one is the expensive part. Cash that is owed but not collected is not sitting safely somewhere, it is just delayed, and delayed cash strains everything else.</p>
+
+      <h2>See what this task costs you</h2>
+      <p>Move the sliders to match how invoice chasing actually looks at your business. The numbers update live.</p>
+
+      <div class="widget no-js" id="invoice-widget">
+        <div class="widget-head">
+          <span class="cap">Invoice chasing cost calculator</span>
+        </div>
+        <div class="widget-grid">
+          <div class="widget-inputs widget-live">
+            <div class="widget-field">
+              <div class="field-head">
+                <label for="iw-count">Unpaid invoices you chase per week</label>
+                <span class="val"><span id="iw-countVal">8</span></span>
+              </div>
+              <input type="range" id="iw-count" min="0" max="30" step="1" value="8" />
+            </div>
+            <div class="widget-field">
+              <div class="field-head">
+                <label for="iw-minutes">Minutes spent per invoice, each time</label>
+                <span class="val"><span id="iw-minutesVal">15</span> min</span>
+              </div>
+              <input type="range" id="iw-minutes" min="3" max="30" step="1" value="15" />
+              <span class="hint" style="display:block;font-size:11px;color:var(--dim);margin-top:0.5rem;">Calls, emails, texts, and checking who still owes what.</span>
+            </div>
+            <div class="widget-field">
+              <div class="field-head">
+                <label for="iw-rate">What an hour of that time is worth</label>
+                <span class="val">$<span id="iw-rateVal">45</span></span>
+              </div>
+              <input type="range" id="iw-rate" min="15" max="150" step="5" value="45" />
+            </div>
+          </div>
+          <div class="widget-results widget-live">
+            <div class="widget-tiles">
+              <div class="widget-tile">
+                <span class="t-cap">Hours reclaimed / month</span>
+                <div class="t-val" id="iw-hours">0</div>
+              </div>
+              <div class="widget-tile">
+                <span class="t-cap">Reclaimed / month</span>
+                <div class="t-val" id="iw-dollarsMonth">$0</div>
+              </div>
+            </div>
+            <div class="widget-bar-row">
+              <div class="b-label"><span>Hours spent now / month</span><b id="iw-nowLabel">0</b></div>
+              <div class="widget-bar now"><i id="iw-barNow"></i></div>
+            </div>
+            <div class="widget-bar-row">
+              <div class="b-label"><span>Hours spent after automating</span><b id="iw-afterLabel">0</b></div>
+              <div class="widget-bar after"><i id="iw-barAfter"></i></div>
+            </div>
+            <div class="widget-tiles" style="margin-top:1.2rem;margin-bottom:0;">
+              <div class="widget-tile">
+                <span class="t-cap">Reclaimed / year</span>
+                <div class="t-val" id="iw-dollarsYear">$0</div>
+              </div>
+            </div>
+          </div>
+          <div class="widget-fallback" style="grid-column:1/-1;padding:clamp(20px,2.6vw,28px);">
+            <span class="cap">Example: 8 invoices/week, 15 min each, time worth $45/hr</span>
+            <table>
+              <tr><td>Hours spent chasing now, per month</td><td>8.7 hrs</td></tr>
+              <tr><td>Hours reclaimed by automating</td><td>6.9 hrs</td></tr>
+              <tr><td>Reclaimed per month</td><td>$312</td></tr>
+              <tr><td>Reclaimed per year</td><td>$3,741</td></tr>
+            </table>
+          </div>
+          <p class="widget-note">Assumes automated reminders, statements, and payment links handle about 80% of routine follow up, the on time nudges, due date reminders, and repeat statements, while a person still steps in for disputes, partial payments, and the rare account that needs an actual phone call. A planning estimate, not a guarantee.</p>
+        </div>
+      </div>
+
+      <h2>Before and after</h2>
+      <p><strong>The manual way:</strong> an invoice goes out with no follow up plan beyond memory. A week after the due date, someone finally checks the aging report, spots what is overdue, and writes an email or picks up the phone. If the customer does not respond, nothing else happens until someone remembers to check again. Multiply this by every customer, every month, with no consistent cadence, and money sits unpaid longer than it needs to.</p>
+      <p><strong>The automated way:</strong> the moment an invoice is sent, a sequence starts. A friendly reminder a few days before the due date. A follow up the day it is late. A firmer nudge, with a direct payment link, a week after that. Each message is personalized with the customer's name, invoice number, and amount, sent automatically, logged automatically, and stopped automatically the second the invoice is paid. Nobody has to remember anything. A human only gets pulled in when the system flags an account as genuinely stuck, not paying after multiple reminders, disputing the amount, or asking for a payment plan.</p>
+
+      <h2>What actually solves this</h2>
+      <p>This does not require custom software. Most invoicing and accounting platforms already used by small businesses, QuickBooks, Xero, FreshBooks, Wave, have automated reminder sequences built in or available as an add on, often for the cost already included in the subscription. For businesses that want more personalization, a lightweight workflow tool connected to the accounting system can send reminders that read like they were written by a person, track responses, and escalate to a human when needed. Realistic cost for a small business runs from free, using what is already built into the accounting software, up to $50 to $150 a month for a more customized setup with smarter escalation rules.</p>
+
+      <h2>What to watch out for</h2>
+      <p>Automated reminders work best when the tone stays human. A sequence that sounds like a collections agency on message one will damage a relationship with a customer who was simply going to pay next Tuesday. Keep the early messages friendly and assume good intent, and save the firmer tone for accounts that are genuinely overdue. It is also worth reviewing the flagged, stuck accounts personally rather than letting an automated system escalate all the way to a final notice on its own. Judgment calls about a long standing customer having a rough month still belong to a person.</p>
+
+      <h2>What stays human</h2>
+      <p>Disputes over the amount owed, payment plans, and any account where the relationship matters more than the invoice still need a person on the phone. Automation's job is to make sure nothing falls through the cracks on the easy 80%, so the time and attention of an actual person goes to the accounts that need it.</p>
+
+      <div class="article-cta">
+        <h3>Not sure where invoice chasing ranks against everything else you could automate?</h3>
+        <p>Take the AI Assessment. We will show you exactly where this fits alongside the other tasks eating your team's week.</p>
+        <a href="/ai-assessment" class="btn-primary">Take the AI Assessment →</a>
+      </div>
+
+      <hr />
+      <p><strong>Keep reading:</strong> <a href="/blog/what-are-ai-tokens">What Are AI Tokens? The Real Reason Your AI Bill Varies →</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Helping companies put AI to work.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a consult</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/profile.php?id=61591149674974" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/SarzaAI" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=9" defer></script>
+<script>
+(function () {
+  var AUTOMATION_RATE = 0.8;
+  var WEEKS_PER_MONTH = 4.33;
+
+  var el = function (id) { return document.getElementById(id); };
+  var ids = ['iw-count', 'iw-minutes', 'iw-rate'];
+  var inputs = ids.map(el);
+
+  var fmtUSD = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+  var fmtHrs = function (n) { return (Math.round(n * 10) / 10).toLocaleString('en-US'); };
+
+  function calc() {
+    var count   = parseFloat(el('iw-count').value) || 0;
+    var minutes = parseFloat(el('iw-minutes').value) || 0;
+    var rate    = parseFloat(el('iw-rate').value) || 0;
+
+    el('iw-countVal').textContent = count;
+    el('iw-minutesVal').textContent = minutes;
+    el('iw-rateVal').textContent = rate;
+
+    var hoursNowMonthly = (count * minutes / 60) * WEEKS_PER_MONTH;
+    var hoursReclaimed  = hoursNowMonthly * AUTOMATION_RATE;
+    var hoursAfter       = hoursNowMonthly - hoursReclaimed;
+    var dollarsMonth    = hoursReclaimed * rate;
+    var dollarsYear     = dollarsMonth * 12;
+
+    el('iw-hours').textContent = fmtHrs(hoursReclaimed);
+    el('iw-dollarsMonth').textContent = fmtUSD(dollarsMonth);
+    el('iw-dollarsYear').textContent = fmtUSD(dollarsYear);
+    el('iw-nowLabel').textContent = fmtHrs(hoursNowMonthly) + ' hrs';
+    el('iw-afterLabel').textContent = fmtHrs(hoursAfter) + ' hrs';
+
+    var max = Math.max(hoursNowMonthly, 1);
+    el('iw-barNow').style.width = (hoursNowMonthly / max * 100) + '%';
+    el('iw-barAfter').style.width = (hoursAfter / max * 100) + '%';
+  }
+
+  inputs.forEach(function (i) {
+    i.addEventListener('input', calc);
+    i.addEventListener('change', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
