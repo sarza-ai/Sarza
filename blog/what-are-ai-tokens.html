@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>What Are AI Tokens? The Real Reason Your AI Bill Varies — Sarza AI</title>
+<meta name="description" content="Every AI tool charges by the token. Here is what that actually means, why it matters for your budget, and how to keep costs under control." />
+<link rel="canonical" href="https://sarza.ai/blog/what-are-ai-tokens" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0A0A0A" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="What Are AI Tokens? The Real Reason Your AI Bill Varies" />
+<meta property="og:description" content="Every AI tool charges by the token. Here is what that actually means and how to keep costs under control." />
+<meta property="og:url" content="https://sarza.ai/blog/what-are-ai-tokens" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-07-21" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What Are AI Tokens? The Real Reason Your AI Bill Varies" />
+<meta name="twitter:description" content="Every AI tool charges by the token. Here is what that actually means and how to keep costs under control." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="/assets/scene-b.svg" fetchpriority="high" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=21" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sarza.ai/blog" },
+        { "@type": "ListItem", "position": 3, "name": "What Are AI Tokens?", "item": "https://sarza.ai/blog/what-are-ai-tokens" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "What Are AI Tokens? The Real Reason Your AI Bill Varies",
+      "description": "Every AI tool charges by the token. Here is what that actually means, why it matters for your budget, and how to keep costs under control.",
+      "image": "https://sarza.ai/assets/og.png",
+      "datePublished": "2026-07-21",
+      "dateModified": "2026-07-21",
+      "author": { "@type": "Organization", "name": "Sarza AI", "url": "https://sarza.ai/" },
+      "publisher": { "@type": "Organization", "name": "Sarza AI", "logo": { "@type": "ImageObject", "url": "https://sarza.ai/favicon.svg" } },
+      "mainEntityOfPage": "https://sarza.ai/blog/what-are-ai-tokens"
+    }
+  ]
+}
+</script>
+
+<style>
+/* Token widget styles — scoped to .token-widget */
+.token-widget {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: inherit;
+}
+.token-widget h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.tw-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.tw-textarea:focus {
+  border-color: #E8A85A;
+}
+.tw-textarea::placeholder {
+  color: #555;
+}
+.tw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 1rem;
+  min-height: 2rem;
+}
+.tw-chip {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: pre;
+}
+.tw-chip-0 { background: rgba(232, 168, 90, 0.18); color: #E8A85A; border: 1px solid rgba(232, 168, 90, 0.3); }
+.tw-chip-1 { background: rgba(100, 180, 255, 0.13); color: #7ac4ff; border: 1px solid rgba(100, 180, 255, 0.25); }
+.tw-chip-2 { background: rgba(160, 230, 150, 0.13); color: #8ed97c; border: 1px solid rgba(160, 230, 150, 0.25); }
+.tw-chip-3 { background: rgba(220, 130, 220, 0.13); color: #d890d8; border: 1px solid rgba(220, 130, 220, 0.25); }
+.tw-chip-4 { background: rgba(255, 180, 100, 0.13); color: #ffb464; border: 1px solid rgba(255, 180, 100, 0.25); }
+.tw-chip-space { opacity: 0.45; font-size: 0.75rem; }
+.tw-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #222;
+}
+.tw-stat {
+  display: flex;
+  flex-direction: column;
+}
+.tw-stat-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #E8A85A;
+  line-height: 1;
+}
+.tw-stat-label {
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.tw-costs {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tw-cost-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #1a1a1a;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+.tw-model-name {
+  flex: 1;
+  color: #ccc;
+  font-weight: 500;
+}
+.tw-rate {
+  color: #555;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.tw-total-cost {
+  color: #E8A85A;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+  font-size: 0.875rem;
+}
+.tw-note {
+  font-size: 0.78rem;
+  color: #555;
+  margin: 0.75rem 0 0;
+  line-height: 1.4;
+}
+.tw-placeholder-note {
+  color: #444;
+  font-size: 0.9rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.6;
+}
+@media (max-width: 500px) {
+  .token-widget { padding: 1rem; }
+  .tw-stat-num { font-size: 1.3rem; }
+  .tw-cost-row { flex-wrap: wrap; gap: 4px; }
+  .tw-rate { flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home"><svg class="brand-mark" viewBox="0 0 52 48" width="26" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A6"/><stop offset=".5" stop-color="#E8A85A"/><stop offset="1" stop-color="#C1440E"/></linearGradient><mask id="bm-mask"><circle cx="26" cy="24" r="20" fill="#fff"/><rect x="2" y="28.04" width="48" height="0.72" fill="#000"/><rect x="2" y="30.38" width="48" height="0.84" fill="#000"/><rect x="2" y="32.88" width="48" height="1.04" fill="#000"/><rect x="2" y="35.54" width="48" height="1.32" fill="#000"/><rect x="2" y="38.58" width="48" height="1.64" fill="#000"/><rect x="2" y="42" width="48" height="2" fill="#000"/></mask></defs><circle cx="26" cy="24" r="20" fill="url(#bm-sun)" mask="url(#bm-mask)"/></svg><span>Sarza AI</span></a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/ai-assessment" class="nav-book">AI Assessment</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/ai-assessment">AI Assessment</a>
+  </div>
+</div>
+
+<main id="main">
+  <article class="article-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog">Blog</a> / <span>Explainer</span>
+    </nav>
+
+    <header class="article-head">
+      <span class="post-tag">Explainer</span>
+      <h1>What Are AI Tokens? The Real Reason Your AI Bill Varies</h1>
+      <p class="article-meta">By the Sarza AI team · Published July 21, 2026 · 5 min read</p>
+    </header>
+
+    <div class="article-feature">
+      <img src="/assets/scene-b.svg" alt="Futuristic desert at night with a glowing horizon and starfield" width="1200" height="600" fetchpriority="high" decoding="async" />
+    </div>
+
+    <div class="article-body">
+      <p class="lead">Every company that starts using AI runs into the same puzzle. Two tasks that feel similar cost completely different amounts. One costs a fraction of a cent. Another costs dollars. The billing line says "tokens" and nobody explains what that means. Here is what it actually means, and why it matters for how you build and budget AI workflows.</p>
+
+      <h2>Tokens are not words</h2>
+      <p>The most common mistake is assuming that token count maps to word count. It does not. AI models process text by breaking it into smaller numerical units called tokens, and the boundaries do not follow grammar rules.</p>
+      <p>Short, common words like "the", "is", or "cat" are usually one token each. Longer or less common words get split: "tokenization" is three tokens ("token", "ization" might not capture it perfectly, but roughly that). Punctuation and spaces are tokens too. Numbers can be surprisingly expensive because each digit is often its own token.</p>
+      <p>The rough rule of thumb is about 750 words per 1,000 tokens, but it varies considerably depending on what you are writing.</p>
+
+      <h2>See it for yourself</h2>
+      <p>Type any sentence below and watch it split into its token pieces. Each color represents a separate token the AI would process.</p>
+
+      <div class="token-widget" id="token-widget" role="region" aria-label="Token counter">
+        <h3>Live token counter</h3>
+        <textarea
+          class="tw-textarea"
+          id="tw-input"
+          placeholder="Type or paste any text here..."
+          aria-label="Text to tokenize"
+          rows="3"
+        ></textarea>
+        <div class="tw-chips" id="tw-chips" aria-live="polite" aria-label="Token visualization"></div>
+        <p class="tw-placeholder-note" id="tw-hint">Your tokens will appear above as you type.</p>
+        <div class="tw-stats" id="tw-stats" style="display:none">
+          <div class="tw-stat">
+            <span class="tw-stat-num" id="tw-count">0</span>
+            <span class="tw-stat-label">tokens</span>
+          </div>
+          <div class="tw-stat">
+            <span class="tw-stat-num" id="tw-chars">0</span>
+            <span class="tw-stat-label">characters</span>
+          </div>
+        </div>
+        <div class="tw-costs" id="tw-costs" style="display:none">
+          <div class="tw-cost-row">
+            <span class="tw-model-name">Budget model</span>
+            <span class="tw-rate">$0.40 per 1M input tokens</span>
+            <span class="tw-total-cost" id="tw-cost-cheap">—</span>
+          </div>
+          <div class="tw-cost-row">
+            <span class="tw-model-name">Mid-range model</span>
+            <span class="tw-rate">$3.00 per 1M input tokens</span>
+            <span class="tw-total-cost" id="tw-cost-mid">—</span>
+          </div>
+          <div class="tw-cost-row">
+            <span class="tw-model-name">Premium model</span>
+            <span class="tw-rate">$15.00 per 1M input tokens</span>
+            <span class="tw-total-cost" id="tw-cost-premium">—</span>
+          </div>
+        </div>
+        <p class="tw-note" id="tw-note" style="display:none">These are approximate input costs only. Output tokens cost 3 to 5 times more. Real tokenization varies by model.</p>
+        <noscript>
+          <p class="tw-placeholder-note">The interactive demo requires JavaScript. As an illustration: the sentence "AI is changing how we do business" contains roughly 9 tokens and would cost less than $0.0001 to process as input on most AI models.</p>
+        </noscript>
+      </div>
+
+      <h2>Why AI pricing is built on tokens</h2>
+      <p>AI providers charge per token because that is the actual unit of compute. Every token in your prompt has to be processed by the model before it generates a single word of response. Every token in the response has to be generated one at a time. Token count is directly proportional to how much GPU time your request consumes.</p>
+      <p>This is why the billing line does not say "per question" or "per request." One question can be 10 tokens or 10,000 tokens, and the compute cost is genuinely different by a factor of 1,000.</p>
+
+      <h2>Input tokens versus output tokens</h2>
+      <p>There are two sides to every AI transaction: what you send in (input tokens) and what the AI writes back (output tokens). Providers charge significantly more for output tokens because generating text is more compute-intensive than reading it. The ratio is typically 3 to 5 times higher for output.</p>
+      <p>This creates a useful rule of thumb: tasks that require the AI to read a lot and write a little are cheap. Tasks that require the AI to write a lot are expensive. A document summarizer that reads 5,000 words and returns a 50-word summary costs far less per run than a report generator that reads 500 words and writes 2,000.</p>
+
+      <h2>What this means for your business</h2>
+      <p>Once you understand tokens, a few cost-control strategies become obvious.</p>
+      <p><strong>Keep outputs short when you can.</strong> If you are using AI to classify support tickets, extract data from forms, or flag content for review, instruct it explicitly to be brief. "Answer in one sentence" or "Return only the category name" can cut output costs by 90 percent on certain workflows.</p>
+      <p><strong>Clean up your prompts.</strong> Long, redundant instructions cost money every time they run. If you have a system prompt that restates the same context in three different ways, that is tokens you are paying for on every single request. Tighter instructions also tend to produce better results.</p>
+      <p><strong>Watch your context window usage.</strong> Every AI model has a maximum token limit for a single conversation, including everything said so far. Long running chat sessions grow more expensive as the history builds. Some workflows are better off starting fresh rather than accumulating a long context.</p>
+      <p><strong>Match the model to the task.</strong> Premium models charge 30 to 40 times more per token than budget models. For simple, structured tasks where a smaller model performs fine, there is no reason to pay premium rates. The right model for the job depends on the task, not on a habit of always using the biggest name you recognize.</p>
+      <p>None of this requires a developer to manage. It requires someone who understands what the AI is doing and why the cost comes out the way it does. Tokens are the reason, and now you know what tokens actually are.</p>
+
+      <blockquote>Token count is the real unit of AI compute. Once you know that, you can start designing your workflows to be both more effective and more cost-efficient at the same time.</blockquote>
+
+      <div class="article-cta">
+        <h3>Want to know what your workflows would actually cost?</h3>
+        <p>We can walk you through it. Take the AI Assessment to see which tasks in your business are good candidates for AI, and get a realistic cost picture before you commit to anything.</p>
+        <a href="/ai-assessment" class="btn-primary">Take the AI Assessment →</a>
+      </div>
+
+      <hr />
+      <p><strong>Keep reading:</strong> <a href="/blog/top-github-repos-july-16">Top 10 GitHub Repos This Week: July 16, 2026 →</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Helping companies put AI to work.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a consult</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/profile.php?id=61591149674974" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/SarzaAI" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=9" defer></script>
+<script>
+(function () {
+  var input = document.getElementById('tw-input');
+  var chipsEl = document.getElementById('tw-chips');
+  var hintEl = document.getElementById('tw-hint');
+  var statsEl = document.getElementById('tw-stats');
+  var costsEl = document.getElementById('tw-costs');
+  var noteEl = document.getElementById('tw-note');
+  var countEl = document.getElementById('tw-count');
+  var charsEl = document.getElementById('tw-chars');
+  var costCheap = document.getElementById('tw-cost-cheap');
+  var costMid = document.getElementById('tw-cost-mid');
+  var costPremium = document.getElementById('tw-cost-premium');
+
+  if (!input) return;
+
+  var COLORS = 5;
+
+  function tokenize(text) {
+    if (!text) return [];
+    var tokens = [];
+    var parts = text.match(/[a-zA-Z']+|[0-9]+|\s|\S/g) || [];
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      if (/^\s$/.test(p)) {
+        tokens.push({ text: '·', isSpace: true });
+      } else if (/^[a-zA-Z']+$/.test(p)) {
+        if (p.length <= 4) {
+          tokens.push({ text: p });
+        } else if (p.length <= 8) {
+          var mid = Math.ceil(p.length / 2);
+          tokens.push({ text: p.slice(0, mid) });
+          tokens.push({ text: p.slice(mid) });
+        } else {
+          var a = Math.ceil(p.length / 3);
+          tokens.push({ text: p.slice(0, a) });
+          tokens.push({ text: p.slice(a, a * 2) });
+          tokens.push({ text: p.slice(a * 2) });
+        }
+      } else if (/^[0-9]$/.test(p)) {
+        tokens.push({ text: p });
+      } else {
+        tokens.push({ text: p });
+      }
+    }
+    return tokens;
+  }
+
+  function formatCost(tokens, ratePerMillion) {
+    var cost = (tokens / 1000000) * ratePerMillion;
+    if (cost < 0.000001) return '<$0.000001';
+    if (cost < 0.001) return '$' + cost.toFixed(6);
+    if (cost < 0.01) return '$' + cost.toFixed(5);
+    return '$' + cost.toFixed(4);
+  }
+
+  function render() {
+    var text = input.value;
+    var tokens = tokenize(text);
+
+    if (!text) {
+      chipsEl.innerHTML = '';
+      hintEl.style.display = '';
+      statsEl.style.display = 'none';
+      costsEl.style.display = 'none';
+      noteEl.style.display = 'none';
+      return;
+    }
+
+    hintEl.style.display = 'none';
+    statsEl.style.display = '';
+    costsEl.style.display = '';
+    noteEl.style.display = '';
+
+    var colorIndex = 0;
+    var html = '';
+    for (var i = 0; i < tokens.length; i++) {
+      var t = tokens[i];
+      if (t.isSpace) {
+        html += '<span class="tw-chip tw-chip-' + (colorIndex % COLORS) + ' tw-chip-space" aria-hidden="true">' + t.text + '</span>';
+      } else {
+        html += '<span class="tw-chip tw-chip-' + (colorIndex % COLORS) + '">' + escHtml(t.text) + '</span>';
+        colorIndex++;
+      }
+    }
+    chipsEl.innerHTML = html;
+
+    var nonSpace = tokens.filter(function(t){ return !t.isSpace; }).length;
+    countEl.textContent = nonSpace;
+    charsEl.textContent = text.length;
+    costCheap.textContent = formatCost(nonSpace, 0.40);
+    costMid.textContent = formatCost(nonSpace, 3.00);
+    costPremium.textContent = formatCost(nonSpace, 15.00);
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  input.addEventListener('input', render);
+}());
+</script>
+</body>
+</html>
