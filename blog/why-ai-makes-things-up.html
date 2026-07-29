@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Why AI Confidently Makes Things Up — Sarza AI</title>
+<meta name="description" content="AI hallucinations are not glitches. They are the model doing exactly what it was built to do. Here is why it happens and how to catch it before it costs you." />
+<link rel="canonical" href="https://sarza.ai/blog/why-ai-makes-things-up" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0A0A0A" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="Why AI Confidently Makes Things Up" />
+<meta property="og:description" content="AI hallucinations are not glitches. They are the model doing exactly what it was built to do. Here is why it happens and how to catch it." />
+<meta property="og:url" content="https://sarza.ai/blog/why-ai-makes-things-up" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-07-29" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Why AI Confidently Makes Things Up" />
+<meta name="twitter:description" content="AI hallucinations are not glitches. They are the model doing exactly what it was built to do." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="/assets/scene-a.svg" fetchpriority="high" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=21" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sarza.ai/blog" },
+        { "@type": "ListItem", "position": 3, "name": "Why AI Confidently Makes Things Up", "item": "https://sarza.ai/blog/why-ai-makes-things-up" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Why AI Confidently Makes Things Up",
+      "description": "AI hallucinations are not glitches. They are the model doing exactly what it was built to do. Here is why it happens and how to catch it before it costs you.",
+      "image": "https://sarza.ai/assets/og.png",
+      "datePublished": "2026-07-29",
+      "dateModified": "2026-07-29",
+      "author": { "@type": "Organization", "name": "Sarza AI", "url": "https://sarza.ai/" },
+      "publisher": { "@type": "Organization", "name": "Sarza AI", "logo": { "@type": "ImageObject", "url": "https://sarza.ai/favicon.svg" } },
+      "mainEntityOfPage": "https://sarza.ai/blog/why-ai-makes-things-up"
+    }
+  ]
+}
+</script>
+
+<style>
+/* Hallucination widget styles, scoped to .halluc-widget */
+.halluc-widget {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: inherit;
+}
+.halluc-widget h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.hw-hint {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 0 1rem;
+}
+.hw-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+.hw-q-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #ccc;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, color 0.15s;
+  min-height: 44px;
+}
+.hw-q-btn:hover, .hw-q-btn:focus-visible {
+  border-color: #E8A85A;
+  color: #fff;
+}
+.hw-q-btn.hw-active {
+  border-color: #E8A85A;
+  color: #fff;
+  background: #1f1a12;
+}
+.hw-answer-box {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  min-height: 100px;
+}
+.hw-answer-text {
+  color: #e8e8e8;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+  min-height: 3.2em;
+}
+.hw-placeholder {
+  color: #555;
+}
+.hw-meter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.hw-meter-label {
+  font-size: 0.75rem;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  min-width: 92px;
+}
+.hw-meter-track {
+  flex: 1;
+  height: 8px;
+  background: #262626;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.hw-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #E8A85A, #ffd18a);
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+.hw-meter-pct {
+  font-size: 0.85rem;
+  color: #E8A85A;
+  font-weight: 600;
+  min-width: 38px;
+  text-align: right;
+}
+.hw-reveal {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #262626;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.hw-reveal.hw-shown {
+  opacity: 1;
+}
+.hw-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+}
+.hw-badge-fact { background: rgba(160, 230, 150, 0.15); color: #8ed97c; }
+.hw-badge-partial { background: rgba(100, 180, 255, 0.15); color: #7ac4ff; }
+.hw-badge-fab { background: rgba(230, 110, 110, 0.15); color: #ea8a8a; }
+.hw-reveal p { margin: 0; color: #999; }
+@media (max-width: 500px) {
+  .halluc-widget { padding: 1.15rem; }
+  .hw-meter-label { min-width: 78px; font-size: 0.7rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home"><svg class="brand-mark" viewBox="0 0 52 48" width="26" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A6"/><stop offset=".5" stop-color="#E8A85A"/><stop offset="1" stop-color="#C1440E"/></linearGradient><mask id="bm-mask"><circle cx="26" cy="24" r="20" fill="#fff"/><rect x="2" y="28.04" width="48" height="0.72" fill="#000"/><rect x="2" y="30.38" width="48" height="0.84" fill="#000"/><rect x="2" y="32.88" width="48" height="1.04" fill="#000"/><rect x="2" y="35.54" width="48" height="1.32" fill="#000"/><rect x="2" y="38.58" width="48" height="1.64" fill="#000"/><rect x="2" y="42" width="48" height="2" fill="#000"/></mask></defs><circle cx="26" cy="24" r="20" fill="url(#bm-sun)" mask="url(#bm-mask)"/></svg><span>Sarza AI</span></a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/ai-assessment" class="nav-book">AI Assessment</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/ai-assessment">AI Assessment</a>
+  </div>
+</div>
+
+<main id="main">
+  <article class="article-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog">Blog</a> / <span>Explainer</span>
+    </nav>
+
+    <header class="article-head">
+      <span class="post-tag">Explainer</span>
+      <h1>Why AI Confidently Makes Things Up</h1>
+      <p class="article-meta">By the Sarza AI team · Published July 29, 2026 · 6 min read</p>
+    </header>
+
+    <div class="article-feature">
+      <img src="/assets/scene-a.svg" alt="Futuristic desert landscape at dusk with a glowing horizon" width="1200" height="600" fetchpriority="high" decoding="async" />
+    </div>
+
+    <div class="article-body">
+      <p class="lead">A manager asks an AI tool a question, gets back a clean, specific, well written answer, and moves on. No hedging, no "I am not sure." The tone is the same whether the answer is correct or completely invented. That is the part that trips people up. AI does not sound less confident when it is wrong. Here is why, and how to spot it before it ends up in a client email or a compliance filing.</p>
+
+      <h2>Try it yourself</h2>
+      <p>Pick a question below. Watch how the answer reads and how the confidence meter behaves, then check what the AI actually got right.</p>
+
+      <div class="halluc-widget" id="halluc-widget" role="region" aria-label="AI confidence demo">
+        <h3>Ask a simulated AI</h3>
+        <p class="hw-hint">Click a question. The AI's "confidence" is shown below the answer.</p>
+        <div class="hw-questions" id="hw-questions"></div>
+        <div class="hw-answer-box">
+          <p class="hw-answer-text" id="hw-answer"><span class="hw-placeholder">Select a question above to see the AI's answer.</span></p>
+          <div class="hw-meter-row" id="hw-meter-row" style="display:none">
+            <span class="hw-meter-label">Confidence</span>
+            <div class="hw-meter-track"><div class="hw-meter-fill" id="hw-meter-fill"></div></div>
+            <span class="hw-meter-pct" id="hw-meter-pct">0%</span>
+          </div>
+          <div class="hw-reveal" id="hw-reveal"></div>
+        </div>
+        <noscript>
+          <p class="hw-hint">The interactive demo requires JavaScript. As an example: asked "Who won the Nobel Prize in Literature in 1823?", a language model may answer with a specific sounding name and country, delivered with the same fluent tone as a correct answer. The real answer is that no such prize exists. The Nobel Prizes were not established until 1901. The model filled the gap with a plausible sounding invention instead of stopping to say it did not know.</p>
+        </noscript>
+      </div>
+
+      <h2>Why this happens</h2>
+      <p>A language model does not look anything up when you ask it a question. It predicts the next most likely word, over and over, based on patterns learned from huge amounts of text. There is no internal fact checker running underneath, and no built in sense of "I do not actually know this." There is only "given everything so far, what word comes next in a plausible answer."</p>
+      <p>For common, well documented facts, that process produces correct answers most of the time, because the correct answer is exactly what a plausible, well formed sentence looks like. The model has seen the real fact stated thousands of times, so predicting it is easy.</p>
+      <p>The problem shows up on the edges. Ask about something obscure, something with too much invented specificity, or something that never existed at all, and the model does not have a real pattern to draw from. It does not fail loudly. It fills the gap with something that sounds like the kind of answer that question should have. Fluent language and factual accuracy are two different things the model was never taught to distinguish between, and that gap is what people call a hallucination.</p>
+
+      <h2>The confidence meter is not measuring the truth</h2>
+      <p>Notice something in the widget above: the model's tone stays equally smooth whether the underlying fact is solid or invented. That is the core issue. Most AI tools do not have a real internal signal for "I am about to guess." Even when a product shows a confidence percentage, it is usually reflecting how statistically typical the phrasing is, not how well verified the content is. A well phrased guess and a well phrased fact can look identical from the outside.</p>
+      <p>This is exactly backward from how people are trained to read confidence. A hesitant colleague who says "I think it might be around 40, but let me check" is giving you a useful signal. An AI tool that states a specific, wrong number with zero hedging is giving you a false one, and it is easy to mistake fluency for reliability.</p>
+
+      <h2>What this means for your business</h2>
+      <p>Hallucination risk is not evenly spread. It concentrates in a few predictable places, and knowing where it hides is most of the fix.</p>
+      <p><strong>Watch for suspiciously specific detail.</strong> Exact dates, exact dollar figures, direct quotes, and named sources are the easiest things for a model to invent convincingly, especially about something obscure, recent, or internal to your company. If an AI tool hands you a precise citation or an exact clause number, verify it before it goes in front of a client or a regulator.</p>
+      <p><strong>Never let it be the last check on anything legal, financial, or medical.</strong> Contract language, compliance summaries, tax guidance, and health related claims are exactly the categories where a fluent, wrong answer causes real damage. Use AI to draft and summarize, and keep a person verifying anything that carries legal or financial weight.</p>
+      <p><strong>Ground it in your own documents when accuracy matters.</strong> Tools that answer by pulling from your actual company data, sometimes called retrieval augmented generation, are far less prone to invention than a model working from general training alone, because it is quoting something real instead of predicting from a pattern. If a workflow depends on getting facts right, this is worth setting up properly rather than trusting a general purpose chat tool.</p>
+      <p><strong>Ask it to show its uncertainty.</strong> A direct instruction like "only answer if you are confident, otherwise say you do not know" measurably reduces confident fabrication, though it does not eliminate it. It is a cheap safeguard worth adding to any prompt used for anything customer facing.</p>
+      <p>None of this means AI tools are unreliable for business use. It means they are unreliable in one specific, learnable way, and once your team knows to expect it, catching it becomes routine rather than a surprise.</p>
+
+      <blockquote>An AI model has no separate voice for "I know this" versus "I am guessing." Building that check yourself, on the outputs that matter, is the actual skill.</blockquote>
+
+      <div class="article-cta">
+        <h3>Not sure where hallucination risk sits in your workflows?</h3>
+        <p>We can help you map it. Take the AI Assessment to see where AI fits safely in your business, and where a human still needs to check the output.</p>
+        <a href="/ai-assessment" class="btn-primary">Take the AI Assessment →</a>
+      </div>
+
+      <hr />
+      <p><strong>Keep reading:</strong> <a href="/blog/mobile-app-design-principles-user-retention">12 Mobile App Design Principles That Actually Increase User Retention in 2026 →</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Helping companies put AI to work.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a consult</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/profile.php?id=61591149674974" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/SarzaAI" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=9" defer></script>
+<script>
+(function () {
+  var qWrap = document.getElementById('hw-questions');
+  var answerEl = document.getElementById('hw-answer');
+  var meterRow = document.getElementById('hw-meter-row');
+  var meterFill = document.getElementById('hw-meter-fill');
+  var meterPct = document.getElementById('hw-meter-pct');
+  var revealEl = document.getElementById('hw-reveal');
+
+  if (!qWrap) return;
+
+  var DATA = [
+    {
+      q: "What year was the Eiffel Tower completed?",
+      a: "The Eiffel Tower was completed in 1889, built for the World's Fair held in Paris that year.",
+      conf: 96,
+      status: "fact",
+      note: "Verified fact. Correct and easy to check."
+    },
+    {
+      q: "Who won the Nobel Prize in Literature in 1823?",
+      a: "The 1823 Nobel Prize in Literature was awarded to a European poet recognized for a body of romantic era verse.",
+      conf: 90,
+      status: "fab",
+      note: "Fabricated. The Nobel Prizes were not established until 1901, so no such award exists. The model invented a plausible sounding answer instead of flagging the false premise."
+    },
+    {
+      q: "What is the capital of Australia?",
+      a: "The capital of Australia is Canberra, not Sydney, which is the largest city but not the capital.",
+      conf: 97,
+      status: "fact",
+      note: "Verified fact. A commonly mistaken one, which is exactly why it is worth checking."
+    },
+    {
+      q: "Summarize the plot of the novel 'The Marigold Accord' by Helena Voss.",
+      a: "'The Marigold Accord' follows a diplomat uncovering a decades old cover up between two rival nations during a fragile peace negotiation.",
+      conf: 89,
+      status: "fab",
+      note: "Fabricated. Neither this novel nor this author appear to exist. The model generated a generic, plausible sounding plot instead of indicating it had no such record."
+    },
+    {
+      q: "How many moons does Jupiter have?",
+      a: "Jupiter has 95 known moons, though astronomers continue to discover more as detection methods improve.",
+      conf: 84,
+      status: "partial",
+      note: "Partially accurate. The count is correct as of recent counts but changes as new moons are confirmed, so a fixed number goes stale."
+    },
+    {
+      q: "Quote Article 12, Section 4 of the 'Continental Trade Compact of 1932'.",
+      a: "Article 12, Section 4 states that signatory nations shall maintain reciprocal tariff schedules subject to annual review by the joint commission.",
+      conf: 91,
+      status: "fab",
+      note: "Fabricated. No such treaty appears to exist. The model produced formal sounding legal language on demand, which is exactly the failure mode that is dangerous in contract or compliance work."
+    },
+    {
+      q: "What is the boiling point of water at sea level?",
+      a: "At sea level, water boils at 100 degrees Celsius, or 212 degrees Fahrenheit.",
+      conf: 98,
+      status: "fact",
+      note: "Verified fact. Standard, well documented physical constant."
+    }
+  ];
+
+  var current = -1;
+
+  function render(i) {
+    current = i;
+    var item = DATA[i];
+
+    var buttons = qWrap.querySelectorAll('.hw-q-btn');
+    for (var b = 0; b < buttons.length; b++) {
+      buttons[b].classList.toggle('hw-active', b === i);
+    }
+
+    revealEl.classList.remove('hw-shown');
+    revealEl.innerHTML = '';
+    meterRow.style.display = 'none';
+    answerEl.innerHTML = '<span class="hw-placeholder">Thinking…</span>';
+
+    setTimeout(function () {
+      answerEl.textContent = item.a;
+      meterRow.style.display = 'flex';
+      meterFill.style.width = '0%';
+      meterPct.textContent = '0%';
+      setTimeout(function () {
+        meterFill.style.width = item.conf + '%';
+        meterPct.textContent = item.conf + '%';
+      }, 30);
+
+      setTimeout(function () {
+        var badgeClass = item.status === 'fact' ? 'hw-badge-fact' : (item.status === 'partial' ? 'hw-badge-partial' : 'hw-badge-fab');
+        var badgeText = item.status === 'fact' ? 'Verified fact' : (item.status === 'partial' ? 'Partially accurate' : 'Fabricated');
+        revealEl.innerHTML = '<span class="hw-badge ' + badgeClass + '">' + badgeText + '</span><p>' + item.note + '</p>';
+        revealEl.classList.add('hw-shown');
+      }, 500);
+    }, 350);
+  }
+
+  for (var i = 0; i < DATA.length; i++) {
+    (function (idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'hw-q-btn';
+      btn.textContent = DATA[idx].q;
+      btn.addEventListener('click', function () { render(idx); });
+      qWrap.appendChild(btn);
+    })(i);
+  }
+}());
+</script>
+</body>
+</html>
