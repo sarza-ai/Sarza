@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>What Is RAG? How AI Actually Uses Your Company's Documents — Sarza AI</title>
+<meta name="description" content="RAG, retrieval augmented generation, is the reason an AI tool can answer from your actual policies instead of guessing. Try the live demo and see how it works." />
+<link rel="canonical" href="https://sarza.ai/blog/what-is-rag" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0A0A0A" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Sarza AI" />
+<meta property="og:title" content="What Is RAG? How AI Actually Uses Your Company's Documents" />
+<meta property="og:description" content="RAG is the reason an AI tool can answer from your actual policies instead of guessing. Try the live demo and see how it works." />
+<meta property="og:url" content="https://sarza.ai/blog/what-is-rag" />
+<meta property="og:image" content="https://sarza.ai/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-08-11" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What Is RAG? How AI Actually Uses Your Company's Documents" />
+<meta name="twitter:description" content="RAG is the reason an AI tool can answer from your actual policies instead of guessing." />
+<meta name="twitter:image" content="https://sarza.ai/assets/og.png" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="/assets/scene-b.svg" fetchpriority="high" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=21" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sarza.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sarza.ai/blog" },
+        { "@type": "ListItem", "position": 3, "name": "What Is RAG? How AI Actually Uses Your Company's Documents", "item": "https://sarza.ai/blog/what-is-rag" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "What Is RAG? How AI Actually Uses Your Company's Documents",
+      "description": "RAG, retrieval augmented generation, is the reason an AI tool can answer from your actual policies instead of guessing. Try the live demo and see how it works.",
+      "image": "https://sarza.ai/assets/og.png",
+      "datePublished": "2026-08-11",
+      "dateModified": "2026-08-11",
+      "author": { "@type": "Organization", "name": "Sarza AI", "url": "https://sarza.ai/" },
+      "publisher": { "@type": "Organization", "name": "Sarza AI", "logo": { "@type": "ImageObject", "url": "https://sarza.ai/favicon.svg" } },
+      "mainEntityOfPage": "https://sarza.ai/blog/what-is-rag"
+    }
+  ]
+}
+</script>
+
+<style>
+/* RAG widget styles, scoped to .rag-widget */
+.rag-widget { margin: 2rem 0; border: 1px solid var(--line); padding: clamp(20px, 3vw, 32px); }
+.rag-label { font-family: var(--body); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.rag-docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 1.6rem; }
+.rag-doc { border: 1px solid var(--line); padding: 12px; transition: border-color 0.25s, background 0.25s; }
+.rag-doc.is-match { border-color: var(--accent); background: rgba(224, 147, 74, 0.08); }
+.rag-doc-title { display: block; font-size: 12.5px; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+.rag-doc-excerpt { display: block; font-size: 12px; color: var(--dim); line-height: 1.4; }
+.rag-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.rag-chip { font-family: var(--body); font-size: 13px; padding: 10px 14px; border: 1px solid var(--line-2); background: transparent; color: var(--fg); border-radius: 100px; cursor: pointer; text-align: left; min-height: 44px; }
+.rag-chip:hover, .rag-chip:focus-visible { border-color: var(--accent); color: var(--accent); }
+.rag-row { display: flex; gap: 8px; margin-bottom: 1.6rem; }
+.rag-input { flex: 1; font-family: var(--body); font-size: 14.5px; padding: 12px 14px; border: 1px solid var(--line-2); background: var(--bg); color: var(--fg); min-height: 44px; }
+.rag-input:focus { outline: none; border-color: var(--accent); }
+.rag-ask { font-family: var(--body); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 22px; border: 1px solid var(--inv-bg); background: var(--inv-bg); color: var(--inv-fg); cursor: pointer; white-space: nowrap; min-height: 44px; }
+.rag-ask:hover { opacity: 0.85; }
+.rag-answer { display: none; border-top: 1px solid var(--line); padding-top: 1.4rem; }
+.rag-step-label { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 1.2rem 0 0.6rem; }
+.rag-step-label:first-child { margin-top: 0; }
+.rag-snippet { border-left: 2px solid var(--accent); padding: 0.2rem 0 0.2rem 14px; margin-bottom: 0.8rem; }
+.rag-snippet-src { display: block; font-size: 11.5px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+.rag-snippet p { font-size: 14.5px; color: #D8D6CF; line-height: 1.6; margin: 0; font-style: italic; }
+.rag-final { font-size: 16px; color: var(--fg); line-height: 1.7; margin-bottom: 0.6rem; }
+.rag-cite { font-size: 12.5px; color: var(--muted); }
+.rag-fallback table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 0.4rem; }
+.rag-fallback th, .rag-fallback td { border: 1px solid var(--line); padding: 10px; text-align: left; color: var(--muted); }
+.rag-fallback th { color: var(--fg); }
+@media (max-width: 640px) {
+  .rag-row { flex-direction: column; }
+  .rag-ask { width: 100%; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <a href="/" class="brand" aria-label="Sarza AI home"><svg class="brand-mark" viewBox="0 0 52 48" width="26" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A6"/><stop offset=".5" stop-color="#E8A85A"/><stop offset="1" stop-color="#C1440E"/></linearGradient><mask id="bm-mask"><circle cx="26" cy="24" r="20" fill="#fff"/><rect x="2" y="28.04" width="48" height="0.72" fill="#000"/><rect x="2" y="30.38" width="48" height="0.84" fill="#000"/><rect x="2" y="32.88" width="48" height="1.04" fill="#000"/><rect x="2" y="35.54" width="48" height="1.32" fill="#000"/><rect x="2" y="38.58" width="48" height="1.64" fill="#000"/><rect x="2" y="42" width="48" height="2" fill="#000"/></mask></defs><circle cx="26" cy="24" r="20" fill="url(#bm-sun)" mask="url(#bm-mask)"/></svg><span>Sarza AI</span></a>
+  <nav class="nav-inline" aria-label="Main">
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/ai-assessment" class="nav-book">AI Assessment</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-overlay" aria-expanded="false">
+    Menu <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-label="Menu" aria-hidden="true">
+  <button class="nav-overlay__close" id="nav-close" aria-label="Close menu">Close ✕</button>
+  <nav aria-label="Overlay">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/calculator">Calculator</a>
+  </nav>
+  <div class="nav-overlay__foot">
+    <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+    <a href="/ai-assessment">AI Assessment</a>
+  </div>
+</div>
+
+<main id="main">
+  <article class="article-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog">Blog</a> / <span>Explainer</span>
+    </nav>
+
+    <header class="article-head">
+      <span class="post-tag">Explainer</span>
+      <h1>What Is RAG? How AI Actually Uses Your Company's Documents</h1>
+      <p class="article-meta">By the Sarza AI team · Published August 11, 2026 · 6 min read</p>
+    </header>
+
+    <div class="article-feature">
+      <img src="/assets/scene-b.svg" alt="Futuristic desert at night with a glowing horizon and starfield" width="1200" height="600" fetchpriority="high" decoding="async" />
+    </div>
+
+    <div class="article-body">
+      <p class="lead">Every AI vendor pitch these days includes some version of the same line: "We'll connect it to your documents." They call it RAG, retrieval augmented generation, and they say it fast enough that most people nod along without asking what it actually does. Here is the plain version. RAG is the difference between an AI tool that guesses and one that looks something up first.</p>
+
+      <h2>Try it yourself</h2>
+      <p>Below is a fake outdoor supply store with five real policy documents. Tap a question, or type your own, and watch the assistant search those documents before it answers instead of inventing something.</p>
+
+      <div class="rag-widget" id="ragWidget" role="region" aria-label="RAG demo">
+        <noscript>
+          <div class="rag-fallback">
+            <p class="rag-label">Example: how RAG answers "Do you offer free shipping?"</p>
+            <table>
+              <tr><th>Step</th><th>What happens</th></tr>
+              <tr><td>Search</td><td>The system scans the store's five documents and finds Shipping Guide.pdf</td></tr>
+              <tr><td>Retrieve</td><td>"Standard shipping takes 3 to 5 business days and costs $6.99. Orders over $75 ship free."</td></tr>
+              <tr><td>Answer</td><td>Orders over $75 ship free. Standard shipping is $6.99 and takes 3 to 5 business days. Source: Shipping Guide.pdf</td></tr>
+            </table>
+          </div>
+        </noscript>
+        <div class="rag-app" style="display:none">
+          <p class="rag-label">This store's document set</p>
+          <div class="rag-docs" id="ragDocs"></div>
+          <p class="rag-label">Tap a question, or type your own</p>
+          <div class="rag-chips" id="ragChips"></div>
+          <div class="rag-row">
+            <input type="text" class="rag-input" id="ragInput" placeholder="Ask about returns, shipping, warranty..." aria-label="Ask a question" />
+            <button type="button" class="rag-ask" id="ragAsk">Ask</button>
+          </div>
+          <div class="rag-answer" id="ragAnswer"></div>
+        </div>
+      </div>
+
+      <h2>What just happened</h2>
+      <p>Nothing you typed got sent to a model that already "knew" the answer. The widget searched the five documents for the ones that actually matched your question, pulled the relevant passages, and built the answer only from that text. When a question had no matching document, it said so instead of making something up. That search, then answer, sequence is the entire idea behind RAG.</p>
+
+      <h2>The three steps in the name</h2>
+      <p><strong>Retrieval.</strong> Before the AI writes anything, a search runs over your actual documents, policies, product specs, past emails, whatever you have connected, and pulls out the passages most relevant to the question.</p>
+      <p><strong>Augmented.</strong> Those passages get added to the prompt the model sees. The model is not answering from memory anymore. It is answering with your real text sitting right in front of it.</p>
+      <p><strong>Generation.</strong> The model writes the final answer, but it is writing a summary of what it was just handed, not recalling a fact from training. Ask it something the documents do not cover, and a properly built system says it does not know rather than filling the gap with a guess.</p>
+      <p>Compare that to a plain chatbot with no document connection. It answers instantly from whatever patterns it learned during training, which may be outdated, generic, or simply invented for anything specific to your business, since your return policy was never part of what it studied.</p>
+
+      <h2>Why this matters more than the buzzword suggests</h2>
+      <p>The value of RAG is not that it makes an AI smarter. It is that it makes an AI answerable to something. When a model cites a passage from an actual document, you can go check that document. When it answers from general training, there is nothing to check against, only a confident sounding sentence. That single difference is why RAG has become the standard approach for any AI tool a business wants to trust with specifics.</p>
+      <p>It is not a magic fix, though. RAG only retrieves well if the underlying documents are current, clearly written, and not contradicting each other. Feed it a return policy that was updated in the handbook but never updated on the website, and it may retrieve the wrong version with the same confidence as the right one. The system is only as accurate as the document set behind it, and keeping that set clean is an ongoing job, not a one time setup.</p>
+
+      <h2>What this means for your business</h2>
+      <p>Once you see RAG as "search your documents, then answer," a handful of practical uses become obvious.</p>
+      <p><strong>Customer support that quotes your real policy.</strong> A support bot built on RAG answers return, shipping, and warranty questions straight from your actual policy pages instead of a generic, possibly wrong, guess.</p>
+      <p><strong>An internal helpdesk for HR and IT questions.</strong> Point it at your employee handbook and internal wiki, and staff get instant answers sourced from the real documents instead of pinging a person for something already written down.</p>
+      <p><strong>A sales tool that never misquotes a spec sheet.</strong> Reps can ask about pricing tiers, specs, or contract terms and get an answer pulled from the current sheet, not a stale memory of last year's pricing.</p>
+      <p><strong>Faster updates than retraining a model.</strong> When a policy changes, you edit the document. The next query picks up the new version immediately. There is no retraining involved, which is a large part of why RAG is cheaper to maintain than trying to bake facts into a model directly.</p>
+      <p>The tradeoff is that RAG is a system, not a switch you flip. It needs a real, organized set of documents behind it, and someone has to keep that set accurate. Businesses that treat it as a document quality project, not just an AI feature, get the most out of it.</p>
+
+      <div class="article-cta">
+        <h3>Curious what RAG could answer for your business?</h3>
+        <p>Take the AI Assessment to see where connecting AI to your own documents actually makes sense, and where it does not.</p>
+        <a href="/ai-assessment" class="btn-primary">Take the AI Assessment →</a>
+      </div>
+
+      <hr />
+      <p><strong>Keep reading:</strong> <a href="/blog/top-github-repos-august-10">Top 10 GitHub Repos This Week: August 10, 2026 →</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="mega-footer">
+  <div class="mega-footer__grid">
+    <p class="foot-lead">Helping companies put AI to work.</p>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+      <a href="/calculator">Calculator</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@sarza.ai">hello@sarza.ai</a>
+      <a href="/contact">Book a consult</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/profile.php?id=61591149674974" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/SarzaAI" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+  <div class="mega-footer__word" aria-hidden="true">Sarza AI</div>
+  <div class="mega-footer__bottom">
+    <p>© 2026 Sarza AI — All rights reserved</p>
+    <div class="legal">
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/app.js?v=9" defer></script>
+<script>
+(function () {
+  var root = document.getElementById('ragWidget');
+  if (!root) return;
+  var app = root.querySelector('.rag-app');
+  app.style.display = '';
+
+  var DOCS = [
+    { id: 'return', title: 'Return Policy.pdf', text: 'Returns are accepted within 30 days of purchase with a receipt. Items must be unused and in original packaging. Refunds are issued to the original payment method within 5 to 7 business days.', keywords: ['return', 'refund', 'receipt', '30 days', 'money back', 'exchange'] },
+    { id: 'ship', title: 'Shipping Guide.pdf', text: 'Standard shipping takes 3 to 5 business days and costs $6.99. Orders over $75 ship free. Express shipping is available at checkout for $19.99 and arrives in 1 to 2 business days.', keywords: ['shipping', 'delivery', 'free shipping', 'express', 'arrive', 'ship'] },
+    { id: 'warranty', title: 'Warranty Terms.pdf', text: 'All products carry a 1 year manufacturer warranty covering defects in materials and workmanship. Damage from misuse is not covered. Contact support with your order number to start a claim.', keywords: ['warranty', 'defect', 'broken', 'claim', 'coverage', 'guarantee'] },
+    { id: 'hours', title: 'Store Hours.pdf', text: 'Our retail location is open Monday through Saturday, 9am to 7pm, and Sunday 11am to 5pm. Customer support by phone is available Monday through Friday, 8am to 6pm.', keywords: ['hours', 'open', 'closed', 'phone support', 'weekend', 'sunday'] },
+    { id: 'loyalty', title: 'Loyalty Program.pdf', text: 'Members earn 1 point per dollar spent. 100 points equals a $5 reward. Sign up is free at checkout and points never expire.', keywords: ['loyalty', 'points', 'rewards', 'member', 'discount', 'program'] }
+  ];
+
+  var QUESTIONS = [
+    'How long do I have to return something?',
+    'Do you offer free shipping?',
+    'Is there a warranty on your products?',
+    'What are your store hours?'
+  ];
+
+  var docGrid = document.getElementById('ragDocs');
+  var chipsWrap = document.getElementById('ragChips');
+  var input = document.getElementById('ragInput');
+  var askBtn = document.getElementById('ragAsk');
+  var answerEl = document.getElementById('ragAnswer');
+
+  function renderDocs(matchIds) {
+    docGrid.innerHTML = DOCS.map(function (d) {
+      var hit = matchIds.indexOf(d.id) > -1;
+      return '<div class="rag-doc' + (hit ? ' is-match' : '') + '"><span class="rag-doc-title">' + d.title + '</span><span class="rag-doc-excerpt">' + d.text.slice(0, 58) + '…</span></div>';
+    }).join('');
+  }
+  renderDocs([]);
+
+  chipsWrap.innerHTML = QUESTIONS.map(function (q) {
+    return '<button type="button" class="rag-chip">' + q + '</button>';
+  }).join('');
+
+  chipsWrap.addEventListener('click', function (e) {
+    var btn = e.target.closest('.rag-chip');
+    if (!btn) return;
+    input.value = btn.textContent;
+    runQuery(btn.textContent);
+  });
+
+  askBtn.addEventListener('click', function () { runQuery(input.value); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') runQuery(input.value);
+  });
+
+  function score(doc, query) {
+    var q = query.toLowerCase();
+    var s = 0;
+    doc.keywords.forEach(function (k) { if (q.indexOf(k) > -1) s += 2; });
+    var qWords = q.split(/\W+/).filter(function (w) { return w.length > 3; });
+    var textLower = doc.text.toLowerCase();
+    qWords.forEach(function (w) { if (textLower.indexOf(w) > -1) s += 1; });
+    return s;
+  }
+
+  function runQuery(query) {
+    query = (query || '').trim();
+    if (!query) return;
+
+    var scored = DOCS.map(function (d) { return { doc: d, s: score(d, query) }; })
+      .sort(function (a, b) { return b.s - a.s; });
+    var top = scored.filter(function (x) { return x.s >= 2; }).slice(0, 2);
+
+    answerEl.style.display = '';
+
+    if (top.length === 0) {
+      renderDocs([]);
+      answerEl.innerHTML = '<p class="rag-step-label">No matching passage found</p><p class="rag-final">Nothing in the document set covers this. A well built RAG system says so instead of guessing, which is the whole point.</p>';
+      return;
+    }
+
+    renderDocs(top.map(function (t) { return t.doc.id; }));
+
+    var snippets = top.map(function (t) {
+      return '<div class="rag-snippet"><span class="rag-snippet-src">' + t.doc.title + '</span><p>"' + t.doc.text + '"</p></div>';
+    }).join('');
+
+    answerEl.innerHTML =
+      '<p class="rag-step-label">Retrieved passages</p>' + snippets +
+      '<p class="rag-step-label">Answer, built only from the passages above</p>' +
+      '<p class="rag-final">' + top[0].doc.text + '</p>' +
+      '<p class="rag-cite">Source: ' + top.map(function (t) { return t.doc.title; }).join(', ') + '</p>';
+  }
+})();
+</script>
+</body>
+</html>
