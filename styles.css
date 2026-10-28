@@ -134,7 +134,8 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 /* fullscreen overlay menu */
 .nav-overlay {
   position: fixed; inset: 0; z-index: 1500; background: var(--bg);
-  display: flex; flex-direction: column; justify-content: center; padding: var(--pad);
+  display: flex; flex-direction: column; justify-content: safe center; padding: var(--pad);
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
   opacity: 0; visibility: hidden; transform: translateY(-2%);
   transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease), transform 0.5s var(--ease);
 }
